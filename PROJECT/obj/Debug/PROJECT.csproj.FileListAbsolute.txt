@@ -8,3 +8,14 @@ D:\study\ATBM HTTT\ATBM\PROJECT\obj\Debug\PROJECT.csproj.GenerateResource.cache
 D:\study\ATBM HTTT\ATBM\PROJECT\obj\Debug\PROJECT.csproj.CoreCompileInputs.cache
 D:\study\ATBM HTTT\ATBM\PROJECT\obj\Debug\PROJECT.exe
 D:\study\ATBM HTTT\ATBM\PROJECT\obj\Debug\PROJECT.pdb
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\bin\Debug\PROJECT.exe.config
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\bin\Debug\PROJECT.exe
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\bin\Debug\PROJECT.pdb
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.csproj.AssemblyReference.cache
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.MH_Admin_1.resources
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.MH_Admin_2.resources
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.Properties.Resources.resources
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.csproj.GenerateResource.cache
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.csproj.CoreCompileInputs.cache
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.exe
+D:\NGOTOAI\practice C#\ATBMHTTT-K19\PROJECT\obj\Debug\PROJECT.pdb

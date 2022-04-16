@@ -66,9 +66,9 @@ namespace PROJECT
             // dgv1
             // 
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv1.Location = new System.Drawing.Point(6, 19);
+            this.dgv1.Location = new System.Drawing.Point(6, 26);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(390, 233);
+            this.dgv1.Size = new System.Drawing.Size(390, 226);
             this.dgv1.TabIndex = 0;
             this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
             // 
@@ -78,7 +78,7 @@ namespace PROJECT
             this.tùyChọnToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(704, 24);
+            this.menu.Size = new System.Drawing.Size(873, 24);
             this.menu.TabIndex = 1;
             this.menu.Text = "menu";
             // 
@@ -106,9 +106,9 @@ namespace PROJECT
             // dgv2
             // 
             this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv2.Location = new System.Drawing.Point(6, 14);
+            this.dgv2.Location = new System.Drawing.Point(6, 19);
             this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(391, 138);
+            this.dgv2.Size = new System.Drawing.Size(391, 204);
             this.dgv2.TabIndex = 0;
             // 
             // label1
@@ -185,7 +185,7 @@ namespace PROJECT
             // 
             // bt_capquyenuser
             // 
-            this.bt_capquyenuser.Location = new System.Drawing.Point(50, 104);
+            this.bt_capquyenuser.Location = new System.Drawing.Point(50, 151);
             this.bt_capquyenuser.Name = "bt_capquyenuser";
             this.bt_capquyenuser.Size = new System.Drawing.Size(85, 38);
             this.bt_capquyenuser.TabIndex = 7;
@@ -194,7 +194,7 @@ namespace PROJECT
             // 
             // bt_thuquyenuser
             // 
-            this.bt_thuquyenuser.Location = new System.Drawing.Point(179, 104);
+            this.bt_thuquyenuser.Location = new System.Drawing.Point(179, 151);
             this.bt_thuquyenuser.Name = "bt_thuquyenuser";
             this.bt_thuquyenuser.Size = new System.Drawing.Size(85, 38);
             this.bt_thuquyenuser.TabIndex = 7;
@@ -234,7 +234,7 @@ namespace PROJECT
             // 
             this.checkBox.AccessibleDescription = "";
             this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(158, 64);
+            this.checkBox.Location = new System.Drawing.Point(27, 105);
             this.checkBox.Name = "checkBox";
             this.checkBox.Size = new System.Drawing.Size(140, 17);
             this.checkBox.TabIndex = 10;
@@ -254,7 +254,7 @@ namespace PROJECT
             // cb_cot
             // 
             this.cb_cot.FormattingEnabled = true;
-            this.cb_cot.Location = new System.Drawing.Point(27, 62);
+            this.cb_cot.Location = new System.Drawing.Point(27, 64);
             this.cb_cot.Name = "cb_cot";
             this.cb_cot.Size = new System.Drawing.Size(108, 21);
             this.cb_cot.TabIndex = 12;
@@ -265,7 +265,7 @@ namespace PROJECT
             this.groupBox1.Controls.Add(this.dgv2);
             this.groupBox1.Location = new System.Drawing.Point(307, 285);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(397, 152);
+            this.groupBox1.Size = new System.Drawing.Size(397, 223);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin về quyền của người dùng";
@@ -307,14 +307,14 @@ namespace PROJECT
             this.panel2.Controls.Add(this.checkBox);
             this.panel2.Location = new System.Drawing.Point(0, 285);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 152);
+            this.panel2.Size = new System.Drawing.Size(301, 223);
             this.panel2.TabIndex = 16;
             // 
             // MH_Admin_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 439);
+            this.ClientSize = new System.Drawing.Size(873, 511);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
