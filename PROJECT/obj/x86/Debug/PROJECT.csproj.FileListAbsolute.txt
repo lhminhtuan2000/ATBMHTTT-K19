@@ -1,0 +1,9 @@
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x86\Debug\PROJECT.exe.config
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x86\Debug\PROJECT.exe
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x86\Debug\PROJECT.pdb
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.Form1.resources
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.Properties.Resources.resources
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.csproj.GenerateResource.cache
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.csproj.CoreCompileInputs.cache
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.exe
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x86\Debug\PROJECT.pdb

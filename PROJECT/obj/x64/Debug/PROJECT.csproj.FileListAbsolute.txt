@@ -1,0 +1,11 @@
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x64\Debug\PROJECT.exe.config
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x64\Debug\PROJECT.exe
+D:\study\ATBM HTTT\ATBM\PROJECT\bin\x64\Debug\PROJECT.pdb
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.Properties.Resources.resources
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.csproj.GenerateResource.cache
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.csproj.CoreCompileInputs.cache
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.exe
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.pdb
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.csproj.AssemblyReference.cache
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.MH_Admin_1.resources
+D:\study\ATBM HTTT\ATBM\PROJECT\obj\x64\Debug\PROJECT.MH_Admin_2.resources
