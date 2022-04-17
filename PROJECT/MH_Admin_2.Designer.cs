@@ -52,8 +52,10 @@ namespace PROJECT
             this.label1 = new System.Windows.Forms.Label();
             this.tb2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bt_capquyen = new System.Windows.Forms.Button();
             this.bt_thuquyen = new System.Windows.Forms.Button();
+            this.bt_capquyen = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgv3 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
@@ -61,6 +63,8 @@ namespace PROJECT
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
             this.menu.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -72,14 +76,14 @@ namespace PROJECT
             this.panel2.Controls.Add(this.cb_cot);
             this.panel2.Controls.Add(this.cb_bang);
             this.panel2.Controls.Add(this.checkBox);
-            this.panel2.Location = new System.Drawing.Point(0, 292);
+            this.panel2.Location = new System.Drawing.Point(12, 306);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 152);
+            this.panel2.Size = new System.Drawing.Size(289, 293);
             this.panel2.TabIndex = 22;
             // 
             // bt_thuquyenrole
             // 
-            this.bt_thuquyenrole.Location = new System.Drawing.Point(179, 104);
+            this.bt_thuquyenrole.Location = new System.Drawing.Point(179, 217);
             this.bt_thuquyenrole.Name = "bt_thuquyenrole";
             this.bt_thuquyenrole.Size = new System.Drawing.Size(85, 38);
             this.bt_thuquyenrole.TabIndex = 7;
@@ -88,7 +92,7 @@ namespace PROJECT
             // 
             // bt_capquyenrole
             // 
-            this.bt_capquyenrole.Location = new System.Drawing.Point(50, 104);
+            this.bt_capquyenrole.Location = new System.Drawing.Point(41, 217);
             this.bt_capquyenrole.Name = "bt_capquyenrole";
             this.bt_capquyenrole.Size = new System.Drawing.Size(85, 38);
             this.bt_capquyenrole.TabIndex = 7;
@@ -103,20 +107,21 @@ namespace PROJECT
             "UPDATE",
             "INSERT",
             "DELETE"});
-            this.cb_quyen.Location = new System.Drawing.Point(27, 28);
+            this.cb_quyen.Location = new System.Drawing.Point(18, 16);
             this.cb_quyen.Name = "cb_quyen";
-            this.cb_quyen.Size = new System.Drawing.Size(108, 21);
+            this.cb_quyen.Size = new System.Drawing.Size(191, 21);
             this.cb_quyen.TabIndex = 8;
             this.cb_quyen.Text = "Tên quyền";
             // 
             // cb_cot
             // 
             this.cb_cot.FormattingEnabled = true;
-            this.cb_cot.Location = new System.Drawing.Point(27, 62);
+            this.cb_cot.Location = new System.Drawing.Point(18, 106);
             this.cb_cot.Name = "cb_cot";
-            this.cb_cot.Size = new System.Drawing.Size(108, 21);
+            this.cb_cot.Size = new System.Drawing.Size(191, 21);
             this.cb_cot.TabIndex = 12;
             this.cb_cot.Text = "Tên cột";
+            this.cb_cot.SelectedIndexChanged += new System.EventHandler(this.cb_cot_SelectedIndexChanged);
             // 
             // cb_bang
             // 
@@ -127,9 +132,9 @@ namespace PROJECT
             "BỆNHNHÂN",
             "CSYT",
             "NHÂNVIÊN"});
-            this.cb_bang.Location = new System.Drawing.Point(158, 28);
+            this.cb_bang.Location = new System.Drawing.Point(18, 60);
             this.cb_bang.Name = "cb_bang";
-            this.cb_bang.Size = new System.Drawing.Size(108, 21);
+            this.cb_bang.Size = new System.Drawing.Size(191, 21);
             this.cb_bang.TabIndex = 9;
             this.cb_bang.Text = "Tên bảng";
             // 
@@ -137,7 +142,7 @@ namespace PROJECT
             // 
             this.checkBox.AccessibleDescription = "";
             this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(158, 64);
+            this.checkBox.Location = new System.Drawing.Point(18, 157);
             this.checkBox.Name = "checkBox";
             this.checkBox.Size = new System.Drawing.Size(140, 17);
             this.checkBox.TabIndex = 10;
@@ -149,35 +154,38 @@ namespace PROJECT
             this.groupBox2.Controls.Add(this.dgv1);
             this.groupBox2.Location = new System.Drawing.Point(308, 34);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(396, 252);
+            this.groupBox2.Size = new System.Drawing.Size(753, 252);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các vai trò";
             // 
             // dgv1
             // 
+            this.dgv1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv1.Location = new System.Drawing.Point(6, 19);
+            this.dgv1.Location = new System.Drawing.Point(6, 26);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(390, 233);
+            this.dgv1.Size = new System.Drawing.Size(741, 226);
             this.dgv1.TabIndex = 0;
+            this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgv2);
             this.groupBox1.Location = new System.Drawing.Point(307, 292);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(397, 152);
+            this.groupBox1.Size = new System.Drawing.Size(355, 307);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin về quyền của vai trò";
             // 
             // dgv2
             // 
+            this.dgv2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv2.Location = new System.Drawing.Point(6, 14);
             this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(391, 138);
+            this.dgv2.Size = new System.Drawing.Size(342, 293);
             this.dgv2.TabIndex = 0;
             // 
             // label
@@ -193,13 +201,13 @@ namespace PROJECT
             // vaiTròToolStripMenuItem
             // 
             this.vaiTròToolStripMenuItem.Name = "vaiTròToolStripMenuItem";
-            this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.vaiTròToolStripMenuItem.Text = "Vai trò";
             // 
             // ngườiDùngToolStripMenuItem
             // 
             this.ngườiDùngToolStripMenuItem.Name = "ngườiDùngToolStripMenuItem";
-            this.ngườiDùngToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ngườiDùngToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.ngườiDùngToolStripMenuItem.Text = "Người dùng";
             // 
             // tùyChọnToolStripMenuItem
@@ -217,7 +225,7 @@ namespace PROJECT
             this.tùyChọnToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(705, 24);
+            this.menu.Size = new System.Drawing.Size(1073, 24);
             this.menu.TabIndex = 17;
             this.menu.Text = "menu";
             // 
@@ -229,15 +237,17 @@ namespace PROJECT
             this.bt_xoa.TabIndex = 6;
             this.bt_xoa.Text = "Xóa";
             this.bt_xoa.UseVisualStyleBackColor = true;
+            this.bt_xoa.Click += new System.EventHandler(this.bt_xoa_Click);
             // 
             // bt_them
             // 
-            this.bt_them.Location = new System.Drawing.Point(50, 61);
+            this.bt_them.Location = new System.Drawing.Point(41, 61);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(85, 38);
             this.bt_them.TabIndex = 6;
             this.bt_them.Text = "Thêm";
             this.bt_them.UseVisualStyleBackColor = true;
+            this.bt_them.Click += new System.EventHandler(this.bt_them_Click);
             // 
             // label2
             // 
@@ -282,19 +292,10 @@ namespace PROJECT
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.bt_them);
             this.panel1.Controls.Add(this.bt_xoa);
-            this.panel1.Location = new System.Drawing.Point(0, 60);
+            this.panel1.Location = new System.Drawing.Point(12, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(302, 226);
+            this.panel1.Size = new System.Drawing.Size(290, 226);
             this.panel1.TabIndex = 21;
-            // 
-            // bt_capquyen
-            // 
-            this.bt_capquyen.Location = new System.Drawing.Point(50, 163);
-            this.bt_capquyen.Name = "bt_capquyen";
-            this.bt_capquyen.Size = new System.Drawing.Size(85, 38);
-            this.bt_capquyen.TabIndex = 7;
-            this.bt_capquyen.Text = "Cấp quyền";
-            this.bt_capquyen.UseVisualStyleBackColor = true;
             // 
             // bt_thuquyen
             // 
@@ -305,11 +306,41 @@ namespace PROJECT
             this.bt_thuquyen.Text = "Thu quyền";
             this.bt_thuquyen.UseVisualStyleBackColor = true;
             // 
+            // bt_capquyen
+            // 
+            this.bt_capquyen.Location = new System.Drawing.Point(41, 163);
+            this.bt_capquyen.Name = "bt_capquyen";
+            this.bt_capquyen.Size = new System.Drawing.Size(85, 38);
+            this.bt_capquyen.TabIndex = 7;
+            this.bt_capquyen.Text = "Cấp quyền";
+            this.bt_capquyen.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgv3);
+            this.groupBox3.Location = new System.Drawing.Point(668, 292);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(393, 307);
+            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Danh sách người dùng";
+            // 
+            // dgv3
+            // 
+            this.dgv3.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv3.Location = new System.Drawing.Point(7, 14);
+            this.dgv3.Name = "dgv3";
+            this.dgv3.Size = new System.Drawing.Size(380, 293);
+            this.dgv3.TabIndex = 0;
+            this.dgv3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv3_CellContentClick);
+            // 
             // MH_Admin_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 448);
+            this.ClientSize = new System.Drawing.Size(1073, 611);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -328,6 +359,8 @@ namespace PROJECT
             this.menu.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,5 +393,7 @@ namespace PROJECT
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button bt_thuquyen;
         private System.Windows.Forms.Button bt_capquyen;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgv3;
     }
 }

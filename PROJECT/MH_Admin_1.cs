@@ -24,7 +24,6 @@ namespace PROJECT
         public void dgv1_loaddata()
         {
             OracleCommand cmd = new OracleCommand("sp_list_all_user", con);
-            //OracleCommand cmd = new OracleCommand("SELECT username,password,default_tablespace FROM dba_users WHERE account_status = 'OPEN'", con);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable dt = new DataTable();
             dt.Clear();
@@ -45,10 +44,11 @@ namespace PROJECT
 
         public void dgv2_loaddata(string username)
         {
+            OracleCommand cmd = new OracleCommand("sp_show_user_privilges", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
             try
             {
-                //OracleCommand cmd = new OracleCommand("exec sp_show_user_privilges('" + username + "')", con);
-                OracleCommand cmd = new OracleCommand("SELECT privilege,ADMIN_OPTION FROM DBA_SYS_PRIVS where grantee = UPPER('" + username + "')", con);
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
                 con.Open();
                 DataTable dt = new DataTable();
@@ -164,6 +164,5 @@ namespace PROJECT
             con.Close();
             dgv1_loaddata();
         }
-
     }
 }

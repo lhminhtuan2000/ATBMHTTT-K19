@@ -65,6 +65,7 @@ namespace PROJECT
             // 
             // dgv1
             // 
+            this.dgv1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Location = new System.Drawing.Point(6, 26);
             this.dgv1.Name = "dgv1";
@@ -78,7 +79,7 @@ namespace PROJECT
             this.tùyChọnToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(873, 24);
+            this.menu.Size = new System.Drawing.Size(721, 24);
             this.menu.TabIndex = 1;
             this.menu.Text = "menu";
             // 
@@ -105,10 +106,11 @@ namespace PROJECT
             // 
             // dgv2
             // 
+            this.dgv2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv2.Location = new System.Drawing.Point(6, 19);
             this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(391, 204);
+            this.dgv2.Size = new System.Drawing.Size(391, 159);
             this.dgv2.TabIndex = 0;
             // 
             // label1
@@ -185,7 +187,7 @@ namespace PROJECT
             // 
             // bt_capquyenuser
             // 
-            this.bt_capquyenuser.Location = new System.Drawing.Point(50, 151);
+            this.bt_capquyenuser.Location = new System.Drawing.Point(179, 16);
             this.bt_capquyenuser.Name = "bt_capquyenuser";
             this.bt_capquyenuser.Size = new System.Drawing.Size(85, 38);
             this.bt_capquyenuser.TabIndex = 7;
@@ -194,7 +196,7 @@ namespace PROJECT
             // 
             // bt_thuquyenuser
             // 
-            this.bt_thuquyenuser.Location = new System.Drawing.Point(179, 151);
+            this.bt_thuquyenuser.Location = new System.Drawing.Point(179, 72);
             this.bt_thuquyenuser.Name = "bt_thuquyenuser";
             this.bt_thuquyenuser.Size = new System.Drawing.Size(85, 38);
             this.bt_thuquyenuser.TabIndex = 7;
@@ -209,7 +211,7 @@ namespace PROJECT
             "UPDATE",
             "INSERT",
             "DELETE"});
-            this.cb_quyen.Location = new System.Drawing.Point(27, 28);
+            this.cb_quyen.Location = new System.Drawing.Point(27, 16);
             this.cb_quyen.Name = "cb_quyen";
             this.cb_quyen.Size = new System.Drawing.Size(108, 21);
             this.cb_quyen.TabIndex = 8;
@@ -224,7 +226,7 @@ namespace PROJECT
             "BỆNHNHÂN",
             "CSYT",
             "NHÂNVIÊN"});
-            this.cb_bang.Location = new System.Drawing.Point(158, 28);
+            this.cb_bang.Location = new System.Drawing.Point(27, 51);
             this.cb_bang.Name = "cb_bang";
             this.cb_bang.Size = new System.Drawing.Size(108, 21);
             this.cb_bang.TabIndex = 9;
@@ -234,7 +236,7 @@ namespace PROJECT
             // 
             this.checkBox.AccessibleDescription = "";
             this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(27, 105);
+            this.checkBox.Location = new System.Drawing.Point(27, 126);
             this.checkBox.Name = "checkBox";
             this.checkBox.Size = new System.Drawing.Size(140, 17);
             this.checkBox.TabIndex = 10;
@@ -254,7 +256,7 @@ namespace PROJECT
             // cb_cot
             // 
             this.cb_cot.FormattingEnabled = true;
-            this.cb_cot.Location = new System.Drawing.Point(27, 64);
+            this.cb_cot.Location = new System.Drawing.Point(27, 89);
             this.cb_cot.Name = "cb_cot";
             this.cb_cot.Size = new System.Drawing.Size(108, 21);
             this.cb_cot.TabIndex = 12;
@@ -265,7 +267,7 @@ namespace PROJECT
             this.groupBox1.Controls.Add(this.dgv2);
             this.groupBox1.Location = new System.Drawing.Point(307, 285);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(397, 223);
+            this.groupBox1.Size = new System.Drawing.Size(402, 178);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin về quyền của người dùng";
@@ -275,7 +277,7 @@ namespace PROJECT
             this.groupBox2.Controls.Add(this.dgv1);
             this.groupBox2.Location = new System.Drawing.Point(308, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(396, 252);
+            this.groupBox2.Size = new System.Drawing.Size(401, 252);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các người dùng";
@@ -291,9 +293,9 @@ namespace PROJECT
             this.panel1.Controls.Add(this.bt_sua);
             this.panel1.Controls.Add(this.bt_khoa);
             this.panel1.Controls.Add(this.bt_xoa);
-            this.panel1.Location = new System.Drawing.Point(0, 53);
+            this.panel1.Location = new System.Drawing.Point(12, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(302, 226);
+            this.panel1.Size = new System.Drawing.Size(290, 226);
             this.panel1.TabIndex = 15;
             // 
             // panel2
@@ -305,16 +307,16 @@ namespace PROJECT
             this.panel2.Controls.Add(this.cb_cot);
             this.panel2.Controls.Add(this.cb_bang);
             this.panel2.Controls.Add(this.checkBox);
-            this.panel2.Location = new System.Drawing.Point(0, 285);
+            this.panel2.Location = new System.Drawing.Point(12, 304);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 223);
+            this.panel2.Size = new System.Drawing.Size(289, 159);
             this.panel2.TabIndex = 16;
             // 
             // MH_Admin_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 511);
+            this.ClientSize = new System.Drawing.Size(721, 473);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);

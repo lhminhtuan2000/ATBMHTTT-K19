@@ -16,7 +16,7 @@ namespace PROJECT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MH_Admin_1());
+            Application.Run(new MH_Admin_2());
         }
     }
 }
