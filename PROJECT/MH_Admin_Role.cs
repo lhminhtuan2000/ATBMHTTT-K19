@@ -12,10 +12,10 @@ using Oracle.ManagedDataAccess.Types;
 using System.Configuration; // To Access App Config Attributes
 namespace PROJECT
 {
-    public partial class MH_Admin_2 : Form
+    public partial class MH_Admin_Role : Form
     {
         OracleConnection con = new OracleConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
-        public MH_Admin_2()
+        public MH_Admin_Role()
         {
             InitializeComponent();
             dgv1_loaddata();
@@ -23,7 +23,7 @@ namespace PROJECT
         }
         public void dgv1_loaddata()
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_roles", con);
+            OracleCommand cmd = new OracleCommand("sp_list_all_role", con);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable dt = new DataTable();
             dt.Clear();
@@ -156,6 +156,16 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
+        }
+
+        private void ngườiDùngTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_User(), this);
+        }
+
+        private void CSYTTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_CSYT(), this);
         }
     }
 }
