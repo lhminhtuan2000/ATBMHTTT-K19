@@ -1,128 +1,112 @@
---XOA CAU TRUC DU LIEU
 /*
- 
- drop table qlbv_dba.HSBA CASCADE CONSTRAINTS;
- drop table qlbv_dba.HSBA_DV CASCADE CONSTRAINTS;
- drop table qlbv_dba.BENHNHAN CASCADE CONSTRAINTS;
- drop table qlbv_dba.CSYT CASCADE CONSTRAINTS;
- drop table qlbv_dba.NHANVIEN CASCADE CONSTRAINTS;
- drop table qlbv_dba.DICHVU CASCADE CONSTRAINTS;
- drop table qlbv_dba.KHOA CASCADE CONSTRAINTS;
- 
- */
---chAy = user sysdba
-CREATE PLUGGABLE DATABASE qlbv_pdb ADMIN USER qlbv_dba IDENTIFIED BY 1 ROLES = (dba) FILE_NAME_CONVERT = ('pdbseed', 'qlbv_pdb');
+
+*** XOA CAU TRUC DU LIEU
+
+ALTER SESSION SET container = cdb$root;
+ALTER PLUGGABLE DATABASE qlbv_pdb CLOSE IMMEDIATE;
+DROP PLUGGABLE DATABASE qlbv_pdb INCLUDING DATAFILES;
+
+*/
+
+CREATE PLUGGABLE DATABASE qlbv_pdb 
+ADMIN USER qlbv_dba IDENTIFIED BY 1 ROLES = (dba) 
+FILE_NAME_CONVERT = ('pdbseed', 'qlbv_pdb');
 
 ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
-
-ALTER SESSION
-SET
-    container = qlbv_pdb;
+ALTER SESSION SET container = qlbv_pdb;
 
 ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
 
---TAO BANG
+-- TAO BANG
 CREATE TABLE qlbv_dba.HSBA (
-    MAHSBA number(5),
-    MABN number(5),
-    NGAY date,
-    CHANDOAN nvarchar2(100) NOT NULL,
-    MABS number(3),
-    MAKHOA number(2),
-    MACSYT number(2),
-    KETLUAN nvarchar2(100),
-    CONSTRAINT PK_HSBA PRIMARY KEY (MAHSBA)
+    mahsba NUMBER(5),
+    mabn NUMBER(5),
+    ngay DATE,
+    chandoan NVARCHAR2(100) NOT NULL,
+    mabs NUMBER(3),
+    makhoa NUMBER(2),
+    macsyt NUMBER(2),
+    ketluan NVARCHAR2(100),
+    CONSTRAINT pk_hsba PRIMARY KEY (mahsba)
 );
 
 CREATE TABLE qlbv_dba.HSBA_DV (
-    MAHSBA number(5),
-    MADV number(3),
-    NGAY date,
-    MAKTV number(3),
-    KETQUA nvarchar2(100),
-    CONSTRAINT PK_HSBA_DV PRIMARY KEY (MAHSBA, MADV, NGAY)
+    mahsba NUMBER(5),
+    madv NUMBER(3),
+    ngay DATE,
+    maktv NUMBER(3),
+    ketqua NVARCHAR2(100),
+    CONSTRAINT pk_hsba_dv PRIMARY KEY (mahsba, madv, ngay)
 );
 
 CREATE TABLE qlbv_dba.BENHNHAN (
-    MABN number(5),
-    MACSYT number(2),
-    TENBN nvarchar2(50),
-    CMND varchar(12),
-    NGAYSINH date,
-    SONHA varchar(10),
-    TENDUONG nvarchar2(50),
-    QUANHUYEN nvarchar2(50),
-    TINHTP nvarchar2(50),
-    TIENSUBENH nvarchar2(100),
-    TIENSUBENHGD nvarchar2(100),
-    DIUNGTHUOC nvarchar2(100),
-    CONSTRAINT PK_BENHNHAN PRIMARY KEY (MABN)
+    mabn NUMBER(5),
+    macsyt NUMBER(2),
+    tenbn NVARCHAR2(50),
+    cmnd VARCHAR(12),
+    ngaysinh DATE,
+    sonha VARCHAR(10),
+    tenduong NVARCHAR2(50),
+    quanhuyen NVARCHAR2(50),
+    tinhtp NVARCHAR2(50),
+    tiensubenh NVARCHAR2(100),
+    tiensubenhgd NVARCHAR2(100),
+    diungthuoc NVARCHAR2(100),
+    CONSTRAINT pk_benhnhan PRIMARY KEY (mabn)
 );
 
 CREATE TABLE qlbv_dba.CSYT (
-    MACSYT number(2),
-    TENCSYT nvarchar2(80),
-    DCCSYT nvarchar2(100),
-    SDTCSYT char(10),
-    CONSTRAINT PK_CSYT PRIMARY KEY (MACSYT)
+    macsyt number(2),
+    tencsyt NVARCHAR2(80),
+    dccsyt NVARCHAR2(100),
+    sdtcsyt CHAR(10),
+    CONSTRAINT pk_csyt PRIMARY KEY (macsyt)
 );
 
 CREATE TABLE qlbv_dba.NHANVIEN (
-    MANV number(5),
-    HOTEN nvarchar2(50),
-    PHAI nvarchar2(5),
-    NGAYSINH date,
-    CMND varchar(12),
-    QUEQUAN nvarchar2(50),
-    SODT char(10),
-    CSYT number(2),
-    VAITRO nvarchar2(20),
-    CHUYENKHOA nvarchar2(50),
-    CONSTRAINT PK_NHANVIEN PRIMARY KEY (MANV)
+    manv number(5),
+    hoten NVARCHAR2(50),
+    phai NVARCHAR2(5),
+    ngaysinh DATE,
+    cmnd VARCHAR2(12),
+    quequan NVARCHAR2(50),
+    sodt CHAR(10),
+    csyt NUMBER(2),
+    vaitro NVARCHAR2(20),
+    chuyenkhoa NVARCHAR2(50),
+    CONSTRAINT pk_nhanvien PRIMARY KEY (MANV)
 );
 
 CREATE TABLE qlbv_dba.DICHVU (
-    MADV number(3),
-    TENDV nvarchar2(50),
-    MOTA nvarchar2(100) DEFAULT '',
-    GIA number(8),
-    CONSTRAINT PK_DICHVU PRIMARY KEY (MADV)
+    madv number(3),
+    tendv NVARCHAR2(50),
+    mota NVARCHAR2(100) DEFAULT '',
+    gia number(8),
+    CONSTRAINT PK_DICHVU PRIMARY KEY (madv)
 );
 
 CREATE TABLE qlbv_dba.KHOA (
-    MAKHOA number(2),
-    TENKHOA nvarchar2(50),
-    MOTA nvarchar2(100) DEFAULT '',
-    CONSTRAINT PK_KHOA PRIMARY KEY (MAKHOA)
+    makhoa number(2),
+    tenkhoa NVARCHAR2(50),
+    mota NVARCHAR2(100) DEFAULT '',
+    CONSTRAINT pk_khoa PRIMARY KEY (makhoa)
 );
 
 --TAO KHOA NGOAI
-ALTER TABLE
-    qlbv_dba.HSBA
-ADD
-    CONSTRAINT FK_HSBA_BENHNHAN FOREIGN KEY (MABN) REFERENCES qlbv_dba.BENHNHAN (MABN);
+ALTER TABLE qlbv_dba.HSBA ADD
+    CONSTRAINT fk_hsba_benhnhan FOREIGN KEY (mabn) REFERENCES qlbv_dba.BENHNHAN (mabn);
 
-ALTER TABLE
-    qlbv_dba.HSBA
-ADD
-    CONSTRAINT FK_HSBA_NHANVIEN FOREIGN KEY (MABS) REFERENCES qlbv_dba.NHANVIEN (MANV);
+ALTER TABLE qlbv_dba.HSBA ADD
+    CONSTRAINT fk_hsba_nhanvien FOREIGN KEY (mabs) REFERENCES qlbv_dba.NHANVIEN (manv);
 
-ALTER TABLE
-    qlbv_dba.HSBA
-ADD
-    CONSTRAINT FK_HSBA_CSYT FOREIGN KEY (MACSYT) REFERENCES qlbv_dba.CSYT (MACSYT);
+ALTER TABLE qlbv_dba.HSBA ADD
+    CONSTRAINT fk_hsba_csyt FOREIGN KEY (macsyt) REFERENCES qlbv_dba.CSYT (macsyt);
 
-ALTER TABLE
-    qlbv_dba.HSBA
-ADD
-    CONSTRAINT FK_HSBA_KHOA FOREIGN KEY (MAKHOA) REFERENCES qlbv_dba.KHOA (MAKHOA);
+ALTER TABLE qlbv_dba.HSBA ADD
+    CONSTRAINT fk_hsba_khoa FOREIGN KEY (makhoa) REFERENCES qlbv_dba.KHOA (makhoa);
 
-ALTER TABLE
-    qlbv_dba.HSBA_DV
-ADD
-    CONSTRAINT FK_HSBA_DV_HSBA FOREIGN KEY (MAHSBA) REFERENCES qlbv_dba.HSBA (MAHSBA);
+ALTER TABLE qlbv_dba.HSBA_DV ADD
+    CONSTRAINT fk_hsba_dv_hsba FOREIGN KEY (mahsba) REFERENCES qlbv_dba.HSBA (mahsba);
 
-ALTER TABLE
-    qlbv_dba.HSBA_DV
-ADD
-    CONSTRAINT FK_HSBA_DV_DICHVU FOREIGN KEY (MADV) REFERENCES qlbv_dba.DICHVU (MADV);
+ALTER TABLE qlbv_dba.HSBA_DV ADD
+    CONSTRAINT fk_hsba_dv_dichvu FOREIGN KEY (madv) REFERENCES qlbv_dba.DICHVU (madv);
