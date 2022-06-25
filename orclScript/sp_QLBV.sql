@@ -1,10 +1,20 @@
---login = USER ADMIN of PDB
 SET SERVEROUTPUT ON; --turn on DBMS_SQL.RETURN_RESULT
-
+--login = SYSDBA
 ALTER PLUGGABLE DATABASE pdb1 OPEN;
+
+--login = USER ADMIN of PDB
 ALTER SESSION SET container = pdb1;
-ALTER USER pdb1dba QUOTA UNLIMITED ON SYSTEM;
+--ALTER USER pdb1dba QUOTA UNLIMITED ON SYSTEM;
 ALTER SESSION SET current_schema = pdb1dba;
+
+/* CHECK
+select owner, table_name from all_tables;
+select sys_context( 'userenv', 'current_schema' ) from dual;
+SELECT owner,object_name FROM all_procedures WHERE object_type = 'PROCEDURE';
+*/
+
+GRANT SELECT ANY DICTIONARY TO PDB1DBA; --PL/SQL disables roles
+GRANT SELECT ANY TABLE TO PDB1DBA;
 
 -- PROCEDURE
 -- Liệt kê tất cả các user đang open
@@ -13,7 +23,7 @@ IS
     c_user_list SYS_REFCURSOR;
 BEGIN
     open c_user_list for
-    SELECT username,ACCOUNT_STATUS,default_tablespace,CREATED
+    SELECT USERNAME,ACCOUNT_STATUS,CREATED,LAST_LOGIN
     FROM dba_users
     WHERE account_status = 'OPEN';
     
@@ -75,11 +85,9 @@ create or replace NONEDITIONABLE procedure sp_create_user (
     password varchar2
 )
 is
-begin 
-    execute immediate 'alter session set "_ORACLE_SCRIPT" = true'; --non-prefix username
+begin
     execute immediate 'create user ' || username || ' IDENTIFIED BY '|| password;
     execute immediate 'grant create session to ' || username;
-    execute immediate 'alter session set "_ORACLE_SCRIPT" = false';
 end;
 /
 --exec sp_create_user('c##abc', 1)
@@ -124,7 +132,6 @@ create or replace NONEDITIONABLE procedure sp_create_role (
 )
 is
 begin
-    execute immediate 'alter session set "_ORACLE_SCRIPT" = true'; --non-prefix username
     execute immediate 'create role ' || role_name;
     execute immediate 'grant create session to ' || role_name;
 end;
@@ -301,6 +308,5 @@ begin
 end;
 /
 --exec sp_drop_all_proc;
-
-drop procedure sp_drop_all_proc;
+--drop procedure sp_drop_all_proc;
 */

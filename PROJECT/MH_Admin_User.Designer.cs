@@ -34,6 +34,9 @@ namespace PROJECT
             this.tùyChọnTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ngườiDùngTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.vaiTròTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.CSYTTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.nhânViênTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
@@ -54,9 +57,6 @@ namespace PROJECT
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.CSYTTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.nhânViênTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
@@ -105,15 +105,37 @@ namespace PROJECT
             this.ngườiDùngTSMI.Checked = true;
             this.ngườiDùngTSMI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ngườiDùngTSMI.Name = "ngườiDùngTSMI";
-            this.ngườiDùngTSMI.Size = new System.Drawing.Size(180, 22);
+            this.ngườiDùngTSMI.Size = new System.Drawing.Size(158, 24);
             this.ngườiDùngTSMI.Text = "Người dùng";
             // 
             // vaiTròTSMI
             // 
             this.vaiTròTSMI.Name = "vaiTròTSMI";
-            this.vaiTròTSMI.Size = new System.Drawing.Size(180, 22);
+            this.vaiTròTSMI.Size = new System.Drawing.Size(158, 24);
             this.vaiTròTSMI.Text = "Vai trò";
             this.vaiTròTSMI.Click += new System.EventHandler(this.vaiTròTSMI_Click);
+            // 
+            // CSYTTSMI
+            // 
+            this.CSYTTSMI.Name = "CSYTTSMI";
+            this.CSYTTSMI.Size = new System.Drawing.Size(158, 24);
+            this.CSYTTSMI.Text = "Cơ sở y tế";
+            this.CSYTTSMI.Click += new System.EventHandler(this.CSYTTSMI_Click);
+            // 
+            // nhânViênTSMI
+            // 
+            this.nhânViênTSMI.Name = "nhânViênTSMI";
+            this.nhânViênTSMI.Size = new System.Drawing.Size(158, 24);
+            this.nhânViênTSMI.Text = "Nhân viên";
+            this.nhânViênTSMI.Click += new System.EventHandler(this.nhânViênTSMI_Click);
+            // 
+            // ThoátTSMI
+            // 
+            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.ThoátTSMI.Name = "ThoátTSMI";
+            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
+            this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // dgv2
             // 
@@ -346,27 +368,6 @@ namespace PROJECT
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(289, 152);
             this.panel2.TabIndex = 16;
-            // 
-            // CSYTTSMI
-            // 
-            this.CSYTTSMI.Name = "CSYTTSMI";
-            this.CSYTTSMI.Size = new System.Drawing.Size(180, 22);
-            this.CSYTTSMI.Text = "Cơ sở y tế";
-            this.CSYTTSMI.Click += new System.EventHandler(this.CSYTTSMI_Click);
-            // 
-            // nhânViênTSMI
-            // 
-            this.nhânViênTSMI.Name = "nhânViênTSMI";
-            this.nhânViênTSMI.Size = new System.Drawing.Size(180, 22);
-            this.nhânViênTSMI.Text = "Nhân viên";
-            this.nhânViênTSMI.Click += new System.EventHandler(this.nhânViênTSMI_Click);
-            // 
-            // ThoátTSMI
-            // 
-            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.ThoátTSMI.Name = "ThoátTSMI";
-            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
-            this.ThoátTSMI.Text = "Thoát";
             // 
             // MH_Admin_User
             // 

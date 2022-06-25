@@ -55,7 +55,7 @@ namespace PROJECT
             this.infoTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.HSBATSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.bệnhNhânTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.thôngBáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngBáoTSMT = new System.Windows.Forms.ToolStripMenuItem();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -293,7 +293,7 @@ namespace PROJECT
             this.infoTSMI,
             this.HSBATSMI,
             this.bệnhNhânTSMI,
-            this.thôngBáoToolStripMenuItem});
+            this.thôngBáoTSMT});
             this.tùyChọnTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.tùyChọnTSMI.Name = "tùyChọnTSMI";
             this.tùyChọnTSMI.Size = new System.Drawing.Size(80, 24);
@@ -312,18 +312,24 @@ namespace PROJECT
             this.HSBATSMI.Name = "HSBATSMI";
             this.HSBATSMI.Size = new System.Drawing.Size(196, 24);
             this.HSBATSMI.Text = "Hồ sơ bệnh án";
+            this.HSBATSMI.Visible = false;
+            this.HSBATSMI.Click += new System.EventHandler(this.HSBATSMI_Click);
             // 
             // bệnhNhânTSMI
             // 
             this.bệnhNhânTSMI.Name = "bệnhNhânTSMI";
             this.bệnhNhânTSMI.Size = new System.Drawing.Size(196, 24);
             this.bệnhNhânTSMI.Text = "Bệnh nhân";
+            this.bệnhNhânTSMI.Visible = false;
+            this.bệnhNhânTSMI.Click += new System.EventHandler(this.bệnhNhânTSMI_Click);
             // 
-            // thôngBáoToolStripMenuItem
+            // thôngBáoTSMT
             // 
-            this.thôngBáoToolStripMenuItem.Name = "thôngBáoToolStripMenuItem";
-            this.thôngBáoToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
-            this.thôngBáoToolStripMenuItem.Text = "Thông báo";
+            this.thôngBáoTSMT.Name = "thôngBáoTSMT";
+            this.thôngBáoTSMT.Size = new System.Drawing.Size(196, 24);
+            this.thôngBáoTSMT.Text = "Thông báo";
+            this.thôngBáoTSMT.Visible = false;
+            this.thôngBáoTSMT.Click += new System.EventHandler(this.thôngBáoTSMT_Click);
             // 
             // ThoátTSMI
             // 
@@ -331,6 +337,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // MH_NhanVien
             // 
@@ -380,7 +387,7 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem infoTSMI;
         private System.Windows.Forms.ToolStripMenuItem HSBATSMI;
         private System.Windows.Forms.ToolStripMenuItem bệnhNhânTSMI;
-        private System.Windows.Forms.ToolStripMenuItem thôngBáoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thôngBáoTSMT;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
     }
 }

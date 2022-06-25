@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+using System.Configuration;
 
 namespace PROJECT
 {
@@ -30,6 +33,11 @@ namespace PROJECT
         private void nhânViênTSMI_Click(object sender, EventArgs e)
         {
             Program.loadForm(new MH_Admin_NV(), this);
+        }
+
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
         }
     }
 }

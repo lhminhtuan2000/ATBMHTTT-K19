@@ -31,13 +31,16 @@ namespace PROJECT
         {
             this.nhânViênTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tb3 = new System.Windows.Forms.TextBox();
+            this.tb1 = new System.Windows.Forms.TextBox();
             this.tb4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bt_them = new System.Windows.Forms.Button();
+            this.bt_xem = new System.Windows.Forms.Button();
             this.bt_sua = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgv1 = new System.Windows.Forms.DataGridView();
@@ -48,9 +51,6 @@ namespace PROJECT
             this.tùyChọnTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.tb1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.bt_xem = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
@@ -83,6 +83,16 @@ namespace PROJECT
             this.panel1.Size = new System.Drawing.Size(290, 181);
             this.panel1.TabIndex = 21;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(27, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Mã cơ sở: ";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -100,6 +110,15 @@ namespace PROJECT
             this.tb3.Name = "tb3";
             this.tb3.Size = new System.Drawing.Size(150, 24);
             this.tb3.TabIndex = 5;
+            // 
+            // tb1
+            // 
+            this.tb1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb1.Location = new System.Drawing.Point(112, 13);
+            this.tb1.Name = "tb1";
+            this.tb1.Size = new System.Drawing.Size(150, 24);
+            this.tb1.TabIndex = 3;
             // 
             // tb4
             // 
@@ -148,6 +167,16 @@ namespace PROJECT
             this.bt_them.TabIndex = 6;
             this.bt_them.Text = "THÊM";
             this.bt_them.UseVisualStyleBackColor = true;
+            // 
+            // bt_xem
+            // 
+            this.bt_xem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_xem.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_xem.Location = new System.Drawing.Point(231, 139);
+            this.bt_xem.Name = "bt_xem";
+            this.bt_xem.Size = new System.Drawing.Size(31, 26);
+            this.bt_xem.TabIndex = 6;
+            this.bt_xem.UseVisualStyleBackColor = true;
             // 
             // bt_sua
             // 
@@ -240,35 +269,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
-            // 
-            // tb1
-            // 
-            this.tb1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb1.Location = new System.Drawing.Point(112, 13);
-            this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(150, 24);
-            this.tb1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(27, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mã cơ sở: ";
-            // 
-            // bt_xem
-            // 
-            this.bt_xem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_xem.Image = global::PROJECT.Properties.Resources.Search_button;
-            this.bt_xem.Location = new System.Drawing.Point(231, 139);
-            this.bt_xem.Name = "bt_xem";
-            this.bt_xem.Size = new System.Drawing.Size(31, 26);
-            this.bt_xem.TabIndex = 6;
-            this.bt_xem.UseVisualStyleBackColor = true;
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // MH_Admin_CSYT
             // 

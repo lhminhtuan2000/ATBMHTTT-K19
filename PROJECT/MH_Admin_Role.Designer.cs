@@ -266,6 +266,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // bt_xoa
             // 

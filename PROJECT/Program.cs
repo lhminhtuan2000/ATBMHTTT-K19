@@ -21,7 +21,7 @@ namespace PROJECT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MH_Admin_User());
+            Application.Run(new MH_Login());
         }
         public static void loadForm(object formOpen, Form formClose)
         {

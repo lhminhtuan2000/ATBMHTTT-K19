@@ -49,6 +49,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // panel2
             // 
@@ -116,7 +117,7 @@ namespace PROJECT
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(154, 62);
             this.label.TabIndex = 18;
-            this.label.Text = "KẾT XUẤT\r\nBÁO CÁO";
+            this.label.Text = "KẾT XUẤT\r\n BÁO CÁO";
             // 
             // menu
             // 

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+using System.Configuration;
 
 namespace PROJECT
 {
@@ -15,6 +18,16 @@ namespace PROJECT
         public MH_GiamDoc()
         {
             InitializeComponent();
+        }
+
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
+        }
+
+        private void infoTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_NhanVien(), this);
         }
     }
 }

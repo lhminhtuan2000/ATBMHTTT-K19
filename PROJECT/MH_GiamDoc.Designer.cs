@@ -63,6 +63,7 @@ namespace PROJECT
             this.infoTSMI.Name = "infoTSMI";
             this.infoTSMI.Size = new System.Drawing.Size(196, 24);
             this.infoTSMI.Text = "Thông tin cá nhân";
+            this.infoTSMI.Click += new System.EventHandler(this.infoTSMI_Click);
             // 
             // thôngBáoToolStripMenuItem
             // 
@@ -78,6 +79,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // MH_GiamDoc
             // 

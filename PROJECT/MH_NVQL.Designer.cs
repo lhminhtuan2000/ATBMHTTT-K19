@@ -30,8 +30,22 @@ namespace PROJECT
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bt_tracuuKhoa = new System.Windows.Forms.Button();
+            this.bt_timHSBA = new System.Windows.Forms.Button();
+            this.tb8 = new System.Windows.Forms.TextBox();
+            this.tb7 = new System.Windows.Forms.TextBox();
+            this.tb6 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb5 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tb4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tb3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tb2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bt_themHSBA = new System.Windows.Forms.Button();
@@ -43,19 +57,8 @@ namespace PROJECT
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tb3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tb5 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tb6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tb7 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tb8 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bt_tracuuDV = new System.Windows.Forms.Button();
             this.tb12 = new System.Windows.Forms.TextBox();
             this.tb11 = new System.Windows.Forms.TextBox();
             this.tb10 = new System.Windows.Forms.TextBox();
@@ -66,9 +69,6 @@ namespace PROJECT
             this.label16 = new System.Windows.Forms.Label();
             this.bt_themHSBA_DV = new System.Windows.Forms.Button();
             this.bt_xoaHSBA_DV = new System.Windows.Forms.Button();
-            this.bt_tracuuDV = new System.Windows.Forms.Button();
-            this.bt_timHSBA = new System.Windows.Forms.Button();
-            this.bt_tracuuKhoa = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
@@ -106,6 +106,114 @@ namespace PROJECT
             this.panel1.Size = new System.Drawing.Size(290, 313);
             this.panel1.TabIndex = 28;
             // 
+            // bt_tracuuKhoa
+            // 
+            this.bt_tracuuKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuKhoa.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuKhoa.Location = new System.Drawing.Point(247, 167);
+            this.bt_tracuuKhoa.Name = "bt_tracuuKhoa";
+            this.bt_tracuuKhoa.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuKhoa.TabIndex = 7;
+            this.bt_tracuuKhoa.UseVisualStyleBackColor = true;
+            // 
+            // bt_timHSBA
+            // 
+            this.bt_timHSBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_timHSBA.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_timHSBA.Location = new System.Drawing.Point(247, 17);
+            this.bt_timHSBA.Name = "bt_timHSBA";
+            this.bt_timHSBA.Size = new System.Drawing.Size(31, 26);
+            this.bt_timHSBA.TabIndex = 7;
+            this.bt_timHSBA.UseVisualStyleBackColor = true;
+            // 
+            // tb8
+            // 
+            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb8.Location = new System.Drawing.Point(128, 226);
+            this.tb8.Name = "tb8";
+            this.tb8.Size = new System.Drawing.Size(150, 24);
+            this.tb8.TabIndex = 5;
+            // 
+            // tb7
+            // 
+            this.tb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb7.Location = new System.Drawing.Point(128, 196);
+            this.tb7.Name = "tb7";
+            this.tb7.Size = new System.Drawing.Size(150, 24);
+            this.tb7.TabIndex = 5;
+            // 
+            // tb6
+            // 
+            this.tb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb6.Location = new System.Drawing.Point(128, 167);
+            this.tb6.Name = "tb6";
+            this.tb6.Size = new System.Drawing.Size(112, 24);
+            this.tb6.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(9, 229);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 18);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Kết luận: ";
+            // 
+            // tb5
+            // 
+            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb5.Location = new System.Drawing.Point(128, 137);
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(150, 24);
+            this.tb5.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(9, 199);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 18);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Mã cơ sở y tế: ";
+            // 
+            // tb4
+            // 
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(128, 107);
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(150, 24);
+            this.tb4.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(9, 170);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 18);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Mã khoa: ";
+            // 
+            // tb3
+            // 
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(128, 77);
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(150, 24);
+            this.tb3.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(9, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 18);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Mã bác sĩ: ";
+            // 
             // tb2
             // 
             this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,6 +221,16 @@ namespace PROJECT
             this.tb2.Name = "tb2";
             this.tb2.Size = new System.Drawing.Size(150, 24);
             this.tb2.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 18);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Chẩn đoán: ";
             // 
             // label1
             // 
@@ -123,6 +241,16 @@ namespace PROJECT
             this.label1.Size = new System.Drawing.Size(81, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Mã HSBA: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 18);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Ngày: ";
             // 
             // tb1
             // 
@@ -168,6 +296,7 @@ namespace PROJECT
             this.ThoátTSMI.Name = "ThoátTSMI";
             this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // menu
             // 
@@ -229,114 +358,6 @@ namespace PROJECT
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các hồ sơ bệnh án";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 80);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Ngày: ";
-            // 
-            // tb3
-            // 
-            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb3.Location = new System.Drawing.Point(128, 77);
-            this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(150, 24);
-            this.tb3.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 18);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Chẩn đoán: ";
-            // 
-            // tb4
-            // 
-            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb4.Location = new System.Drawing.Point(128, 107);
-            this.tb4.Name = "tb4";
-            this.tb4.Size = new System.Drawing.Size(150, 24);
-            this.tb4.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 140);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 18);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Mã bác sĩ: ";
-            // 
-            // tb5
-            // 
-            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb5.Location = new System.Drawing.Point(128, 137);
-            this.tb5.Name = "tb5";
-            this.tb5.Size = new System.Drawing.Size(150, 24);
-            this.tb5.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 170);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 18);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Mã khoa: ";
-            // 
-            // tb6
-            // 
-            this.tb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb6.Location = new System.Drawing.Point(128, 167);
-            this.tb6.Name = "tb6";
-            this.tb6.Size = new System.Drawing.Size(112, 24);
-            this.tb6.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 199);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 18);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Mã cơ sở y tế: ";
-            // 
-            // tb7
-            // 
-            this.tb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb7.Location = new System.Drawing.Point(128, 196);
-            this.tb7.Name = "tb7";
-            this.tb7.Size = new System.Drawing.Size(150, 24);
-            this.tb7.TabIndex = 5;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(9, 229);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 18);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Kết luận: ";
-            // 
-            // tb8
-            // 
-            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb8.Location = new System.Drawing.Point(128, 226);
-            this.tb8.Name = "tb8";
-            this.tb8.Size = new System.Drawing.Size(150, 24);
-            this.tb8.TabIndex = 5;
-            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -355,6 +376,16 @@ namespace PROJECT
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(290, 182);
             this.panel2.TabIndex = 29;
+            // 
+            // bt_tracuuDV
+            // 
+            this.bt_tracuuDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuDV.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuDV.Location = new System.Drawing.Point(247, 16);
+            this.bt_tracuuDV.Name = "bt_tracuuDV";
+            this.bt_tracuuDV.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuDV.TabIndex = 8;
+            this.bt_tracuuDV.UseVisualStyleBackColor = true;
             // 
             // tb12
             // 
@@ -447,36 +478,6 @@ namespace PROJECT
             this.bt_xoaHSBA_DV.TabIndex = 6;
             this.bt_xoaHSBA_DV.Text = "XÓA";
             this.bt_xoaHSBA_DV.UseVisualStyleBackColor = true;
-            // 
-            // bt_tracuuDV
-            // 
-            this.bt_tracuuDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_tracuuDV.Image = global::PROJECT.Properties.Resources.Search_button;
-            this.bt_tracuuDV.Location = new System.Drawing.Point(247, 16);
-            this.bt_tracuuDV.Name = "bt_tracuuDV";
-            this.bt_tracuuDV.Size = new System.Drawing.Size(31, 26);
-            this.bt_tracuuDV.TabIndex = 8;
-            this.bt_tracuuDV.UseVisualStyleBackColor = true;
-            // 
-            // bt_timHSBA
-            // 
-            this.bt_timHSBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_timHSBA.Image = global::PROJECT.Properties.Resources.Search_button;
-            this.bt_timHSBA.Location = new System.Drawing.Point(247, 17);
-            this.bt_timHSBA.Name = "bt_timHSBA";
-            this.bt_timHSBA.Size = new System.Drawing.Size(31, 26);
-            this.bt_timHSBA.TabIndex = 7;
-            this.bt_timHSBA.UseVisualStyleBackColor = true;
-            // 
-            // bt_tracuuKhoa
-            // 
-            this.bt_tracuuKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_tracuuKhoa.Image = global::PROJECT.Properties.Resources.Search_button;
-            this.bt_tracuuKhoa.Location = new System.Drawing.Point(247, 167);
-            this.bt_tracuuKhoa.Name = "bt_tracuuKhoa";
-            this.bt_tracuuKhoa.Size = new System.Drawing.Size(31, 26);
-            this.bt_tracuuKhoa.TabIndex = 7;
-            this.bt_tracuuKhoa.UseVisualStyleBackColor = true;
             // 
             // MH_NVQL
             // 
