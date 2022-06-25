@@ -1,312 +1,292 @@
-SET SERVEROUTPUT ON; -- turn on DBMS_SQL.RETURN_RESULT
--- login = SYSDBA
+SET
+    serveroutput ON;
+
+-- turn on dbms_sql.return_result
+-- login = sysdba
 ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
 
--- login = USER ADMIN of PDB
-ALTER SESSION SET container = qlbv_pdb;
--- ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
+-- login = user admin of pdb
+ALTER SESSION
+SET
+    CONTAINER = qlbv_pdb;
 
-/* CHECK
-select owner, table_name from all_tables;
-select sys_context( 'userenv', 'current_schema' ) from dual;
-SELECT owner,object_name FROM all_procedures WHERE object_type = 'PROCEDURE';
-*/
+-- alter user qlbv_dba quota unlimited on system;
+/* check
+ select owner, table_name from all_tables;
+ select sys_context( 'userenv', 'current_schema' ) from dual;
+ select owner,object_name from all_procedures where object_type = 'procedure';
+ */
+--  procedure
+--  1/ liệt kê tất cả các user đang open 
+GRANT
+SELECT
+    ANY TABLE TO qlbv_dba;
 
---  PROCEDURE
---  1/ Liệt kê tất cả các user đang open 
-GRANT SELECT ANY TABLE TO qlbv_dba;
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_list_all_user
-IS
-    c_user_list SYS_REFCURSOR;
-BEGIN
-    open c_user_list for
-    SELECT USERNAME,ACCOUNT_STATUS,CREATED,LAST_LOGIN
-    FROM dba_users
-    WHERE account_status = 'OPEN';
-        -- **************** Coi lại
-    DBMS_SQL.RETURN_RESULT(c_user_list);
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_list_all_user IS c_user_list SYS_REFCURSOR;
+
+BEGIN OPEN c_user_list FOR
+SELECT
+    username,
+    account_status,
+    created,
+    last_login
+FROM
+    dba_users
+WHERE
+    account_status = 'OPEN';
+
+-- **************** coi lại
+dbms_sql.return_result(c_user_list);
+
 END;
-/
--- exec qlbv_dba.sp_list_all_user;
 
+/ -- exec qlbv_dba.sp_list_all_user;
+-- 2/ show quyền của user
+GRANT
+SELECT
+    ON dba_sys_privs TO qlbv_dba;
 
---  Show quyền của user
-grant select on DBA_SYS_PRIVS to qlbv_dba;
-create or replace procedure qlbv_dba.sp_show_user_privileges (
-    user varchar2
-)
-is
-    c_privileges SYS_REFCURSOR;
-begin
-    open c_privileges for
-    SELECT privilege, GRANTEE, ADMIN_OPTION
-    FROM DBA_SYS_PRIVS
-    where grantee = UPPER(user);
-        
-    DBMS_SQL.RETURN_RESULT(c_privileges);
-end;
-/
--- exec sp_show_user_privileges('c##pmtri2')
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_show_user_privileges (user VARCHAR2) IS c_privileges SYS_REFCURSOR;
 
---  Liệt kê tất cả các role đang open
-grant select on DBA_ROLES to qlbv_dba;
-create or replace PROCEDURE qlbv_dba.sp_list_all_role
-IS
-    c_role_list SYS_REFCURSOR;
-BEGIN
-    OPEN c_role_list FOR
-    SELECT * FROM DBA_ROLES;
+BEGIN OPEN c_privileges FOR
+SELECT
+    privilege,
+    grantee,
+    admin_option
+FROM
+    dba_sys_privs
+WHERE
+    grantee = upper(user);
 
-    DBMS_SQL.RETURN_RESULT(c_role_list);
+dbms_sql.return_result(c_privileges);
+
 END;
-/
--- exec sp_list_all_role;
 
---  Xem quyền của một role
-create or replace procedure qlbv_dba.sp_show_role_privileges (
-    role_name varchar2 
-)
-is
-    c_privileges SYS_REFCURSOR;
-begin
-    open c_privileges for
-    select privilege,ADMIN_OPTION
-    from role_sys_privs
-    where role = UPPER(role_name);
-    
-    DBMS_SQL.RETURN_RESULT(c_privileges);
-end;
-/
--- exec sp_show_role_privileges('c##abc')
+/ -- 3/ exec sp_show_user_privileges('c##pmtri2')
+--  liệt kê tất cả các role đang open
+GRANT
+SELECT
+    ON dba_roles TO qlbv_dba;
 
---  Tạo một user
-create or replace procedure qlbv_dba.sp_create_user (
-    username varchar2,
-    password varchar2
-) AUTHID current_user 
-is
-begin 
-    execute immediate 'create user ' || username || ' IDENTIFIED BY '|| password || ';';
-    execute immediate 'grant create session to ' || username;
-end;
-/
--- exec qlbv_dba.sp_create_user('tri123', 1)
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_list_all_role IS c_role_list SYS_REFCURSOR;
 
---  Xoá một user //can set env truoc khi xoa
-create or replace procedure qlbv_dba.sp_delete_user (
-    username varchar2
-)
-is
-begin 
-    execute immediate 'drop user ' || username;
-end;
-/
--- exec sp_delete_user('c##abc3')
+BEGIN OPEN c_role_list FOR
+SELECT
+    *
+FROM
+    dba_roles;
 
---  Đổi mật khẩu (hiệu chỉnh user)
-create or replace procedure qlbv_dba.sp_change_user_password(
+dbms_sql.return_result(c_role_list);
+
+END;
+
+/ -- exec sp_list_all_role;
+-- 4/ xem quyền của một role
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_show_role_privileges (role_name VARCHAR2) u c_privileges SYS_REFCURSOR;
+
+BEGIN OPEN c_privileges FOR
+SELECT
+    privilege,
+    admin_option
+FROM
+    role_sys_privs
+WHERE
+    ROLE = upper(role_name);
+
+dbms_sql.return_result(c_privileges);
+
+END;
+
+/ -- exec sp_show_role_privileges('c##abc')
+-- 5/ tạo một user
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_create_user (username VARCHAR2, PASSWORD VARCHAR2) AUTHID current_user IS BEGIN EXECUTE IMMEDIATE 'CREATE USER ' || username || ' IDENTIFIED BY ' || PASSWORD;
+
+EXECUTE IMMEDIATE 'grant create session to ' || username;
+
+END;
+
+/ -- exec qlbv_dba.sp_create_user('tri123', 1)
+-- 6/ xoá một user //can set env truoc khi xoa
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_delete_user (username VARCHAR2) IS BEGIN EXECUTE IMMEDIATE 'DROP USER ' || username;
+
+END;
+
+/ -- exec sp_delete_user('c##abc3')
+-- 7/ đổi mật khẩu (hiệu chỉnh user)
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_change_user_password(
     username varchar2,
     new_password varchar2
-)
-is
-begin
-    execute immediate 'alter user ' || username || ' identified by ' || new_password;
-end;
-/
--- exec sp_change_user_password('c##abc', '2')
+) IS BEGIN EXECUTE immediate 'alter user ' || username || ' identified by ' || new_password;
 
---  Lock một user (hiệu chỉnh user) //prevent login to database
-create or replace procedure qlbv_dba.sp_lock_user(
-    username varchar2
-)
-is
-begin
-    execute immediate 'alter user ' || username || ' ACCOUNT LOCK';
-end;
-/
--- exec sp_lock_user('c##abc')
+END;
 
---  Tạo một role
-create or replace procedure qlbv_dba.sp_create_role (
-    role_name varchar2
-)
-is
-begin
-    execute immediate 'create role ' || role_name;
-    execute immediate 'grant create session to ' || role_name;
-end;
-/
--- exec sp_create_role ('c##role')
+/ -- exec sp_change_user_password('c##abc', '2')
+-- 8/ lock một user (hiệu chỉnh user) //prevent login to database
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_lock_user(username varchar2) IS BEGIN EXECUTE immediate 'alter user ' || username || ' account lock';
 
---  Xoá role
-create or replace procedure qlbv_dba.sp_delete_role (
-    role_name varchar2
-)
-is
-begin
-    execute immediate 'DROP ROLE ' || role_name;
-end;
-/
--- exec sp_delete_role ('c##role')
+END;
 
---  Cấp quyền insert cho user/role trên table_name
-create or replace procedure qlbv_dba.sp_grant_insert (
+/ -- exec sp_lock_user('c##abc')
+-- 9/ tạo một role
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_create_role (role_name varchar2) IS BEGIN EXECUTE immediate 'create role ' || role_name;
+
+EXECUTE immediate 'GRANT create session to ' || role_name;
+
+END;
+
+/ -- exec sp_create_role ('c##role')
+-- 10/ xoá role
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_delete_role (role_name varchar2) IS BEGIN EXECUTE immediate 'drop role ' || role_name;
+
+END;
+
+/ -- exec sp_delete_role ('c##role')
+-- 11/ cấp quyền insert cho user/role trên table_name
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'grant insert on sys.'||table_name||' to '||user_or_role;
-end;
-/
+) IS BEGIN EXECUTE immediate 'GRANT insert on sys.' || table_name || ' to ' || user_or_role;
 
---  Cấp quyền insert cho user/role trên table_name (with grant option)
-create or replace procedure qlbv_dba.sp_grant_insert_wgo (
+END;
+
+/ -- 12/ cấp quyền insert cho user/role trên table_name (with GRANT option)
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_wgo (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'grant insert on sys.'||table_name||' to '||user_or_role||' with grant option';
-end;
-/
+) IS BEGIN EXECUTE immediate 'GRANT insert on sys.' || table_name || ' to ' || user_or_role || ' with GRANT option';
 
---  Cấp quyền delete cho user/role trên table_name thông qua view [edit]
-create or replace procedure qlbv_dba.sp_grant_delete (
+END;
+
+/ -- 13/ cấp quyền delete cho user/role trên table_name thông qua view [edit]
+CREATE
+OR REPLACE PROCEDURE qlbv_dba.sp_grant_delete (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'grant delete on sys.'||table_name||' to '||user_or_role;
-end;
-/
+) IS BEGIN EXECUTE immediate 'GRANT delete on sys.' || table_name || ' to ' || user_or_role;
 
---  Cấp quyền delete cho user/role trên table_name thông qua view (with grant option) [edit]
-create or replace procedure sp_grant_delete_wgo (
+END;
+
+/ -- 14/ cấp quyền delete cho user/role trên table_name thông qua view (with GRANT option) [edit]
+CREATE
+OR REPLACE PROCEDURE sp_grant_delete_wgo (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'grant delete on sys.'||table_name||' to '||user_or_role||' with grant option';
-end;
-/
+) IS BEGIN EXECUTE immediate 'GRANT delete on sys.' || table_name || ' to ' || user_or_role || ' with GRANT option';
 
---  Cấp quyền select cho user/role trên column_list thuộc table_name
-create or replace procedure sp_grant_select (
+END;
+
+/ -- 15/ cấp quyền select cho user/role trên column_list thuộc table_name
+CREATE
+OR REPLACE PROCEDURE sp_grant_select (
     user_or_role varchar2,
     table_name varchar2,
     column_list varchar2
-)
-is
-begin
-    execute immediate 'create or replace view v_' || user_or_role || '_' || table_name || ' as select ' || column_list || ' from ' || table_name;
-    execute immediate 'grant select on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role;
-end;
-/
--- exec sp_grant_select('c##pmtri2', 'a_test2', 'id, content')
+) IS BEGIN EXECUTE immediate 'create or replace view v_' || user_or_role || '_' || table_name || ' as select ' || column_list || ' from ' || table_name;
 
---  Cấp quyền select cho user/role trên column_list thuộc table_name (with grant option)
-create or replace procedure sp_grant_select_wgo (
+EXECUTE immediate 'GRANT select on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role;
+
+END;
+
+/ -- exec sp_grant_select('c##pmtri2', 'a_test2', 'id, content')
+-- 16/ cấp quyền select cho user/role trên column_list thuộc table_name (with GRANT option)
+CREATE
+OR REPLACE PROCEDURE sp_grant_select_wgo (
     user_or_role varchar2,
     table_name varchar2,
     column_list varchar2
-)
-is
-begin
-    execute immediate 'create or replace view v_' || user_or_role || '_' || table_name || ' as select ' || column_list || ' from ' || table_name;
-    execute immediate 'grant select on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role || ' with grant option';
-end;
-/
+) IS BEGIN EXECUTE immediate 'create or replace view v_' || user_or_role || '_' || table_name || ' as select ' || column_list || ' from ' || table_name;
 
---  Cấp quyền update cho user/role trên column_list thuộc table_name
-create or replace procedure sp_grant_update (
+EXECUTE immediate 'GRANT select on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role || ' with GRANT option';
+
+END;
+
+/ -- 17/ cấp quyền update cho user/role trên column_list thuộc table_name
+CREATE
+OR REPLACE PROCEDURE sp_grant_update (
     user_or_role varchar2,
     table_name varchar2,
     column_list varchar2
-)
-is
-begin
-    execute immediate 'grant update ('||column_list||') on sys.v_'||user_or_role||'_'||table_name||' to '||user_or_role;
-end;
-/
--- exec sp_grant_update('c##pmtri2', 'a_test2', 'content');
+) IS BEGIN EXECUTE immediate 'GRANT update (' || column_list || ') on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role;
 
---  Cấp quyền update cho user/role trên column_list thuộc table_name (with grant option)
-create or replace procedure sp_grant_update_wgo (
+END;
+
+/ -- exec sp_grant_update('c##pmtri2', 'a_test2', 'content');
+-- 18/ cấp quyền update cho user/role trên column_list thuộc table_name (with GRANT option)
+CREATE
+OR REPLACE PROCEDURE sp_grant_update_wgo (
     user_or_role varchar2,
     table_name varchar2,
     column_list varchar2
-)
-is
-begin
-    execute immediate 'grant update ('||column_list||') on sys.v_'||user_or_role||'_'||table_name||' to '||user_or_role||' with grant option';
-end;
-/
--- exec sp_grant_update_to_user_wgo ('c##pmtri2', 'a_test2', 'content');
+) IS BEGIN EXECUTE immediate 'GRANT update (' || column_list || ') on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role || ' with GRANT option';
 
---  Thu hồi quyền insert table_name từ user/role
-create or replace procedure sp_revoke_insert (
+END;
+
+/ -- exec sp_grant_update_to_user_wgo ('c##pmtri2', 'a_test2', 'content');
+-- 19/ thu hồi quyền insert table_name từ user/role
+CREATE
+OR REPLACE PROCEDURE sp_revoke_insert (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'revoke insert on sys.'||table_name||' from '||user_or_role;
-end;
-/
+) IS BEGIN EXECUTE immediate 'revoke insert on sys.' || table_name || ' from ' || user_or_role;
 
---  Thu hôi quyền delete table_name từ user/role
-create or replace procedure sp_revoke_delete (
+END;
+
+/ -- 20/ thu hôi quyền delete table_name từ user/role
+CREATE
+OR REPLACE PROCEDURE sp_revoke_delete (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'revoke delete on sys.v_'||user_or_role||'_'||table_name||' from '||user_or_role;
-end;
-/
+) IS BEGIN EXECUTE immediate 'revoke delete on sys.v_' || user_or_role || '_' || table_name || ' from ' || user_or_role;
 
---  Thu hồi quyền select table_name từ user/role
-create or replace procedure sp_revoke_select (
+END;
+
+/ -- 21/ thu hồi quyền select table_name từ user/role
+CREATE
+OR REPLACE PROCEDURE sp_revoke_select (
     user_or_role varchar2,
     table_name varchar2,
     column_list varchar2
-)
-is
-begin
-    execute immediate 'revoke select on sys.v_' || user_or_role || '_' || table_name || ' from ' || user_or_role;
-end;
-/
+) IS BEGIN EXECUTE immediate 'revoke select on sys.v_' || user_or_role || '_' || table_name || ' from ' || user_or_role;
 
---  Thu hồi quyền update từ user/role trên table_name
-create or replace procedure sp_revoke_update (
+END;
+
+/ -- 22/ thu hồi quyền update từ user/role trên table_name
+CREATE
+OR REPLACE PROCEDURE sp_revoke_update (
     user_or_role varchar2,
     table_name varchar2
-)
-is
-begin
-    execute immediate 'revoke update on sys.v_'||user_or_role||'_'||table_name||' from '||user_or_role;
-end;
-/
--- GRANT test_role TO smithj;
--- GRANT execute ON Find_Value TO test_role;
+) IS BEGIN EXECUTE immediate 'revoke update on sys.v_' || user_or_role || '_' || table_name || ' from ' || user_or_role;
 
+END;
+
+/ -- GRANT test_role to smithj;
+-- GRANT execute on find_value to test_role;
 /*
-create or replace procedure sp_drop_all_proc
-is
-    CURSOR cs IS SELECT object_name FROM user_procedures 
-        WHERE object_type = 'PROCEDURE' 
-        and object_name like 'SP_%'
-        and object_name not like 'SP_DROP_ALL_PROC';
-begin
-    for i in cs
-    loop
-        execute immediate 'drop procedure ' || i.object_name;
-    end loop;
-end;
-/
--- exec sp_drop_all_proc;
--- drop procedure sp_drop_all_proc;
-*/
+ create or replace procedure sp_drop_all_proc
+ is
+ cursor cs is select object_name from user_procedures 
+ where object_type = 'procedure' 
+ and object_name like 'sp_%'
+ and object_name not like 'sp_drop_all_proc';
+ begin
+ for i in cs
+ loop
+ execute immediate 'drop procedure ' || i.object_name;
+ end loop;
+ end;
+ /
+ -- exec sp_drop_all_proc;
+ -- drop procedure sp_drop_all_proc;
+ */
