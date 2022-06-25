@@ -1,11 +1,10 @@
-SET SERVEROUTPUT ON; --turn on DBMS_SQL.RETURN_RESULT
---login = SYSDBA
-ALTER PLUGGABLE DATABASE pdb1 OPEN;
+SET SERVEROUTPUT ON; -- turn on DBMS_SQL.RETURN_RESULT
+-- login = SYSDBA
+ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
 
---login = USER ADMIN of PDB
-ALTER SESSION SET container = pdb1;
---ALTER USER pdb1dba QUOTA UNLIMITED ON SYSTEM;
-ALTER SESSION SET current_schema = pdb1dba;
+-- login = USER ADMIN of PDB
+ALTER SESSION SET container = qlbv_pdb;
+-- ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
 
 /* CHECK
 select owner, table_name from all_tables;
@@ -13,12 +12,10 @@ select sys_context( 'userenv', 'current_schema' ) from dual;
 SELECT owner,object_name FROM all_procedures WHERE object_type = 'PROCEDURE';
 */
 
-GRANT SELECT ANY DICTIONARY TO PDB1DBA; --PL/SQL disables roles
-GRANT SELECT ANY TABLE TO PDB1DBA;
-
--- PROCEDURE
--- Liệt kê tất cả các user đang open
-CREATE OR REPLACE NONEDITIONABLE PROCEDURE sp_list_all_user
+--  PROCEDURE
+--  1/ Liệt kê tất cả các user đang open 
+GRANT SELECT ANY TABLE TO qlbv_dba;
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_list_all_user
 IS
     c_user_list SYS_REFCURSOR;
 BEGIN
@@ -26,31 +23,34 @@ BEGIN
     SELECT USERNAME,ACCOUNT_STATUS,CREATED,LAST_LOGIN
     FROM dba_users
     WHERE account_status = 'OPEN';
-    
+        -- **************** Coi lại
     DBMS_SQL.RETURN_RESULT(c_user_list);
 END;
 /
---exec sp_list_all_user;
+-- exec qlbv_dba.sp_list_all_user;
 
--- Show quyền của user
-create or replace NONEDITIONABLE procedure sp_show_user_privileges (
-    username varchar2
+
+--  Show quyền của user
+grant select on DBA_SYS_PRIVS to qlbv_dba;
+create or replace procedure qlbv_dba.sp_show_user_privileges (
+    user varchar2
 )
 is
     c_privileges SYS_REFCURSOR;
 begin
     open c_privileges for
-    SELECT privilege,GRANTEE,ADMIN_OPTION,USERNAME
+    SELECT privilege, GRANTEE, ADMIN_OPTION
     FROM DBA_SYS_PRIVS
-    where grantee = UPPER(username);
+    where grantee = UPPER(user);
         
     DBMS_SQL.RETURN_RESULT(c_privileges);
 end;
 /
---exec sp_show_user_privileges('c##pmtri2')
+-- exec sp_show_user_privileges('c##pmtri2')
 
--- Liệt kê tất cả các role đang open
-create or replace NONEDITIONABLE PROCEDURE sp_list_all_role
+--  Liệt kê tất cả các role đang open
+grant select on DBA_ROLES to qlbv_dba;
+create or replace PROCEDURE qlbv_dba.sp_list_all_role
 IS
     c_role_list SYS_REFCURSOR;
 BEGIN
@@ -60,10 +60,10 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(c_role_list);
 END;
 /
---exec sp_list_all_role;
+-- exec sp_list_all_role;
 
--- Xem quyền của một role
-create or replace NONEDITIONABLE procedure sp_show_role_privileges (
+--  Xem quyền của một role
+create or replace procedure qlbv_dba.sp_show_role_privileges (
     role_name varchar2 
 )
 is
@@ -77,23 +77,23 @@ begin
     DBMS_SQL.RETURN_RESULT(c_privileges);
 end;
 /
---exec sp_show_role_privileges('c##abc')
+-- exec sp_show_role_privileges('c##abc')
 
--- Tạo một user
-create or replace NONEDITIONABLE procedure sp_create_user (
+--  Tạo một user
+create or replace procedure qlbv_dba.sp_create_user (
     username varchar2,
     password varchar2
-)
+) AUTHID current_user 
 is
-begin
-    execute immediate 'create user ' || username || ' IDENTIFIED BY '|| password;
+begin 
+    execute immediate 'create user ' || username || ' IDENTIFIED BY '|| password || ';';
     execute immediate 'grant create session to ' || username;
 end;
 /
---exec sp_create_user('c##abc', 1)
+-- exec qlbv_dba.sp_create_user('tri123', 1)
 
--- Xoá một user //can set env truoc khi xoa
-create or replace NONEDITIONABLE procedure sp_delete_user (
+--  Xoá một user //can set env truoc khi xoa
+create or replace procedure qlbv_dba.sp_delete_user (
     username varchar2
 )
 is
@@ -101,10 +101,10 @@ begin
     execute immediate 'drop user ' || username;
 end;
 /
---exec sp_delete_user('c##abc3')
+-- exec sp_delete_user('c##abc3')
 
--- Đổi mật khẩu (hiệu chỉnh user)
-create or replace NONEDITIONABLE procedure sp_change_user_password(
+--  Đổi mật khẩu (hiệu chỉnh user)
+create or replace procedure qlbv_dba.sp_change_user_password(
     username varchar2,
     new_password varchar2
 )
@@ -113,10 +113,10 @@ begin
     execute immediate 'alter user ' || username || ' identified by ' || new_password;
 end;
 /
---exec sp_change_user_password('c##abc', '2')
+-- exec sp_change_user_password('c##abc', '2')
 
--- Lock một user (hiệu chỉnh user) //prevent login to database
-create or replace NONEDITIONABLE procedure sp_lock_user(
+--  Lock một user (hiệu chỉnh user) //prevent login to database
+create or replace procedure qlbv_dba.sp_lock_user(
     username varchar2
 )
 is
@@ -124,10 +124,10 @@ begin
     execute immediate 'alter user ' || username || ' ACCOUNT LOCK';
 end;
 /
---exec sp_lock_user('c##abc')
+-- exec sp_lock_user('c##abc')
 
--- Tạo một role
-create or replace NONEDITIONABLE procedure sp_create_role (
+--  Tạo một role
+create or replace procedure qlbv_dba.sp_create_role (
     role_name varchar2
 )
 is
@@ -136,10 +136,10 @@ begin
     execute immediate 'grant create session to ' || role_name;
 end;
 /
---exec sp_create_role ('c##role')
+-- exec sp_create_role ('c##role')
 
--- Xoá role
-create or replace NONEDITIONABLE procedure sp_delete_role (
+--  Xoá role
+create or replace procedure qlbv_dba.sp_delete_role (
     role_name varchar2
 )
 is
@@ -147,10 +147,10 @@ begin
     execute immediate 'DROP ROLE ' || role_name;
 end;
 /
---exec sp_delete_role ('c##role')
+-- exec sp_delete_role ('c##role')
 
--- Cấp quyền insert cho user/role trên table_name
-create or replace procedure sp_grant_insert (
+--  Cấp quyền insert cho user/role trên table_name
+create or replace procedure qlbv_dba.sp_grant_insert (
     user_or_role varchar2,
     table_name varchar2
 )
@@ -160,8 +160,8 @@ begin
 end;
 /
 
--- Cấp quyền insert cho user/role trên table_name (with grant option)
-create or replace procedure sp_grant_insert_wgo (
+--  Cấp quyền insert cho user/role trên table_name (with grant option)
+create or replace procedure qlbv_dba.sp_grant_insert_wgo (
     user_or_role varchar2,
     table_name varchar2
 )
@@ -171,8 +171,8 @@ begin
 end;
 /
 
--- Cấp quyền delete cho user/role trên table_name thông qua view [edit]
-create or replace procedure sp_grant_delete (
+--  Cấp quyền delete cho user/role trên table_name thông qua view [edit]
+create or replace procedure qlbv_dba.sp_grant_delete (
     user_or_role varchar2,
     table_name varchar2
 )
@@ -182,7 +182,7 @@ begin
 end;
 /
 
--- Cấp quyền delete cho user/role trên table_name thông qua view (with grant option) [edit]
+--  Cấp quyền delete cho user/role trên table_name thông qua view (with grant option) [edit]
 create or replace procedure sp_grant_delete_wgo (
     user_or_role varchar2,
     table_name varchar2
@@ -193,7 +193,7 @@ begin
 end;
 /
 
--- Cấp quyền select cho user/role trên column_list thuộc table_name
+--  Cấp quyền select cho user/role trên column_list thuộc table_name
 create or replace procedure sp_grant_select (
     user_or_role varchar2,
     table_name varchar2,
@@ -205,9 +205,9 @@ begin
     execute immediate 'grant select on sys.v_' || user_or_role || '_' || table_name || ' to ' || user_or_role;
 end;
 /
---exec sp_grant_select('c##pmtri2', 'a_test2', 'id, content')
+-- exec sp_grant_select('c##pmtri2', 'a_test2', 'id, content')
 
--- Cấp quyền select cho user/role trên column_list thuộc table_name (with grant option)
+--  Cấp quyền select cho user/role trên column_list thuộc table_name (with grant option)
 create or replace procedure sp_grant_select_wgo (
     user_or_role varchar2,
     table_name varchar2,
@@ -220,7 +220,7 @@ begin
 end;
 /
 
--- Cấp quyền update cho user/role trên column_list thuộc table_name
+--  Cấp quyền update cho user/role trên column_list thuộc table_name
 create or replace procedure sp_grant_update (
     user_or_role varchar2,
     table_name varchar2,
@@ -231,9 +231,9 @@ begin
     execute immediate 'grant update ('||column_list||') on sys.v_'||user_or_role||'_'||table_name||' to '||user_or_role;
 end;
 /
---exec sp_grant_update('c##pmtri2', 'a_test2', 'content');
+-- exec sp_grant_update('c##pmtri2', 'a_test2', 'content');
 
--- Cấp quyền update cho user/role trên column_list thuộc table_name (with grant option)
+--  Cấp quyền update cho user/role trên column_list thuộc table_name (with grant option)
 create or replace procedure sp_grant_update_wgo (
     user_or_role varchar2,
     table_name varchar2,
@@ -244,9 +244,9 @@ begin
     execute immediate 'grant update ('||column_list||') on sys.v_'||user_or_role||'_'||table_name||' to '||user_or_role||' with grant option';
 end;
 /
---exec sp_grant_update_to_user_wgo ('c##pmtri2', 'a_test2', 'content');
+-- exec sp_grant_update_to_user_wgo ('c##pmtri2', 'a_test2', 'content');
 
--- Thu hồi quyền insert table_name từ user/role
+--  Thu hồi quyền insert table_name từ user/role
 create or replace procedure sp_revoke_insert (
     user_or_role varchar2,
     table_name varchar2
@@ -257,7 +257,7 @@ begin
 end;
 /
 
--- Thu hôi quyền delete table_name từ user/role
+--  Thu hôi quyền delete table_name từ user/role
 create or replace procedure sp_revoke_delete (
     user_or_role varchar2,
     table_name varchar2
@@ -268,7 +268,7 @@ begin
 end;
 /
 
--- Thu hồi quyền select table_name từ user/role
+--  Thu hồi quyền select table_name từ user/role
 create or replace procedure sp_revoke_select (
     user_or_role varchar2,
     table_name varchar2,
@@ -280,7 +280,7 @@ begin
 end;
 /
 
--- Thu hồi quyền update từ user/role trên table_name
+--  Thu hồi quyền update từ user/role trên table_name
 create or replace procedure sp_revoke_update (
     user_or_role varchar2,
     table_name varchar2
@@ -290,8 +290,8 @@ begin
     execute immediate 'revoke update on sys.v_'||user_or_role||'_'||table_name||' from '||user_or_role;
 end;
 /
---GRANT test_role TO smithj;
---GRANT execute ON Find_Value TO test_role;
+-- GRANT test_role TO smithj;
+-- GRANT execute ON Find_Value TO test_role;
 
 /*
 create or replace procedure sp_drop_all_proc
@@ -307,6 +307,6 @@ begin
     end loop;
 end;
 /
---exec sp_drop_all_proc;
---drop procedure sp_drop_all_proc;
+-- exec sp_drop_all_proc;
+-- drop procedure sp_drop_all_proc;
 */

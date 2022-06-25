@@ -1,154 +1,125 @@
---XÓA CẤU TRÚC DỮ LIỆU
+--XOA CAU TRUC DU LIEU
 /*
-drop table HSBA CASCADE CONSTRAINTS;
-drop table HSBA_DV CASCADE CONSTRAINTS;
-drop table BỆNHNHÂN CASCADE CONSTRAINTS;
-drop table CSYT CASCADE CONSTRAINTS;
-drop table NHÂNVIÊN CASCADE CONSTRAINTS;
-drop table DỊCHVỤ CASCADE CONSTRAINTS;
-drop table KHOA CASCADE CONSTRAINTS;
 
-DROP PROCEDURE sp_createPDBfromPDPseed;
+drop table qlbv_dba.HSBA CASCADE CONSTRAINTS;
+drop table qlbv_dba.HSBA_DV CASCADE CONSTRAINTS;
+drop table qlbv_dba.BENHNHAN CASCADE CONSTRAINTS;
+drop table qlbv_dba.CSYT CASCADE CONSTRAINTS;
+drop table qlbv_dba.NHANVIEN CASCADE CONSTRAINTS;
+drop table qlbv_dba.DICHVU CASCADE CONSTRAINTS;
+drop table qlbv_dba.KHOA CASCADE CONSTRAINTS;
+
 */
---chạy = user sysdba
-create or replace procedure sp_createPDBfromPDPseed
-	(pdb_name varchar2,
-    username varchar2,
-    password varchar2,
-    roles varchar2)
-is
-    pdbseed_path varchar2(999);
-    pdb_path varchar2(999);
-begin
-    select name
-    into pdbseed_path
-    from v$tempfile
-    where name like '%PDBSEED%';
-    pdbseed_path := SUBSTR(pdbseed_path,
-                            0,
-                            INSTR(pdbseed_path, '\', -1));
-    pdbseed_path := '''' || pdbseed_path || '''';
-    pdb_path := pdbseed_path;
-    pdb_path := REPLACE(pdb_path, 'PDBSEED', pdb_name );
-    execute immediate 'CREATE PLUGGABLE DATABASE ' || pdb_name || 
-                        ' ADMIN USER ' || username || 
-                        ' IDENTIFIED BY ' || password || 
-                        ' ROLES = (' || roles || ')' ||
-                        ' FILE_NAME_CONVERT = (' || pdbseed_path ||
-                        ',' || pdb_path || ')';
-end;
-/
-exec sp_createPDBfromPDPseed('pdb1','pdb1dba','1','dba');
+--chAy = user sysdba
+CREATE PLUGGABLE DATABASE qlbv_pdb 
+    ADMIN USER qlbv_dba IDENTIFIED BY 1 ROLES = ( dba )
+    FILE_NAME_CONVERT = ( 
+    'pdbseed', 
+    'qlbv_pdb' );
 
---chạy = user pdb1dba
-ALTER PLUGGABLE DATABASE pdb1 OPEN;
-ALTER SESSION SET container = pdb1;
-ALTER USER pdb1dba QUOTA UNLIMITED ON SYSTEM;
-ALTER SESSION SET current_schema = pdb1dba;
 
---TẠO BẢNG
-create table HSBA (
-    MÃHSBA number(5),
-    MÃBN number(5),
-    NGÀY date,
-    CHẨNĐOÁN nvarchar2(100) not null,
-    MÃBS number(3),
-    MÃKHOA number(2),
-    MÃCSYT number(2),
-    KẾTLUẬN nvarchar2(100),
+ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
+ALTER SESSION SET container = qlbv_pdb;
+ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
+
+--TAO BANG
+create table qlbv_dba.HSBA (
+    MAHSBA number(5),
+    MABN number(5),
+    NGAY date,
+    CHANDOAN nvarchar2(100) not null,
+    MABS number(3),
+    MAKHOA number(2),
+    MACSYT number(2),
+    KETLUAN nvarchar2(100),
     
-    constraint PK_HSBA primary key (MÃHSBA)
+    constraint PK_HSBA primary key (MAHSBA)
 );
 
-create table HSBA_DV (
-    MÃHSBA number(5),
-    MÃDV number(3),
-    NGÀY date,
-    MÃKTV number(3),
-    KẾTQUẢ nvarchar2(100),
+create table qlbv_dba.HSBA_DV (
+    MAHSBA number(5),
+    MADV number(3),
+    NGAY date,
+    MAKTV number(3),
+    KETQUA nvarchar2(100),
     
-    constraint PK_HSBA_DV primary key (MÃHSBA,MÃDV,NGÀY)
+    constraint PK_HSBA_DV primary key (MAHSBA,MADV,NGAY)
 );
 
-create table BỆNHNHÂN (
-    MÃBN number(5),
-    MÃCSYT number(2),
-    TÊNBN nvarchar2(50),
+create table qlbv_dba.BENHNHAN (
+    MABN number(5),
+    MACSYT number(2),
+    TENBN nvarchar2(50),
     CMND varchar(12),
-    NGÀYSINH date,
-    SỐNHÀ varchar(10),
-    TÊNĐƯỜNG nvarchar2(50),
-    QUẬNHUYỆN nvarchar2(50),
-    TỈNHTP nvarchar2(50),
-    TIỀNSỬBỆNH nvarchar2(100),
-    TIỀNSỬBỆNHGĐ nvarchar2(100),
-    DỊỨNGTHUỐC nvarchar2(100),
+    NGAYSINH date,
+    SONHA varchar(10),
+    TENDUONG nvarchar2(50),
+    QUANHUYEN nvarchar2(50),
+    TINHTP nvarchar2(50),
+    TIENSUBENH nvarchar2(100),
+    TIENSUBENHGD nvarchar2(100),
+    DIUNGTHUOC nvarchar2(100),
     
-    constraint PK_BỆNHNHÂN primary key (MÃBN)
+    constraint PK_BENHNHAN primary key (MABN)
 );
 
-create table CSYT (
-    MÃCSYT number(2),
-    TÊNCSYT nvarchar2(80),
-    ĐCCSYT nvarchar2(100),
-    SĐTCSYT char(10),
+create table qlbv_dba.CSYT (
+    MACSYT number(2),
+    TENCSYT nvarchar2(80),
+    DCCSYT nvarchar2(100),
+    SDTCSYT char(10),
     
-    constraint PK_CSYT primary key (MÃCSYT)
+    constraint PK_CSYT primary key (MACSYT)
 );
 
-create table NHÂNVIÊN (
-    MÃNV number(5),
-    HỌTÊN nvarchar2(50),
-    PHÁI nvarchar2(5),
-    NGÀYSINH date,
+create table qlbv_dba.NHANVIEN (
+    MANV number(5),
+    HOTEN nvarchar2(50),
+    PHAI nvarchar2(5),
+    NGAYSINH date,
     CMND varchar(12),
-    QUÊQUÁN nvarchar2(50),
-    SỐĐT char(10),
+    QUEQUAN nvarchar2(50),
+    SODT char(10),
     CSYT number(2),
-    VAITRÒ nvarchar2(20),
-    CHUYÊNKHOA nvarchar2(50),
-    constraint PK_NHÂNVIÊN primary key (MÃNV)
+    VAITRO nvarchar2(20),
+    CHUYENKHOA nvarchar2(50),
+    constraint PK_NHANVIEN primary key (MANV)
 );
 
-create table DỊCHVỤ (
-    MÃDV number(3),
-    TÊNDV nvarchar2(50),
-    MÔTẢ nvarchar2(100) DEFAULT '',
-    GIÁ number(8),
+create table qlbv_dba.DICHVU (
+    MADV number(3),
+    TENDV nvarchar2(50),
+    MOTA nvarchar2(100) DEFAULT '',
+    GIA number(8),
     
-    constraint PK_DỊCHVỤ primary key (MÃDV)
+    constraint PK_DICHVU primary key (MADV)
 );
 
-create table KHOA (
-    MÃKHOA number(2),
-    TÊNKHOA nvarchar2(50),
-    MÔTẢ nvarchar2(100) DEFAULT '',
+create table qlbv_dba.KHOA (
+    MAKHOA number(2),
+    TENKHOA nvarchar2(50),
+    MOTA nvarchar2(100) DEFAULT '',
     
-    constraint PK_KHOA primary key (MÃKHOA)
+    constraint PK_KHOA primary key (MAKHOA)
 );
 
---TẠO KHOÁ NGOẠI
-alter table HSBA
-    add constraint FK_HSBA_BỆNHNHÂN 
-    foreign key (MÃBN) references BỆNHNHÂN (MÃBN);
-alter table HSBA
-    add constraint FK_HSBA_NHÂNVIÊN 
-    foreign key (MÃBS) references NHÂNVIÊN (MÃNV);
-alter table HSBA
+--TAO KHOA NGOAI
+alter table qlbv_dba.HSBA
+    add constraint FK_HSBA_BENHNHAN 
+    foreign key (MABN) references qlbv_dba.BENHNHAN (MABN);
+alter table qlbv_dba.HSBA
+    add constraint FK_HSBA_NHANVIEN 
+    foreign key (MABS) references qlbv_dba.NHANVIEN (MANV);
+alter table qlbv_dba.HSBA
     add constraint FK_HSBA_CSYT 
-    foreign key (MÃCSYT) references CSYT (MÃCSYT);
-alter table HSBA
+    foreign key (MACSYT) references qlbv_dba.CSYT (MACSYT);
+alter table qlbv_dba.HSBA
     add constraint FK_HSBA_KHOA 
-    foreign key (MÃKHOA) references KHOA (MÃKHOA);
+    foreign key (MAKHOA) references qlbv_dba.KHOA (MAKHOA);
 
-alter table HSBA_DV
+alter table qlbv_dba.HSBA_DV
     add constraint FK_HSBA_DV_HSBA
-    foreign key (MÃHSBA) references HSBA (MÃHSBA);
-alter table HSBA_DV
-    add constraint FK_HSBA_DV_DỊCHVỤ
-    foreign key (MÃDV) references DỊCHVỤ (MÃDV);
-/*
- --NHẬP DỮ LIỆU
-alter session set NLS_DATE_FORMAT = 'dd-mm-yyyy';
-
-*/
+    foreign key (MAHSBA) references qlbv_dba.HSBA (MAHSBA);
+alter table qlbv_dba.HSBA_DV
+    add constraint FK_HSBA_DV_DICHVU
+    foreign key (MADV) references qlbv_dba.DICHVU (MADV);
