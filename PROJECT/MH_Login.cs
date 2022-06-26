@@ -15,57 +15,51 @@ namespace PROJECT
 {
     public partial class MH_Login : Form
     {
-        string role = null;
+        string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         public MH_Login()
         {
             InitializeComponent();
         }
-
         private void bt_login_Click(object sender, EventArgs e)
         {
             string username = tb1.Text.ToString();
             string password = tb2.Text.ToString();
-            using (OracleConnection con = new OracleConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString))
+            String conString = connectionString.Replace("@@@", username).Replace("###",password);
+            
+            using (OracleConnection con = new OracleConnection(conString))
             {
-                OracleCommand cmd = new OracleCommand("sp_login", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("user", OracleDbType.Varchar2).Value = username;
-                cmd.Parameters.Add("pass", OracleDbType.Varchar2).Value = password;
-
-                con.Open();
-                //object temp = cmd.ExecuteScalar();
-                OracleDataReader reader = cmd.ExecuteReader();
                 try
                 {
-                    reader.Read();
-                    role = reader.GetString(0);
-                    //role = temp.ToString();
-                    if (role == "THANHTRA")
+                    OracleCommand cmd = new OracleCommand("SELECT * FROM SESSION_ROLES", con);
+                    con.Open();
+                    object obj = cmd.ExecuteScalar();
+                    //OracleDataReader reader = cmd.ExecuteReader();reader.Read(); reader.Close();
+                    string role = obj.ToString();
+                    //MessageBox.Show(role);
+                    if (role == "PDB_DBA" || role == "DBA")
                     {
-                        con.Close();
-                        Program.loadForm(new MH_ThanhTra(), this);
+                        Program.loadForm(new MH_Admin_User(con), this);
                     }
-                    else if(role == "CSYT" || role == "YSBS" || role == "NGHIENCUU")
+                    else if (role == "THANHTRA")
                     {
-                        con.Close();
-                        Program.loadForm(new MH_NhanVien(username, password, role), this);
+                        Program.loadForm(new MH_ThanhTra(con), this);
                     }
-                    else if (role == "NVQL")
+                    else if (role == "CSYT" || role == "YSBS" || role == "NGHIENCUU" || role == "GIAMDOC") // fix khi co' solution cho OLS
                     {
-                        con.Close();
-                        Program.loadForm(new MH_NVQL(), this);
+                        Program.loadForm(new MH_NhanVien(con, role), this);
                     }
-                    else if (role == "PDB_DBA")
+                    else if (role == "BENHNHAN")
                     {
-                        Program.loadForm(new MH_Admin_User(), this);
+                        Program.loadForm(new MH_BenhNhan(con), this);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception ex) //OracleException
                 {
-                    System.Console.WriteLine("Exception: {0}", ex.ToString());
+                    //System.Console.WriteLine(ex.ToString());
+                    MessageBox.Show("Phải làm sao! Phải làm sao!", "Đăng nhập thất bại rrr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                reader.Close();
             }
+            
         }
     }
 }

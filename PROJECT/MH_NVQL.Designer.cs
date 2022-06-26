@@ -50,8 +50,6 @@ namespace PROJECT
             this.label2 = new System.Windows.Forms.Label();
             this.bt_themHSBA = new System.Windows.Forms.Button();
             this.bt_xoaHSBA = new System.Windows.Forms.Button();
-            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu = new System.Windows.Forms.MenuStrip();
             this.label = new System.Windows.Forms.Label();
             this.dgv2 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -69,13 +67,18 @@ namespace PROJECT
             this.label16 = new System.Windows.Forms.Label();
             this.bt_themHSBA_DV = new System.Windows.Forms.Button();
             this.bt_xoaHSBA_DV = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.tùyChọnTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
-            this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -290,24 +293,6 @@ namespace PROJECT
             this.bt_xoaHSBA.Text = "XÓA";
             this.bt_xoaHSBA.UseVisualStyleBackColor = true;
             // 
-            // ThoátTSMI
-            // 
-            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.ThoátTSMI.Name = "ThoátTSMI";
-            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
-            this.ThoátTSMI.Text = "Thoát";
-            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
-            // 
-            // menu
-            // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ThoátTSMI});
-            this.menu.Location = new System.Drawing.Point(0, 0);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1034, 28);
-            this.menu.TabIndex = 23;
-            this.menu.Text = "menu";
-            // 
             // label
             // 
             this.label.AutoSize = true;
@@ -479,14 +464,58 @@ namespace PROJECT
             this.bt_xoaHSBA_DV.Text = "XÓA";
             this.bt_xoaHSBA_DV.UseVisualStyleBackColor = true;
             // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tùyChọnTSMI,
+            this.ThoátTSMI});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1034, 28);
+            this.menu.TabIndex = 43;
+            this.menu.Text = "menu";
+            // 
+            // tùyChọnTSMI
+            // 
+            this.tùyChọnTSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoTSMI,
+            this.quảnLýTSMI});
+            this.tùyChọnTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.tùyChọnTSMI.Name = "tùyChọnTSMI";
+            this.tùyChọnTSMI.Size = new System.Drawing.Size(80, 24);
+            this.tùyChọnTSMI.Text = "Tùy chọn";
+            // 
+            // infoTSMI
+            // 
+            this.infoTSMI.Name = "infoTSMI";
+            this.infoTSMI.Size = new System.Drawing.Size(196, 24);
+            this.infoTSMI.Text = "Thông tin cá nhân";
+            this.infoTSMI.Click += new System.EventHandler(this.infoTSMI_Click);
+            // 
+            // quảnLýTSMI
+            // 
+            this.quảnLýTSMI.Checked = true;
+            this.quảnLýTSMI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.quảnLýTSMI.Name = "quảnLýTSMI";
+            this.quảnLýTSMI.Size = new System.Drawing.Size(196, 24);
+            this.quảnLýTSMI.Text = "Quản lý";
+            // 
+            // ThoátTSMI
+            // 
+            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.ThoátTSMI.Name = "ThoátTSMI";
+            this.ThoátTSMI.Size = new System.Drawing.Size(122, 24);
+            this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
+            // 
             // MH_NVQL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 571);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menu);
             this.Controls.Add(this.label);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -496,14 +525,14 @@ namespace PROJECT
             this.Text = "MH_NVQL";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.menu.ResumeLayout(false);
-            this.menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,8 +546,6 @@ namespace PROJECT
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bt_themHSBA;
         private System.Windows.Forms.Button bt_xoaHSBA;
-        private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
-        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.DataGridView dgv2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -550,5 +577,10 @@ namespace PROJECT
         private System.Windows.Forms.Button bt_timHSBA;
         private System.Windows.Forms.Button bt_tracuuDV;
         private System.Windows.Forms.Button bt_tracuuKhoa;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem tùyChọnTSMI;
+        private System.Windows.Forms.ToolStripMenuItem infoTSMI;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýTSMI;
+        private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
     }
 }

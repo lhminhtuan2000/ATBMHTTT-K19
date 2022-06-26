@@ -1,79 +1,52 @@
-SET
-    SERVEROUTPUT ON;
-
+SET SERVEROUTPUT ON;
 --turn on DBMS_SQL.RETURN_RESULT
 --login = SYSDBA
-ALTER PLUGGABLE DATABASE pdb1 OPEN;
+ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
 
 --login = USER ADMIN of PDB
 ALTER SESSION
 SET
-    container = pdb1;
+    container = qlbv_pdb;
 
---ALTER USER pdb1dba QUOTA UNLIMITED ON SYSTEM;
+--ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
 ALTER SESSION
 SET
-    current_schema = pdb1dba;
+    current_schema = qlbv_dba;
 
 --tạo user
---exec SP_CREATE_USER('tt','1');
-CREATE user tt IDENTIFIED BY "1";
+exec SP_CREATE_USER('tt','1');
+exec SP_CREATE_USER('nv','1');
+exec SP_CREATE_USER('bs','1');
+exec SP_CREATE_USER('nc','1');
+exec SP_CREATE_USER('bn','1');
+exec SP_CREATE_USER('boss','1');
 
-CREATE user nv IDENTIFIED BY "1";
+exec SP_CREATE_ROLE('THANHTRA');
+exec SP_CREATE_ROLE('CSYT');
+exec SP_CREATE_ROLE('YSBS');
+exec SP_CREATE_ROLE('NGHIENCUU');
+exec SP_CREATE_ROLE('BENHNHAN');
+exec SP_CREATE_ROLE('GIAMDOC');
 
-CREATE user bs IDENTIFIED BY "1";
+exec SP_GRANT_ROLE_TO_USER('THANHTRA','tt');
+exec SP_GRANT_ROLE_TO_USER('CSYT','nv');
+exec SP_GRANT_ROLE_TO_USER('YSBS','bs');
+exec SP_GRANT_ROLE_TO_USER('NGHIENCUU','nc');
+exec SP_GRANT_ROLE_TO_USER('BENHNHAN','bn');
+exec SP_GRANT_ROLE_TO_USER('GIAMDOC','boss');
 
-CREATE user nc IDENTIFIED BY "1";
+CREATE OR REPLACE PROCEDURE sp_login
+AUTHID current_user
+IS 
+    cs SYS_REFCURSOR;
+BEGIN 
+    OPEN cs FOR
+    SELECT GRANTED_ROLE FROM USER_ROLE_PRIVS;
 
-CREATE user ql IDENTIFIED BY "1";
-
-GRANT CREATE SESSION TO PUBLIC;
-
-CREATE role THANHTRA;
-
-CREATE role CSYT;
-
-CREATE role YSBS;
-
-CREATE role NGHIENCUU;
-
-CREATE role NVQL;
-
-GRANT THANHTRA TO tt;
-
-GRANT CSYT TO nv;
-
-GRANT YSBS TO bs;
-
-GRANT NGHIENCUU TO nc;
-
-GRANT NVQL TO ql;
-
-CREATE
-OR REPLACE PROCEDURE sp_login (user VARCHAR2, pass VARCHAR2) IS cs SYS_REFCURSOR;
-
-BEGIN OPEN cs FOR
-SELECT
-    GRANTED_ROLE
-FROM
-    DBA_ROLE_PRIVS
-WHERE
-    GRANTEE IN (
-        SELECT
-            USERNAME
-        FROM
-            DBA_USERS
-        WHERE
-            account_status = 'OPEN'
-            AND USERNAME LIKE upper(user)
-    );
-
---and PASSWORD like pass
-DBMS_SQL.RETURN_RESULT(cs);
-
+    dbms_sql.return_result(cs);
 END;
-
-/ --exec sp_login('bs','1');
+/
+--exec sp_login
 /* CHECK
  SELECT * FROM USER_SYS_PRIVS;
  SELECT * FROM USER_TAB_PRIVS;
@@ -81,17 +54,9 @@ END;
  INSERT INTO KHOA VALUES ('2','noi soi','');
  SELECT * FROM SESSION_ROLES;
  SELECT * FROM USER_ROLE_PRIVS;
- */
+SELECT* FROM DBA_SYS_PRIVS WHERE GRANTEE ='DBA' and privilege like 'EXECUTE%';
+*/
 /* XOA'
- DROP USER tt;
- DROP USER nv;
- DROP USER bs;
- DROP USER nc;
- DROP USER ql;
- 
- DROP ROLE THANHTRA;
- DROP ROLE CSYT;
- DROP ROLE YSBS;
- DROP ROLE NGHIENCUU;
- DROP ROLE NVQL;
+ exec sp_delete_user('nvql')
+ exec sp_delete_role('QUANLY')
  */

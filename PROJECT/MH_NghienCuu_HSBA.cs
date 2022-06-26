@@ -15,19 +15,26 @@ namespace PROJECT
 {
     public partial class MH_NghienCuu_HSBA : Form
     {
+        OracleConnection connect;
+        string roleName;
         public MH_NghienCuu_HSBA()
         {
             InitializeComponent();
         }
-
+        public MH_NghienCuu_HSBA(OracleConnection con, string role)
+        {
+            InitializeComponent();
+            connect = con;
+            roleName = role;
+        }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
-
         private void infoTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NhanVien(), this);
+            Program.loadForm(new MH_NhanVien(connect, roleName), this);
         }
     }
 }

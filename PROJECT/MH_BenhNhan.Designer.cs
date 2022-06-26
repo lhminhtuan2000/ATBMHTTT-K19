@@ -337,6 +337,7 @@ namespace PROJECT
             this.Controls.Add(this.label);
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_BenhNhan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_BenhNhan";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

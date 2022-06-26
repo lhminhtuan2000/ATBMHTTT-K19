@@ -183,6 +183,7 @@ namespace PROJECT
             this.bệnhNhânTSMI.Name = "bệnhNhânTSMI";
             this.bệnhNhânTSMI.Size = new System.Drawing.Size(196, 24);
             this.bệnhNhânTSMI.Text = "Bệnh nhân";
+            this.bệnhNhânTSMI.Click += new System.EventHandler(this.bệnhNhânTSMI_Click);
             // 
             // ThoátTSMI
             // 
@@ -204,6 +205,7 @@ namespace PROJECT
             this.Controls.Add(this.groupBox2);
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_YSBS_HSBA";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_YSBS_HSBA";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

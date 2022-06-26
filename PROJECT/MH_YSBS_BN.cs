@@ -15,19 +15,32 @@ namespace PROJECT
 {
     public partial class MH_YSBS_BN : Form
     {
+        OracleConnection connect;
+        string roleName;
         public MH_YSBS_BN()
         {
             InitializeComponent();
         }
-
+        public MH_YSBS_BN(OracleConnection con, string role)
+        {
+            InitializeComponent();
+            connect = con;
+            roleName = role;
+        }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
 
         private void infoTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NhanVien(), this);
+            Program.loadForm(new MH_NhanVien(connect, roleName), this);
+        }
+
+        private void HSBATSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_YSBS_HSBA(connect, roleName), this);
         }
     }
 }

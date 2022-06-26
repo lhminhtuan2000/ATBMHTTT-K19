@@ -6,3 +6,6 @@
 x64/
 x86/
 [Bb]in/
+
+PROJECT/bin
+PROJECT/obj

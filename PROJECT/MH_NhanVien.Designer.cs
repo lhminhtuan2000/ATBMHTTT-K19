@@ -57,6 +57,7 @@ namespace PROJECT
             this.bệnhNhânTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngBáoTSMT = new System.Windows.Forms.ToolStripMenuItem();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -293,7 +294,8 @@ namespace PROJECT
             this.infoTSMI,
             this.HSBATSMI,
             this.bệnhNhânTSMI,
-            this.thôngBáoTSMT});
+            this.thôngBáoTSMT,
+            this.quảnLýTSMI});
             this.tùyChọnTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.tùyChọnTSMI.Name = "tùyChọnTSMI";
             this.tùyChọnTSMI.Size = new System.Drawing.Size(80, 24);
@@ -339,6 +341,14 @@ namespace PROJECT
             this.ThoátTSMI.Text = "Thoát";
             this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
+            // quảnLýTSMI
+            // 
+            this.quảnLýTSMI.Name = "quảnLýTSMI";
+            this.quảnLýTSMI.Size = new System.Drawing.Size(196, 24);
+            this.quảnLýTSMI.Text = "Quản lý";
+            this.quảnLýTSMI.Visible = false;
+            this.quảnLýTSMI.Click += new System.EventHandler(this.quảnLýTSMI_Click);
+            // 
             // MH_NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,6 +359,7 @@ namespace PROJECT
             this.Controls.Add(this.panel1);
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_NhanVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_NhanVien";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -389,5 +400,6 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem bệnhNhânTSMI;
         private System.Windows.Forms.ToolStripMenuItem thôngBáoTSMT;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýTSMI;
     }
 }

@@ -193,14 +193,13 @@ IS
 BEGIN 
     OPEN c_role_list FOR
     SELECT
-        *
+        ROLE
     FROM
         dba_roles;
 
     dbms_sql.return_result(c_role_list);
 END;
 / 
-
 -- 4/ xem quyền của một role
 DROP PROCEDURE qlbv_dba.sp_show_role_privileges;
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_show_role_privileges (
@@ -362,7 +361,7 @@ END;
 
 
 -- 16/ cấp quyền select cho user/role trên column_list thuộc table_name (with GRANT option)
-CREATE OR REPLACE PROCEDURE sp_grant_select_wgo (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_select_wgo (
     user_or_role VARCHAR2,
     table_name VARCHAR2,
     column_list VARCHAR2) 
@@ -387,7 +386,7 @@ END;
 
 
 -- 18/ cấp quyền update cho user/role trên column_list thuộc table_name (with GRANT option)
-CREATE OR REPLACE PROCEDURE sp_grant_update_wgo (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_update_wgo (
     user_or_role VARCHAR2,
     table_name VARCHAR2,
     column_list VARCHAR2) 
@@ -399,29 +398,25 @@ END;
 
 
 -- 19/ thu hồi quyền insert table_name từ user/role
-CREATE OR REPLACE PROCEDURE sp_revoke_insert (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_insert (
     user_or_role VARCHAR2,
     table_name VARCHAR2) 
 IS 
 BEGIN
     EXECUTE IMMEDIATE 'REVOKE INSERT ON SYS.' || table_name || ' FROM ' || user_or_role;
 END;
-/
-
-
+/ 
 -- 20/ thu hôi quyền delete table_name từ user/role
-CREATE OR REPLACE PROCEDURE sp_revoke_delete (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_delete (
     user_or_role VARCHAR2,
     table_name VARCHAR2) 
 IS 
 BEGIN
     EXECUTE IMMEDIATE 'REVOKE DELETE ON SYS.V_' || user_or_role || '_' || table_name || ' FROM ' || user_or_role;
 END;
-/
-
-
+/ 
 -- 21/ thu hồi quyền select table_name từ user/role
-CREATE OR REPLACE PROCEDURE sp_revoke_select (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_select (
     user_or_role VARCHAR2,
     table_name VARCHAR2,
     column_list VARCHAR2) 
@@ -429,11 +424,9 @@ IS
 BEGIN
     EXECUTE IMMEDIATE 'REVOKE SELECT ON SYS.V_' || user_or_role || '_' || table_name || ' FROM ' || user_or_role;
 END;
-/
-
-
+/ 
 -- 22/ thu hồi quyền update từ user/role trên table_name
-CREATE OR REPLACE PROCEDURE sp_revoke_update (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_update (
     user_or_role VARCHAR2,
     table_name VARCHAR2) 
 IS 
@@ -446,6 +439,17 @@ END;
 
 
 -- GRANT execute on find_value to test_role;
+
+-- 23/ gán role cho user
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_role_to_user (
+    role_name VARCHAR2,
+    user_name VARCHAR2)
+IS 
+BEGIN 
+    EXECUTE IMMEDIATE 'GRANT ' || role_name || ' TO ' || user_name;
+END;
+/ 
+
 /*
  create or replace procedure sp_drop_all_proc
  is

@@ -15,22 +15,29 @@ namespace PROJECT
 {
     public partial class MH_Admin_Role : Form
     {
-        OracleConnection con = new OracleConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+        OracleConnection connect;
         public MH_Admin_Role()
         {
             InitializeComponent();
             dgv1_loaddata();
             dgv3_loaddata();
         }
+        public MH_Admin_Role(OracleConnection con)
+        {
+            InitializeComponent();
+            connect = con;
+            dgv1_loaddata();
+            dgv3_loaddata();
+        }
         public void dgv1_loaddata()
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_role", con);
+            OracleCommand cmd = new OracleCommand("sp_list_all_role", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable dt = new DataTable();
             dt.Clear();
             try
             {
-                con.Open();
+                connect.Open();
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
                 oda.Fill(dt);
                 dgv1.DataSource = dt;
@@ -40,17 +47,17 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
         }
         public void dgv2_loaddata(string role_name)
         {
-            OracleCommand cmd = new OracleCommand("sp_show_role_privileges", con);
+            OracleCommand cmd = new OracleCommand("sp_show_role_privileges", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("role_name", OracleDbType.Varchar2).Value = role_name;
             try
             {
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                con.Open();
+                connect.Open();
                 DataTable dt = new DataTable();
                 dt.Clear();
                 oda.Fill(dt);
@@ -62,17 +69,17 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
         }
         public void dgv3_loaddata()
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_user", con);
+            OracleCommand cmd = new OracleCommand("sp_list_all_user", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable dt = new DataTable();
             dt.Clear();
             try
             {
-                con.Open();
+                connect.Open();
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
                 oda.Fill(dt);
                 dgv3.DataSource = dt;
@@ -82,7 +89,7 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
         }
 
         private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -104,12 +111,12 @@ namespace PROJECT
         {
             string role_name = tb1.Text.ToString();
 
-            OracleCommand cmd = new OracleCommand("sp_create_role", con);
+            OracleCommand cmd = new OracleCommand("sp_create_role", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("role_name", OracleDbType.Varchar2).Value = role_name;
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
                 tb1.Clear();
             }
@@ -117,19 +124,19 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
         private void bt_xoa_Click(object sender, EventArgs e)
         {
             string role_name = tb1.Text.ToString();
-            OracleCommand cmd = new OracleCommand("sp_delete_role", con);
+            OracleCommand cmd = new OracleCommand("sp_delete_role", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("role_name", OracleDbType.Varchar2).Value = role_name;
 
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
                 tb1.Clear();
             }
@@ -137,7 +144,7 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
         private void cb_cot_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,17 +168,23 @@ namespace PROJECT
 
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_User(), this);
+            Program.loadForm(new MH_Admin_User(connect), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_CSYT(), this);
+            Program.loadForm(new MH_Admin_CSYT(connect), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
+        }
+
+        private void nhânViênTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_NV(connect), this);
         }
     }
 }

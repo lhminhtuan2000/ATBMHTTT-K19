@@ -89,6 +89,7 @@ namespace PROJECT
             this.Controls.Add(this.menu);
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_GiamDoc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_GiamDoc";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();

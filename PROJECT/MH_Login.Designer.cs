@@ -70,11 +70,14 @@ namespace PROJECT
             // 
             // tb2
             // 
+            this.tb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb2.Location = new System.Drawing.Point(161, 80);
             this.tb2.Name = "tb2";
             this.tb2.Size = new System.Drawing.Size(228, 38);
             this.tb2.TabIndex = 10;
+            this.tb2.Text = "1";
+            this.tb2.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -88,12 +91,22 @@ namespace PROJECT
             // 
             // tb1
             // 
-            this.tb1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tb1.AutoCompleteCustomSource.AddRange(new string[] {
+            "qlbv_dba",
+            "nv",
+            "nvql",
+            "bs",
+            "nc",
+            "bn",
+            "boss",
+            "tt"});
+            this.tb1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb1.Location = new System.Drawing.Point(161, 36);
             this.tb1.Name = "tb1";
             this.tb1.Size = new System.Drawing.Size(228, 38);
             this.tb1.TabIndex = 8;
+            this.tb1.Text = "qlbv_dba";
             // 
             // label2
             // 
@@ -166,7 +179,9 @@ namespace PROJECT
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Location = new System.Drawing.Point(200, 150);
             this.Name = "MH_Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_Login";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
