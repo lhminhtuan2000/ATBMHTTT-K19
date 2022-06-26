@@ -27,6 +27,10 @@ namespace PROJECT
             InitializeComponent();
             connect = con;
             roleName = role;
+            if (roleName == "CSYT")
+            {
+                quảnLýTSMI.Visible = true;
+            }
             if (roleName == "NGHIENCUU" || roleName == "YSBS")
             {
                 HSBATSMI.Visible = true;
@@ -63,10 +67,13 @@ namespace PROJECT
         {
             Program.loadForm(new MH_YSBS_BN(connect, roleName), this);
         }
-
         private void thôngBáoTSMT_Click(object sender, EventArgs e)
         {
             Program.loadForm(new MH_GiamDoc(connect, roleName), this);
+        }
+        private void quảnLýTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_NVQL(connect, roleName), this);
         }
     }
 }

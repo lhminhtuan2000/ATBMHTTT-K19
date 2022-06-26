@@ -35,6 +35,7 @@ namespace PROJECT
                     object obj = cmd.ExecuteScalar();
                     //OracleDataReader reader = cmd.ExecuteReader();reader.Read(); reader.Close();
                     string role = obj.ToString();
+                    //MessageBox.Show(role);
                     if (role == "PDB_DBA" || role == "DBA")
                     {
                         Program.loadForm(new MH_Admin_User(con), this);
@@ -46,10 +47,6 @@ namespace PROJECT
                     else if (role == "CSYT" || role == "YSBS" || role == "NGHIENCUU" || role == "GIAMDOC") // fix khi co' solution cho OLS
                     {
                         Program.loadForm(new MH_NhanVien(con, role), this);
-                    }
-                    else if (role == "QUANLY")
-                    {
-                        Program.loadForm(new MH_NVQL(con), this);
                     }
                     else if (role == "BENHNHAN")
                     {

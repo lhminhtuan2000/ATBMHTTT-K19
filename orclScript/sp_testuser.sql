@@ -18,7 +18,6 @@ exec SP_CREATE_USER('tt','1');
 exec SP_CREATE_USER('nv','1');
 exec SP_CREATE_USER('bs','1');
 exec SP_CREATE_USER('nc','1');
-exec SP_CREATE_USER('nvql','1');
 exec SP_CREATE_USER('bn','1');
 exec SP_CREATE_USER('boss','1');
 
@@ -26,8 +25,6 @@ exec SP_CREATE_ROLE('THANHTRA');
 exec SP_CREATE_ROLE('CSYT');
 exec SP_CREATE_ROLE('YSBS');
 exec SP_CREATE_ROLE('NGHIENCUU');
-exec SP_CREATE_ROLE('QUANLY');
-exec SP_CREATE_ROLE('NHANVIEN');
 exec SP_CREATE_ROLE('BENHNHAN');
 exec SP_CREATE_ROLE('GIAMDOC');
 
@@ -35,10 +32,8 @@ exec SP_GRANT_ROLE_TO_USER('THANHTRA','tt');
 exec SP_GRANT_ROLE_TO_USER('CSYT','nv');
 exec SP_GRANT_ROLE_TO_USER('YSBS','bs');
 exec SP_GRANT_ROLE_TO_USER('NGHIENCUU','nc');
-exec SP_GRANT_ROLE_TO_USER('QUANLY','nvql');
 exec SP_GRANT_ROLE_TO_USER('BENHNHAN','bn');
 exec SP_GRANT_ROLE_TO_USER('GIAMDOC','boss');
-show user;
 
 CREATE OR REPLACE PROCEDURE sp_login
 AUTHID current_user
@@ -62,6 +57,6 @@ END;
 SELECT* FROM DBA_SYS_PRIVS WHERE GRANTEE ='DBA' and privilege like 'EXECUTE%';
 */
 /* XOA'
- exec sp_delete_user('ql')
- exec sp_delete_role('NVQL')
+ exec sp_delete_user('nvql')
+ exec sp_delete_role('QUANLY')
  */

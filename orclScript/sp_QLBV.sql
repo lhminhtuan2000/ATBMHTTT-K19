@@ -56,6 +56,7 @@ BEGIN
     dbms_sql.return_result(c_privileges);
 END;
 / 
+--exec sp_show_user_privileges ('bs');
 -- 3/ exec sp_show_user_privileges('c##pmtri2')
 --  liệt kê tất cả các role đang open
 GRANT SELECT ON dba_roles TO qlbv_dba; --XÓA DÒNG NÀY NẾU THẤY DƯ

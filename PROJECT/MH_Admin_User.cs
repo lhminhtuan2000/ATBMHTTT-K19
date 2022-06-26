@@ -19,37 +19,25 @@ namespace PROJECT
         public MH_Admin_User()
         {
             InitializeComponent();
-            dgv1_loaddata();
+            dgv1_loaddata(connect);
         }
         public MH_Admin_User(OracleConnection con)
         {
             InitializeComponent();
             connect = con;
-            dgv1_loaddata();
+            dgv1_loaddata(connect);
         }
-        public void dgv1_loaddata()
+        public void dgv1_loaddata(OracleConnection con)
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_user", connect);
-            cmd.CommandType = CommandType.StoredProcedure;
-            DataTable dt = new DataTable();
-            dt.Clear();
-            try
-            {
-                connect.Open();
-                OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                oda.Fill(dt);
-                dgv1.DataSource = dt;
-                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
-            }
-            connect.Close();
+            List<string> varlist = new List<string>();
+            DataTable dt = Program.loadDT("sp_list_all_user", con, varlist, varlist);
+            dgv1.DataSource = dt;
+            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        public void dgv2_loaddata(string username)
+        public void dgv2_loaddata(OracleConnection con, string username)
         {
+            /*
             OracleCommand cmd = new OracleCommand("sp_show_user_privileges", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
@@ -70,6 +58,12 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
+            */
+            List<string> varlist = new List<string>{ "user" };
+            List<string> inputlist = new List<string> { username };
+            DataTable dt = Program.loadDT("sp_show_user_privileges", con, varlist, inputlist);
+            dgv2.DataSource = dt;
+            dgv2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +73,7 @@ namespace PROJECT
                 int rowIndex = dgv1.CurrentCell.RowIndex;
                 string username = dgv1.Rows[rowIndex].Cells[0].Value.ToString();
                 tb1.Text = username;
-                dgv2_loaddata(username);
+                dgv2_loaddata(connect, username);
             }
             catch (Exception ex)
             {
@@ -106,7 +100,7 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
-            dgv1_loaddata();
+            //dgv1_loaddata();
         }
 
         private void bt_xoa_Click(object sender, EventArgs e)
@@ -127,7 +121,7 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
-            dgv1_loaddata();
+            //dgv1_loaddata();
         }
 
         private void bt_sua_Click(object sender, EventArgs e)
@@ -148,7 +142,7 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
-            dgv1_loaddata();
+            //dgv1_loaddata();
         }
 
         private void bt_khoa_Click(object sender, EventArgs e)
@@ -167,7 +161,7 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
-            dgv1_loaddata();
+            //dgv1_loaddata();
         }
 
         public void cb_cot_loaddata(string table)
@@ -235,7 +229,7 @@ namespace PROJECT
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
             connect.Close();
-            dgv2_loaddata(username);
+            //dgv2_loaddata(username);
         }
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)
