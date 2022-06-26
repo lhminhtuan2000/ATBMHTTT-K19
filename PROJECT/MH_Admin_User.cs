@@ -15,21 +15,27 @@ namespace PROJECT
 {
     public partial class MH_Admin_User : Form
     {
-        OracleConnection con = new OracleConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+        OracleConnection connect;
         public MH_Admin_User()
         {
             InitializeComponent();
             dgv1_loaddata();
         }
+        public MH_Admin_User(OracleConnection con)
+        {
+            InitializeComponent();
+            connect = con;
+            dgv1_loaddata();
+        }
         public void dgv1_loaddata()
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_user", con);
+            OracleCommand cmd = new OracleCommand("sp_list_all_user", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable dt = new DataTable();
             dt.Clear();
             try
             {
-                con.Open();
+                connect.Open();
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
                 oda.Fill(dt);
                 dgv1.DataSource = dt;
@@ -39,18 +45,18 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
         }
 
         public void dgv2_loaddata(string username)
         {
-            OracleCommand cmd = new OracleCommand("sp_show_user_privileges", con);
+            OracleCommand cmd = new OracleCommand("sp_show_user_privileges", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
             try
             {
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                con.Open();
+                connect.Open();
                 DataTable dt = new DataTable();
                 dt.Clear();
                 oda.Fill(dt);
@@ -63,7 +69,7 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
         }
 
         private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,33 +92,33 @@ namespace PROJECT
             string username = tb1.Text.ToString();
             string password = tb2.Text.ToString();
 
-            OracleCommand cmd = new OracleCommand("sp_create_user", con);
+            OracleCommand cmd = new OracleCommand("sp_create_user", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
             cmd.Parameters.Add("password", OracleDbType.Varchar2).Value = password;
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
 
         private void bt_xoa_Click(object sender, EventArgs e)
         {
             string username = tb1.Text.ToString();
-            OracleCommand cmd = new OracleCommand("sp_delete_user", con);
+            OracleCommand cmd = new OracleCommand("sp_delete_user", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
 
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
                 tb1.Clear();
             }
@@ -120,7 +126,7 @@ namespace PROJECT
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
 
@@ -128,39 +134,39 @@ namespace PROJECT
         {
             string username = tb1.Text.ToString();
             string password = tb2.Text.ToString();
-            OracleCommand cmd = new OracleCommand("sp_change_user_password", con);
+            OracleCommand cmd = new OracleCommand("sp_change_user_password", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
             cmd.Parameters.Add("password", OracleDbType.Varchar2).Value = password;
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();                
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
 
         private void bt_khoa_Click(object sender, EventArgs e)
         {
             string username = tb1.Text.ToString();
-            OracleCommand cmd = new OracleCommand("sp_lock_user", con);
+            OracleCommand cmd = new OracleCommand("sp_lock_user", connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("username", OracleDbType.Varchar2).Value = username;
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv1_loaddata();
         }
 
@@ -210,7 +216,7 @@ namespace PROJECT
                 orclString += "_wgo";
             }
 
-            OracleCommand cmd = new OracleCommand(orclString, con);
+            OracleCommand cmd = new OracleCommand(orclString, connect);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("user_or_role", OracleDbType.Varchar2).Value = username;
             cmd.Parameters.Add("table_name", OracleDbType.Varchar2).Value = table;
@@ -221,39 +227,35 @@ namespace PROJECT
 
             try
             {
-                con.Open();
+                connect.Open();
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception: {0}", ex.ToString());
             }
-            con.Close();
+            connect.Close();
             dgv2_loaddata(username);
-        }
-
-        private void tùyChọnTSMI_Click(object sender, EventArgs e) // dòng vd nhớ xóa
-        {
-            //vaiTròTSMI.Visible = false;
         }
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_Role(), this);
+            Program.loadForm(new MH_Admin_Role(connect), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_CSYT(), this);
+            Program.loadForm(new MH_Admin_CSYT(connect), this);
         }
 
         private void nhânViênTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_NV(), this);
+            Program.loadForm(new MH_Admin_NV(connect), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
     }

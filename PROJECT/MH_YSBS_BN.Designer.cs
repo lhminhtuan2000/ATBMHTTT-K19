@@ -162,6 +162,7 @@ namespace PROJECT
             this.HSBATSMI.Name = "HSBATSMI";
             this.HSBATSMI.Size = new System.Drawing.Size(196, 24);
             this.HSBATSMI.Text = "Hồ sơ bệnh án";
+            this.HSBATSMI.Click += new System.EventHandler(this.HSBATSMI_Click);
             // 
             // bệnhNhânTSMI
             // 
@@ -201,6 +202,7 @@ namespace PROJECT
             this.Controls.Add(this.groupBox2);
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_YSBS_BN";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MH_YSBS_BN";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -98,7 +98,6 @@ namespace PROJECT
             this.tùyChọnTSMI.Name = "tùyChọnTSMI";
             this.tùyChọnTSMI.Size = new System.Drawing.Size(80, 24);
             this.tùyChọnTSMI.Text = "Tùy chọn";
-            this.tùyChọnTSMI.Click += new System.EventHandler(this.tùyChọnTSMI_Click);
             // 
             // ngườiDùngTSMI
             // 

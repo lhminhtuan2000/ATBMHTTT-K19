@@ -15,28 +15,34 @@ namespace PROJECT
 {
     public partial class MH_Admin_NV : Form
     {
+        OracleConnection connect;
         public MH_Admin_NV()
         {
             InitializeComponent();
         }
-
+        public MH_Admin_NV(OracleConnection con)
+        {
+            InitializeComponent();
+            connect = con;
+        }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_User(), this);
+            Program.loadForm(new MH_Admin_User(connect), this);
         }
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_Role(), this);
+            Program.loadForm(new MH_Admin_Role(connect), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_CSYT(), this);
+            Program.loadForm(new MH_Admin_CSYT(connect), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
     }

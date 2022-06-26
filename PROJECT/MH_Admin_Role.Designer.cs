@@ -214,13 +214,13 @@ namespace PROJECT
             this.vaiTròTSMI.Checked = true;
             this.vaiTròTSMI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.vaiTròTSMI.Name = "vaiTròTSMI";
-            this.vaiTròTSMI.Size = new System.Drawing.Size(158, 24);
+            this.vaiTròTSMI.Size = new System.Drawing.Size(180, 24);
             this.vaiTròTSMI.Text = "Vai trò";
             // 
             // ngườiDùngTSMI
             // 
             this.ngườiDùngTSMI.Name = "ngườiDùngTSMI";
-            this.ngườiDùngTSMI.Size = new System.Drawing.Size(158, 24);
+            this.ngườiDùngTSMI.Size = new System.Drawing.Size(180, 24);
             this.ngườiDùngTSMI.Text = "Người dùng";
             this.ngườiDùngTSMI.Click += new System.EventHandler(this.ngườiDùngTSMI_Click);
             // 
@@ -239,15 +239,16 @@ namespace PROJECT
             // CSYTTSMI
             // 
             this.CSYTTSMI.Name = "CSYTTSMI";
-            this.CSYTTSMI.Size = new System.Drawing.Size(158, 24);
+            this.CSYTTSMI.Size = new System.Drawing.Size(180, 24);
             this.CSYTTSMI.Text = "Cơ sở y tế";
             this.CSYTTSMI.Click += new System.EventHandler(this.CSYTTSMI_Click);
             // 
             // nhânViênTSMI
             // 
             this.nhânViênTSMI.Name = "nhânViênTSMI";
-            this.nhânViênTSMI.Size = new System.Drawing.Size(158, 24);
+            this.nhânViênTSMI.Size = new System.Drawing.Size(180, 24);
             this.nhânViênTSMI.Text = "Nhân viên";
+            this.nhânViênTSMI.Click += new System.EventHandler(this.nhânViênTSMI_Click);
             // 
             // menu
             // 

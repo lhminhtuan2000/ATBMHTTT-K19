@@ -15,15 +15,17 @@ namespace PROJECT
 {
     public partial class MH_NhanVien : Form
     {
+        OracleConnection connect;
         string roleName;
         public MH_NhanVien()
         {
             InitializeComponent();
         }
 
-        public MH_NhanVien(string user, string pass, string role)
+        public MH_NhanVien(OracleConnection con, string role)
         {
             InitializeComponent();
+            connect = con;
             roleName = role;
             if (roleName == "NGHIENCUU" || roleName == "YSBS")
             {
@@ -33,7 +35,7 @@ namespace PROJECT
             {
                 bệnhNhânTSMI.Visible = true;
             }
-            if (user == "boss") // fix khi co' solution OLS
+            if (roleName == "GIAMDOC") // fix khi co' solution OLS
             {
                 thôngBáoTSMT.Visible = true;
             }
@@ -41,6 +43,7 @@ namespace PROJECT
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
 
@@ -48,22 +51,22 @@ namespace PROJECT
         {
             if (roleName == "NGHIENCUU")
             {
-                Program.loadForm(new MH_NghienCuu_HSBA(), this);
+                Program.loadForm(new MH_NghienCuu_HSBA(connect, roleName), this);
             }
             if (roleName == "YSBS")
             {
-                Program.loadForm(new MH_YSBS_HSBA(), this);
+                Program.loadForm(new MH_YSBS_HSBA(connect, roleName), this);
             }
         }
 
         private void bệnhNhânTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_YSBS_BN(), this);
+            Program.loadForm(new MH_YSBS_BN(connect, roleName), this);
         }
 
         private void thôngBáoTSMT_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_GiamDoc(), this);
+            Program.loadForm(new MH_GiamDoc(connect, roleName), this);
         }
     }
 }

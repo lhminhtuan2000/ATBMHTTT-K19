@@ -8,11 +8,11 @@ namespace PROJECT
 {
     static class Program
     {
-        public static string[] tHSBA = { "MÃHSBA", "MÃBN", "NGÀY", "CHẨNĐOÁN", "MÃBS", "MÃKHOA", "MÃCSYT", "KẾTLUẬN" };
-        public static string[] tHSBA_DV = { "MÃHSBA", "MÃDV", "NGÀY", "MÃKTV", "KẾTQUẢ" };
-        public static string[] tBENHNHAN = { "MÃBN", "MÃCSYT", "TÊNBN", "CMND", "NGÀYSINH", "SỐNHÀ", "TÊNĐƯỜNG", "QUẬNHUYỆN", "TỈNHTP", "TIỀNSỬBỆNH", "TIỀNSỬBỆNHGĐ", "DỊỨNGTHUỐC" };
-        public static string[] tCSYT = { "MÃCSYT", "TÊNCSYT", "ĐCCSYT", "SĐTCSYT" };
-        public static string[] tNHANVIEN = { "MÃNV", "HỌTÊN", "PHÁI", "NGÀYSINH", "CMND", "QUÊQUÁN", "SỐĐT", "CSYT", "VAITRÒ", "CHUYÊNKHOA" };
+        public static string[] tHSBA = { "MAHSBA", "MABN", "NGAY", "CHANĐOAN", "MABS", "MAKHOA", "MACSYT", "KETLUAN" };
+        public static string[] tHSBA_DV = { "MAHSBA", "MADV", "NGAY", "MAKTV", "KETQUA" };
+        public static string[] tBENHNHAN = { "MABN", "MACSYT", "TENBN", "CMND", "NGAYSINH", "SONHA", "TENĐUONG", "QUANHUYEN", "TINHTP", "TIENSUBENH", "TIENSUBENHGĐ", "DIUNGTHUOC" };
+        public static string[] tCSYT = { "MACSYT", "TENCSYT", "ĐCCSYT", "SĐTCSYT" };
+        public static string[] tNHANVIEN = { "MANV", "HOTEN", "PHAI", "NGAYSINH", "CMND", "QUEQUAN", "SOĐT", "CSYT", "VAITRO", "CHUYENKHOA" };
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

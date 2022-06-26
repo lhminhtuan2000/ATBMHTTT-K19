@@ -15,13 +15,19 @@ namespace PROJECT
 {
     public partial class MH_NVQL : Form
     {
+        OracleConnection connect;
         public MH_NVQL()
         {
             InitializeComponent();
         }
-
+        public MH_NVQL(OracleConnection con)
+        {
+            InitializeComponent();
+            connect = con;
+        }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
     }

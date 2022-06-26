@@ -15,13 +15,19 @@ namespace PROJECT
 {
     public partial class MH_BenhNhan : Form
     {
+        OracleConnection connect;
         public MH_BenhNhan()
         {
             InitializeComponent();
         }
-
+        public MH_BenhNhan(OracleConnection con)
+        {
+            InitializeComponent();
+            connect = con;
+        }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
+            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
     }
