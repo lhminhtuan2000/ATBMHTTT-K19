@@ -78,7 +78,7 @@ CREATE TABLE qlbv_dba.NHANVIEN (
     chuyenkhoa NUMBER,
     tenDangNhap VARCHAR2(50) NOT NULL,
     CONSTRAINT pk_nhanvien PRIMARY KEY (MANV),
-    CONSTRAINT unique_benhnhan UNIQUE (tenDangNhap)
+    CONSTRAINT unique_nhanien UNIQUE (tenDangNhap)
 );
 
 CREATE TABLE qlbv_dba.DICHVU (
