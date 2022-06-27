@@ -52,7 +52,9 @@ CREATE TABLE qlbv_dba.BENHNHAN (
     tiensubenh NVARCHAR2(100),
     tiensubenhgd NVARCHAR2(100),
     diungthuoc NVARCHAR2(100),
-    CONSTRAINT pk_benhnhan PRIMARY KEY (mabn)
+    tenDangNhap VARCHAR2(50) NOT NULL,
+    CONSTRAINT pk_benhnhan PRIMARY KEY (mabn),
+    CONSTRAINT unique_benhnhan UNIQUE (tenDangNhap)
 );
 
 CREATE TABLE qlbv_dba.CSYT (
@@ -74,7 +76,9 @@ CREATE TABLE qlbv_dba.NHANVIEN (
     csyt NUMBER,
     vaitro NVARCHAR2(20),
     chuyenkhoa NUMBER,
-    CONSTRAINT pk_nhanvien PRIMARY KEY (MANV)
+    tenDangNhap VARCHAR2(50) NOT NULL,
+    CONSTRAINT pk_nhanvien PRIMARY KEY (MANV),
+    CONSTRAINT unique_benhnhan UNIQUE (tenDangNhap)
 );
 
 CREATE TABLE qlbv_dba.DICHVU (
