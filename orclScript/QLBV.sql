@@ -56,7 +56,7 @@ CREATE TABLE qlbv_dba.BENHNHAN (
 );
 
 CREATE TABLE qlbv_dba.CSYT (
-    macsyt number,
+    macsyt NUMBER,
     tencsyt NVARCHAR2(80),
     dccsyt NVARCHAR2(100),
     sdtcsyt CHAR(10),
@@ -64,7 +64,7 @@ CREATE TABLE qlbv_dba.CSYT (
 );
 
 CREATE TABLE qlbv_dba.NHANVIEN (
-    manv number,
+    manv NUMBER,
     hoten NVARCHAR2(50),
     phai NVARCHAR2(5),
     ngaysinh DATE,
@@ -73,20 +73,20 @@ CREATE TABLE qlbv_dba.NHANVIEN (
     sodt CHAR(10),
     csyt NUMBER,
     vaitro NVARCHAR2(20),
-    chuyenkhoa NVARCHAR2(50),
+    chuyenkhoa NUMBER,
     CONSTRAINT pk_nhanvien PRIMARY KEY (MANV)
 );
 
 CREATE TABLE qlbv_dba.DICHVU (
-    madv number,
+    madv NUMBER,
     tendv NVARCHAR2(100),
     mota NVARCHAR2(100) DEFAULT '',
-    gia number,
+    gia NUMBER,
     CONSTRAINT PK_DICHVU PRIMARY KEY (madv)
 );
 
 CREATE TABLE qlbv_dba.KHOA (
-    makhoa number,
+    makhoa NUMBER,
     tenkhoa NVARCHAR2(50),
     mota NVARCHAR2(100) DEFAULT '',
     CONSTRAINT pk_khoa PRIMARY KEY (makhoa)
