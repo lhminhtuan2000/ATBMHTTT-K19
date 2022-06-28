@@ -1,17 +1,6 @@
--- turn on dbms_sql.return_result
--- login = sysdba
 
--- login = user admin of pdb
+-- RUN BY SYS, CONTAINER = QLBV_PDB
 ALTER SESSION SET CONTAINER = qlbv_pdb;
-
--- alter user qlbv_dba quota unlimited on system;
-/* check
- select owner, table_name from all_tables;
- select sys_context( 'userenv', 'current_schema' ) from dual;
- select owner,object_name from all_procedures where object_type = 'procedure';
-*/
-
-
 
 --  PROCEDURE
 --  1/ LIỆT KÊ TẤT CẢ CÁC USER ĐANG OPEN 
@@ -347,15 +336,14 @@ IS
     flag NUMBER;
 BEGIN 
     -- Lấy tên của view
-    view_name := UPPER('v__' || user_or_role || '_' || table_name);    
-    DBMS_OUTPUT.PUT_LINE(view_name);
+    view_name := UPPER('v__' || user_or_role || '_' || table_name); 
     -- Kiểm tra xem column đã đươc cấp quyền chưa 
     -- (column được cấp quyền sẽ nằm trong view)
     SELECT COUNT(*) 
     INTO flag
     FROM all_tab_columns 
     WHERE table_name = view_name AND column_name = UPPER(col_name);
-    DBMS_OUTPUT.PUT_LINE(flag);
+    
     -- Nếu có rồi thì kết thúc proc
     IF flag > 0
     THEN
@@ -386,8 +374,6 @@ BEGIN
             GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role || ' 
             WITH GRANT OPTION';
     ELSE
-        DBMS_OUTPUT.PUT_LINE('
-            GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role);
         EXECUTE IMMEDIATE '
             GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role;
     END IF;     
@@ -461,7 +447,6 @@ BEGIN
     LOOP
         granted_cols.extend;
         granted_cols(granted_cols.LAST) := i.COLUMN_NAME;
-        DBMS_OUTPUT.PUT_LINE(i.COLUMN_NAME);
     END LOOP;
 END;
 /
@@ -489,12 +474,7 @@ BEGIN
 
     -- Lấy danh sách colum đã được cấp từ trước
     qlbv_dba.get_granted_colums(schema_name, view_name, user_or_role, granted_cols);
-    -- DBMS_OUTPUT.PUT_LINE(granted_cols.COUNT);
-    FOR i IN 1..granted_cols.COUNT 
-    LOOP
-        DBMS_OUTPUT.PUT_LINE(granted_cols(i));
-    END LOOP;
-
+    
     -- Nếu column được cấp đã được cấp thì kết thúc proc
     IF UPPER(col_name) MEMBER OF granted_cols THEN
         RETURN;
@@ -545,9 +525,6 @@ BEGIN
     -- END trigger
     create_strg_str := create_strg_str || ';
     END;';
-
-    -- DBMS_OUTPUT.PUT_LINE(grant_str);
-    -- DBMS_OUTPUT.PUT_LINE(create_strg_str);
 
     EXECUTE IMMEDIATE grant_str;
     EXECUTE IMMEDIATE create_strg_str;
@@ -642,7 +619,7 @@ BEGIN
     END LOOP;
 
     create_strg_str := create_strg_str || '; END;';
-    -- DBMS_OUTPUT.PUT_LINE(create_strg_str);
+    
     EXECUTE IMMEDIATE create_strg_str;
 END;
 /
