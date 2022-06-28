@@ -1,8 +1,5 @@
-SET serveroutput ON;
-
 -- turn on dbms_sql.return_result
 -- login = sysdba
-ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
 
 -- login = user admin of pdb
 ALTER SESSION SET CONTAINER = qlbv_pdb;
@@ -17,8 +14,7 @@ ALTER SESSION SET CONTAINER = qlbv_pdb;
 
 
 --  PROCEDURE
---  1/ liệt kê tất cả các user đang open 
--- BIG CHANGE
+--  1/ LIỆT KÊ TẤT CẢ CÁC USER ĐANG OPEN 
 CREATE OR REPLACE VIEW v_pdb_dba_users 
 AS
 SELECT * 
@@ -45,12 +41,12 @@ END;
 / 
 
 
--- 2/ show system privilege của user
+-- 2/ SHOW SYSTEM PRIVILEGE CỦA USER
 CREATE OR REPLACE VIEW v_pdb_dba_sys_privs
 AS
 SELECT dsp.*
 FROM dba_sys_privs dsp, v_pdb_dba_users vpdu
-WHERE dsp.grantee = vpdu.username
+WHERE dsp.grantee = vpdu.username;
 
 GRANT SELECT ON v_pdb_dba_sys_privs TO qlbv_dba;
 
@@ -73,7 +69,7 @@ END;
 / 
 
 
--- 3/ Show object privilege của user
+-- 3/ SHOW OBJECT PRIVILEGE CỦA USER
 CREATE OR REPLACE VIEW v_pdb_dba_tab_privs 
 AS
 SELECT *
@@ -103,8 +99,7 @@ END;
 / 
 
 
--- 4/ Show role của hệ thống
--- Lấy tất cả các role có common = no
+-- 4/ SHOW ROLE CỦA HỆ THỐNG
 CREATE OR REPLACE VIEW v_pdb_dba_roles
 AS
     SELECT * 
@@ -127,7 +122,7 @@ BEGIN
 END;
 /
 
--- 5/ Xem system privs của role
+-- 5/ XEM SYSTEM PRIVS CỦA ROLE
 CREATE OR REPLACE VIEW v_pdb_role_sys_privs
 AS
 SELECT *
@@ -155,7 +150,7 @@ END;
 /
 
 
--- 6/ Show object privs của role
+-- 6/ SHOW OBJECT PRIVS CỦA ROLE
 CREATE OR REPLACE VIEW v_pdb_role_tab_privs
 AS
 SELECT *
@@ -182,62 +177,23 @@ BEGIN
 END;
 /
 
-/*
--- 3/ liệt kê tất cả các role đang open
-DROP PROCEDURE qlbv_dba.sp_list_all_role;
-GRANT SELECT ON dba_roles TO qlbv_dba;
-
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_list_all_role 
-IS 
-    c_role_list SYS_REFCURSOR;
-BEGIN 
-    OPEN c_role_list FOR
-    SELECT
-        ROLE
-    FROM
-        dba_roles;
-
-    dbms_sql.return_result(c_role_list);
-END;
-/ 
--- 4/ xem quyền của một role
-DROP PROCEDURE qlbv_dba.sp_show_role_privileges;
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_show_role_privileges (
-    role_name varchar2) 
-IS 
-    c_privileges SYS_REFCURSOR;
-BEGIN OPEN c_privileges FOR
-    SELECT
-        privilege,
-        admin_option
-    FROM
-        role_sys_privs
-    WHERE
-        ROLE = upper(role_name);
-
-    dbms_sql.return_result(c_privileges);
-END;
-/ 
-*/
 
 
-
--- 7/ tạo một user
+-- 7/ TẠO MỘT USER
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_create_user (
-    username varchar2, 
-    PASSWORD varchar2) 
+    username VARCHAR2, 
+    password VARCHAR2) 
 AUTHID CURRENT_USER 
 IS 
 BEGIN 
     EXECUTE IMMEDIATE 'CREATE USER ' || username || ' IDENTIFIED BY ' || PASSWORD;
-    EXECUTE IMMEDIATE 'grant create session to ' || username;
 END;
 / 
 
 
--- 8/ xoá một user
+-- 8/ XOÁ MỘT USER
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_delete_user (
-    username varchar2) 
+    username VARCHAR2) 
 AUTHID CURRENT_USER 
 IS 
 BEGIN 
@@ -269,7 +225,7 @@ END;
 / 
 
 
--- 10+/ (proc ngoài lê) unlock một user 
+-- 10+/ (proc ngoài lề) unlock một user 
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_unlock_user (
     username VARCHAR2) 
 AUTHID CURRENT_USER 
@@ -291,7 +247,7 @@ END;
 /
 
 
--- 12/ xoá role
+-- 12/ XOÁ ROLE
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_delete_role (
     role_name VARCHAR2) 
 IS 
@@ -301,168 +257,407 @@ END;
 /
 
 
--- 11/ cấp quyền insert cho user/role trên table_name
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert (
+-- 13/ GRANT OBJECT PRIVILEGE CHO USER/ROLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_obj_priv (
     user_or_role VARCHAR2,
+    privilege VARCHAR2,
+    schema_name VARCHAR2,
+    obj_name VARCHAR2,
+    with_grant_option BOOLEAN)
+AUTHID CURRENT_USER
+IS
+BEGIN
+    IF with_grant_option
+    THEN
+        EXECUTE IMMEDIATE '
+            GRANT ' || privilege || ' ON ' || 
+            schema_name || '.' || obj_name || ' TO ' || 
+            user_or_role || ' WITH GRANT OPTION';
+    ELSE
+        EXECUTE IMMEDIATE '
+            GRANT ' || privilege || ' ON ' || 
+            schema_name || '.' || obj_name || ' TO ' || 
+            user_or_role;
+    END IF;
+END;
+/
+
+
+-- 14/ REVOKE OBJECT PRIVILEGE TỪ USER/ROLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_obj_priv (
+    user_or_role VARCHAR2,
+    privilege VARCHAR2,
+    schema_name VARCHAR2,
+    obj_name VARCHAR2)
+AUTHID CURRENT_USER
+IS
+BEGIN
+    EXECUTE IMMEDIATE '
+        REVOKE ' || privilege || ' ON ' || 
+        schema_name || '.' || obj_name || ' FROM ' || 
+        user_or_role;
+END;
+/
+
+
+-- 15/ GRANT SYSTEM PRIVILEGE CHO USER/ROLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_sys_priv (
+    user_or_role VARCHAR2,
+    privilege VARCHAR2,
+    with_admin_option BOOLEAN)
+AUTHID CURRENT_USER
+IS
+BEGIN
+    IF with_admin_option
+    THEN
+        EXECUTE IMMEDIATE '
+            GRANT ' || privilege || ' TO ' || user_or_role || ' WITH ADMIN OPTION';
+    ELSE
+        EXECUTE IMMEDIATE '
+            GRANT ' || privilege || ' TO ' || user_or_role;
+    END IF;
+END;
+/
+
+
+-- 16/ REVOKE SYSTEM PRIVILEGE TỪ USER/ROLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_sys_priv (
+    user_or_role VARCHAR2,
+    privilege VARCHAR2)
+AUTHID CURRENT_USER
+IS
+BEGIN
+    EXECUTE IMMEDIATE '
+        REVOKE ' || privilege || ' FROM ' || user_or_role;
+END;
+/
+
+
+-- 17/ CẤP QUYỀN INSERT CHO USER/ROLE TRÊN TABLE_NAME
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_table (
+    user_or_role VARCHAR2,
+    schema_name VARCHAR2,
     table_name VARCHAR2,
-    schema_name VARCHAR2) 
+    col_name VARCHAR2,
+    with_grant_option BOOLEAN) 
+AUTHID CURRENT_USER
 IS 
+    view_name VARCHAR(100);
+    col_names_str VARCHAR2(50);
+    flag NUMBER;
 BEGIN 
-    EXECUTE IMMEDIATE 'GRANT INSERT ON ' || schema_name || '.' || table_name || ' TO ' || user_or_role;
+    -- Lấy tên của view
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);    
+    DBMS_OUTPUT.PUT_LINE(view_name);
+    -- Kiểm tra xem column đã đươc cấp quyền chưa 
+    -- (column được cấp quyền sẽ nằm trong view)
+    SELECT COUNT(*) 
+    INTO flag
+    FROM all_tab_columns 
+    WHERE table_name = view_name AND column_name = UPPER(col_name);
+    DBMS_OUTPUT.PUT_LINE(flag);
+    -- Nếu có rồi thì kết thúc proc
+    IF flag > 0
+    THEN
+        RETURN;
+    END IF;
+
+    -- Tạo chuỗi column
+    col_names_str := col_name;
+    -- Lấy các column đã được grant trước đó (Các colum đó nằm trong view)
+    FOR v IN (
+        SELECT column_name 
+        FROM all_tab_columns 
+        WHERE table_name = view_name)
+    LOOP
+        col_names_str := col_names_str || ', ' || v.column_name;
+    END LOOP;
+    
+    -- Tạo view với các column tương ứng
+    EXECUTE IMMEDIATE '
+        CREATE OR REPLACE VIEW qlbv_dba.' || view_name || '
+        AS
+        SELECT ' || col_names_str || '
+        FROM ' || schema_name || '.' || table_name; 
+    -- Cấp view
+    IF with_grant_option
+    THEN
+        EXECUTE IMMEDIATE '
+            GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role || ' 
+            WITH GRANT OPTION';
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('
+            GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role);
+        EXECUTE IMMEDIATE '
+            GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role;
+    END IF;     
 END;
 /
 
-/*
--- 12/ cấp quyền insert cho user/role trên table_name (with GRANT option)
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_wgo (
-    user_or_role varchar2,
-    table_name varchar2) 
-IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'GRANT INSERT ON SYS.' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
-END;
-/
-*/
--- 13/ cấp quyền delete cho user/role trên table_name thông qua view [edit]
 
-
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_delete (
+-- 18/ REVOKE SELECT TRÊN MỘT BẢNG
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_insert_table (
     user_or_role VARCHAR2,
-    table_name VARCHAR2) 
-IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'GRANT DELETE ON SYS.' || table_name || ' TO ' || user_or_role;
+    table_name VARCHAR2)
+IS
+    view_name VARCHAR(100);
+BEGIN
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);  
+    EXECUTE IMMEDIATE '
+        DROP VIEW qlbv_dba.' || view_name;
 END;
 /
--- 14/ cấp quyền delete cho user/role trên table_name thông qua view (with GRANT option) [edit]
 
+-- 19/ GRANT UPDATE
 
-CREATE OR REPLACE PROCEDURE sp_grant_delete_wgo (
-    user_or_role VARCHAR2,
-    table_name VARCHAR2) 
-IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'GRANT DELETE ON SYS.' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
+-- 19.1/ Tạo kiếu dữ liệu mảng với các element là chuỗi
+CREATE OR REPLACE TYPE qlbv_dba.str_list IS TABLE OF VARCHAR2(50);
+/
+
+-- 19.2/ Tạo procedure lấy danh sách primary key của table
+CREATE OR REPLACE PROCEDURE qlbv_dba.get_primary_keys (
+    schema_name VARCHAR2,
+    table_name_ VARCHAR2,
+    primary_keys OUT str_list)
+IS
+BEGIN
+    primary_keys := str_list();
+    FOR i IN (
+        SELECT cols.column_name as column_name
+        FROM all_constraints cons, all_cons_columns cols
+        WHERE 
+            cons.owner = UPPER(schema_name) AND
+            cols.table_name = UPPER(table_name_) AND 
+            cons.constraint_type = 'P' AND 
+            cons.constraint_name = cols.constraint_name AND 
+            cons.owner = cols.owner
+        ORDER BY cols.table_name, cols.position)
+    LOOP
+        primary_keys.extend;
+        primary_keys(primary_keys.LAST) := i.column_name;
+    END LOOP;
 END;
 /
--- 15/ cấp quyền select cho user/role trên column_list thuộc table_name
 
+-- Dùng sys để grant
+GRANT SELECT ON DBA_COL_PRIVS TO QLBV_DBA;
+-- 19.3/ Proc để lấy danh sách column đã được grant 
+CREATE OR REPLACE PROCEDURE qlbv_dba.get_granted_colums (
+    schema_name VARCHAR2,
+    table_name_ VARCHAR2,
+    user_name VARCHAR2, 
+    granted_cols OUT str_list)
+IS
+BEGIN
+    granted_cols := str_list();
+    FOR i IN (
+        SELECT COLUMN_NAME
+        FROM DBA_COL_PRIVS 
+        WHERE 
+            GRANTEE = UPPER(user_name) AND
+            OWNER = UPPER(schema_name) AND
+            TABLE_NAME = UPPER(table_name_) AND
+            PRIVILEGE = 'UPDATE')
+    LOOP
+        granted_cols.extend;
+        granted_cols(granted_cols.LAST) := i.COLUMN_NAME;
+        DBMS_OUTPUT.PUT_LINE(i.COLUMN_NAME);
+    END LOOP;
+END;
+/
 
-CREATE OR REPLACE PROCEDURE sp_grant_select (
+SELECT * FROM DBA_COL_PRIVS;
+
+-- 19.4/ GRANT UPDATE ON CLUMN
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_update_on_table (
     user_or_role VARCHAR2,
+    schema_name VARCHAR2,
     table_name VARCHAR2,
-    column_list VARCHAR2) 
+    col_name VARCHAR2,
+    with_grant_option BOOLEAN
+    ) 
+AUTHID CURRENT_USER
 IS 
+    primary_keys str_list := str_list();
+    granted_cols str_list := str_list();
+    view_name VARCHAR2(100);
+    create_strg_str VARCHAR2(1000) := ''; -- Chuỗi dùng để tạo instead of trigger
+    grant_str VARCHAR2(500) := ''; -- Chuỗi để grant update
 BEGIN 
-    EXECUTE IMMEDIATE 'CREATE OR REPLACE VIEW V_' || user_or_role || '_' || table_name || ' AS SELECT ' || column_list || ' FROM ' || table_name;
-    EXECUTE IMMEDIATE 'GRANT SELECT ON SYS.V_' || user_or_role || '_' || table_name || ' TO ' || user_or_role;
+    -- View name ứng với tên user và tên table
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);
+
+    -- Lấy danh sách colum đã được cấp từ trước
+    qlbv_dba.get_granted_colums(schema_name, view_name, user_or_role, granted_cols);
+    -- DBMS_OUTPUT.PUT_LINE(granted_cols.COUNT);
+    FOR i IN 1..granted_cols.COUNT 
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(granted_cols(i));
+    END LOOP;
+
+    -- Nếu column được cấp đã được cấp thì kết thúc proc
+    IF UPPER(col_name) MEMBER OF granted_cols THEN
+        RETURN;
+    ELSE
+        granted_cols.extend;
+        granted_cols(granted_cols.LAST) := col_name;
+    END IF;
+
+    -- Lấy danh sách primary 
+    qlbv_dba.get_primary_keys(schema_name, table_name, primary_keys);
+
+
+    
+    create_strg_str := '
+    CREATE OR REPLACE TRIGGER qlbv_dba.iotrg_update_' || user_or_role || '_' || table_name || '
+        INSTEAD OF UPDATE ON qlbv_dba.' || view_name || '
+        FOR EACH ROW
+    BEGIN
+        UPDATE ' || schema_name || '.' || table_name || '
+        SET ';
+
+    grant_str := 'GRANT UPDATE (';
+    
+    FOR i IN 1..(granted_cols.LAST - 1)
+    LOOP
+        -- Set column trong lệnh update
+        create_strg_str := create_strg_str || granted_cols(i) || ' = :new.' || granted_cols(i) || ',
+        ';
+        
+        -- Column trong câu lệnh grant update
+        grant_str := grant_str || granted_cols(i) || ', ';
+    END LOOP;
+
+    create_strg_str := create_strg_str || granted_cols(granted_cols.LAST) || ' = :NEW.' || granted_cols(granted_cols.LAST) || '
+    WHERE ';
+    
+    grant_str := grant_str || granted_cols(granted_cols.LAST) || ') ON ' || view_name || ' TO ' || user_or_role;
+    
+    -- Các clause trong mệnh đề where trong update statement
+    create_strg_str := create_strg_str || primary_keys(1) || ' = :OLD.' || primary_keys(1);
+    
+    FOR i IN 2..primary_keys.COUNT 
+    LOOP
+        create_strg_str := create_strg_str || ' AND 
+        ' || primary_keys(i) || ' = :OLD.' || primary_keys(i);
+    END LOOP;
+
+    -- END trigger
+    create_strg_str := create_strg_str || ';
+    END;';
+
+    -- DBMS_OUTPUT.PUT_LINE(grant_str);
+    -- DBMS_OUTPUT.PUT_LINE(create_strg_str);
+
+    EXECUTE IMMEDIATE grant_str;
+    EXECUTE IMMEDIATE create_strg_str;
+END;
+/
+
+-- 20/ REVOKE UPDATE TRÊN MỘT BẢNG
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_update_table (
+    user_or_role VARCHAR2,
+    table_name VARCHAR2)
+IS
+    view_name VARCHAR(100);
+BEGIN
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);  
+    EXECUTE IMMEDIATE '
+        REVOKE UPDATE ON qlbv_dba.' || view_name || ' FROM ' || user_or_role;
 END;
 /
 
 
--- 16/ cấp quyền select cho user/role trên column_list thuộc table_name (with GRANT option)
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_select_wgo (
+-- 21/ GRANT INSERT LÊN MỘT BẢNG
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_table (
     user_or_role VARCHAR2,
+    schema_name VARCHAR2,
     table_name VARCHAR2,
-    column_list VARCHAR2) 
-IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'CREATE OR REPLACE VIEW V_' || user_or_role || '_' || table_name || ' AS SELECT ' || column_list || ' FROM ' || table_name;
-    EXECUTE IMMEDIATE 'GRANT SELECT ON SYS.V_' || user_or_role || '_' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
+    with_grant_option BOOLEAN)
+IS
+BEGIN
+    IF with_grant_option
+    THEN
+        EXECUTE IMMEDIATE 'GRANT INSERT ON ' || 
+            schema_name || '.' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
+    ELSE
+        EXECUTE IMMEDIATE 'GRANT INSERT ON ' || 
+            schema_name || '.' || table_name || ' TO ' || user_or_role;
+    END IF;
 END;
 /
 
 
--- 17/ cấp quyền update cho user/role trên column_list thuộc table_name
-CREATE OR REPLACE PROCEDURE sp_grant_update (
+-- 22/ REVOKE INSERT TỪ MỘT USER/ROLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_insert_table (
     user_or_role VARCHAR2,
-    table_name VARCHAR2,
-    column_list VARCHAR2) 
-IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'GRANT UPDATE (' || column_list || ') ON SYS.V_' || user_or_role || '_' || table_name || ' TO ' || user_or_role;
-END;
-/
-
-
--- 18/ cấp quyền update cho user/role trên column_list thuộc table_name (with GRANT option)
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_update_wgo (
-    user_or_role VARCHAR2,
-    table_name VARCHAR2,
-    column_list VARCHAR2) 
+    schema_name VARCHAR2,
+    table_name VARCHAR2)
 IS 
 BEGIN
-    EXECUTE IMMEDIATE 'GRANT UPDATE (' || column_list || ') ON SYS.V_' || user_or_role || '_' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
+    EXECUTE IMMEDIATE 'REVOKE INSERT ON ' || 
+        schema_name || '.' || table_name || ' FROM ' || user_or_role;
 END;
 /
 
 
--- 19/ thu hồi quyền insert table_name từ user/role
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_insert (
+-- 23/ GRANT DELETE LÊN MỘT TABLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_delete_table (
     user_or_role VARCHAR2,
-    table_name VARCHAR2) 
-IS 
-BEGIN
-    EXECUTE IMMEDIATE 'REVOKE INSERT ON SYS.' || table_name || ' FROM ' || user_or_role;
-END;
-/ 
--- 20/ thu hôi quyền delete table_name từ user/role
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_delete (
-    user_or_role VARCHAR2,
-    table_name VARCHAR2) 
-IS 
-BEGIN
-    EXECUTE IMMEDIATE 'REVOKE DELETE ON SYS.V_' || user_or_role || '_' || table_name || ' FROM ' || user_or_role;
-END;
-/ 
--- 21/ thu hồi quyền select table_name từ user/role
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_select (
-    user_or_role VARCHAR2,
+    schema_name VARCHAR2,
     table_name VARCHAR2,
-    column_list VARCHAR2) 
-IS 
+    with_grant_option BOOLEAN)
+AUTHID CURRENT_USER
+IS
+    primary_keys str_list := str_list();
+    create_strg_str VARCHAR2(1000) := ''; -- Chuỗi dùng để tạo instead of trigger
+    view_name VARCHAR(100);
 BEGIN
-    EXECUTE IMMEDIATE 'REVOKE SELECT ON SYS.V_' || user_or_role || '_' || table_name || ' FROM ' || user_or_role;
-END;
-/ 
--- 22/ thu hồi quyền update từ user/role trên table_name
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_update (
-    user_or_role VARCHAR2,
-    table_name VARCHAR2) 
-IS 
-BEGIN
-    EXECUTE IMMEDIATE 'REVOKE UPDATE ON SYS.V_' || user_or_role || '_' || table_name || ' FROM ' || user_or_role;
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);
+    IF with_grant_option
+    THEN
+        EXECUTE IMMEDIATE '
+            GRANT DELETE ON qlbv_dba.' || view_name || ' TO ' || user_or_role ||
+             ' WITH GRANT OPTION';
+    ELSE
+        EXECUTE IMMEDIATE '
+            GRANT DELETE ON qlbv_dba.' || view_name || ' TO ' || user_or_role;
+    END IF;  
+    
+    qlbv_dba.get_primary_keys(schema_name, table_name, primary_keys);
 
+    create_strg_str := '
+        CREATE OR REPLACE TRIGGER qlbv_dba.iotrg_delete_' || user_or_role || '_' || table_name || '
+            INSTEAD OF DELETE ON qlbv_dba.' || view_name || '
+            FOR EACH ROW
+        BEGIN
+            DELETE 
+            FROM ' || schema_name || '.' || table_name || '
+            WHERE ';
+    create_strg_str := create_strg_str || primary_keys(1) || ' = :OLD.' || primary_keys(1);
+    FOR i IN 2..primary_keys.COUNT 
+    LOOP
+        create_strg_str := create_strg_str || ' AND 
+        ' || primary_keys(i) || ' = :OLD.' || primary_keys(i);
+    END LOOP;
+
+    create_strg_str := create_strg_str || '; END;';
+    -- DBMS_OUTPUT.PUT_LINE(create_strg_str);
+    EXECUTE IMMEDIATE create_strg_str;
 END;
 /
--- GRANT test_role to smithj;
 
 
--- GRANT execute on find_value to test_role;
-
--- 23/ gán role cho user
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_role_to_user (
-    role_name VARCHAR2,
-    user_name VARCHAR2)
+-- 24/ REVOKE DELETE ON TABLE
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_delete_table (
+    user_or_role VARCHAR2,
+    schema_name VARCHAR2,
+    table_name VARCHAR2)
 IS 
-BEGIN 
-    EXECUTE IMMEDIATE 'GRANT ' || role_name || ' TO ' || user_name;
+    view_name VARCHAR(100);
+BEGIN
+    view_name := UPPER('v__' || user_or_role || '_' || table_name);  
+    EXECUTE IMMEDIATE '
+        REVOKE DELETE ON qlbv_dba.' || view_name || ' FROM ' || user_or_role;
 END;
-/ 
-
-/*
- create or replace procedure sp_drop_all_proc
- is
- cursor cs is select object_name from user_procedures 
- where object_type = 'procedure' 
- and object_name like 'sp_%'
- and object_name not like 'sp_drop_all_proc';
- begin
- for i in cs
- loop
- execute IMMEDIATE 'drop procedure ' || i.object_name;
- end loop;
- end;
- /
- -- drop procedure sp_drop_all_proc;
- */
+/

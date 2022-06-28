@@ -23,8 +23,9 @@ INSERT INTO qlbv_dba.nhanvien VALUES ('4', 'tri', 'nu', TO_DATE('31-12-2007','DD
 
 CREATE USER hoa IDENTIFIED BY "1";
 GRANT CREATE SESSION TO hoa;
-GRANT SELECT ON qlbv_dba.nhanvien TO hoa;
 
+GRANT SELECT ON qlbv_dba.nhanvien TO hoa;
+REVOKE SELECT ON qlbv_dba.nhanvien FROM hoa;
 -- GRANT EXECUTE ON DBMS_SESSION TO hoa;
 
 SELECT USERNAME, ACCOUNT_STATUS FROM DBA_USERS WHERE USERNAME = 'HOA';
@@ -78,18 +79,48 @@ BEGIN
         con := 'phai = ''nu''';
     ELSE con := '';
     END IF;
-    RETURN con;
+    RETURN '1 = 2';
 END;
 /
+
+SELECT table_name, column_name, data_type, data_length
+FROM USER_TAB_COLUMNS
+WHERE table_name = 'NHANVIEN';
 
 BEGIN
     DBMS_RLS.ADD_POLICY (
     object_schema     => 'qlbv_dba', 
     object_name       => 'nhanvien',
     policy_name       => 'phan_biet_nam_nu', 
-    policy_function   => 'vaitro_user'
-    --sec_relevant_cols => 'cmnd, QUEQUAN'
+    policy_function   => 'vaitro_user',
+    sec_relevant_cols => 'phai'
+    -- sec_relevant_cols_opt => dbms_rls.ALL_ROWS
     );
 END;
 /
 
+BEGIN
+    DBMS_RLS.DROP_POLICY (
+        OBJECT_SCHEMA     => 'qlbv_dba', 
+        OBJECT_NAME       => 'nhanvien',
+        POLICY_NAME       => 'phan_biet_nam_nu'
+    );
+END;
+
+
+CREATE OR REPLACE PROCEDURE ABC
+AUTHID CURRENT_USER 
+AS
+BEGIN
+    EXECUTE IMMEDIATE 'CREATE TABLE A (ID NUMBER)';
+END;
+
+EXECUTE ABC;
+
+GRANT UPDATE (CMND) ON nhanvien  TO hoa;
+revoke UPDATE  ON nhanvien  from hoa;
+
+SELECT * FROM qlbv_dba.nhanvien;
+
+revoke select on qlbv_dba.nhanvien from hoa;
+GRANT select on qlbv_dba.nhanvien TO hoa;
