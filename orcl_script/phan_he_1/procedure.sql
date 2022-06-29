@@ -252,11 +252,11 @@ CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_obj_priv (
     privilege VARCHAR2,
     schema_name VARCHAR2,
     obj_name VARCHAR2,
-    with_grant_option BOOLEAN)
+    with_grant_option VARCHAR2)
 AUTHID CURRENT_USER
 IS
 BEGIN
-    IF with_grant_option
+    IF with_grant_option = '1'
     THEN
         EXECUTE IMMEDIATE '
             GRANT ' || privilege || ' ON ' || 
@@ -293,11 +293,11 @@ END;
 CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_sys_priv (
     user_or_role VARCHAR2,
     privilege VARCHAR2,
-    with_admin_option BOOLEAN)
+    with_admin_option VARCHAR2)
 AUTHID CURRENT_USER
 IS
 BEGIN
-    IF with_admin_option
+    IF with_admin_option = '1'
     THEN
         EXECUTE IMMEDIATE '
             GRANT ' || privilege || ' TO ' || user_or_role || ' WITH ADMIN OPTION';
@@ -322,13 +322,13 @@ END;
 /
 
 
--- 17/ CẤP QUYỀN INSERT CHO USER/ROLE TRÊN TABLE_NAME
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_table (
+-- 17/ CẤP QUYỀN SELECT CHO USER/ROLE TRÊN TABLE_NAME
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_select_table (
     user_or_role VARCHAR2,
     schema_name VARCHAR2,
     table_name VARCHAR2,
     col_name VARCHAR2,
-    with_grant_option BOOLEAN) 
+    with_grant_option VARCHAR2) 
 AUTHID CURRENT_USER
 IS 
     view_name VARCHAR(100);
@@ -368,7 +368,7 @@ BEGIN
         SELECT ' || col_names_str || '
         FROM ' || schema_name || '.' || table_name; 
     -- Cấp view
-    IF with_grant_option
+    IF with_grant_option = '1'
     THEN
         EXECUTE IMMEDIATE '
             GRANT SELECT ON ' || schema_name || '.' || view_name || ' TO ' || user_or_role || ' 
@@ -382,7 +382,7 @@ END;
 
 
 -- 18/ REVOKE SELECT TRÊN MỘT BẢNG
-CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_insert_table (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_select_table (
     user_or_role VARCHAR2,
     table_name VARCHAR2)
 IS
@@ -459,8 +459,7 @@ CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_update_on_table (
     schema_name VARCHAR2,
     table_name VARCHAR2,
     col_name VARCHAR2,
-    with_grant_option BOOLEAN
-    ) 
+    with_grant_option VARCHAR2) 
 AUTHID CURRENT_USER
 IS 
     primary_keys str_list := str_list();
@@ -550,10 +549,10 @@ CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_insert_table (
     user_or_role VARCHAR2,
     schema_name VARCHAR2,
     table_name VARCHAR2,
-    with_grant_option BOOLEAN)
+    with_grant_option VARCHAR2)
 IS
 BEGIN
-    IF with_grant_option
+    IF with_grant_option = '1'
     THEN
         EXECUTE IMMEDIATE 'GRANT INSERT ON ' || 
             schema_name || '.' || table_name || ' TO ' || user_or_role || ' WITH GRANT OPTION';
@@ -583,7 +582,7 @@ CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_delete_table (
     user_or_role VARCHAR2,
     schema_name VARCHAR2,
     table_name VARCHAR2,
-    with_grant_option BOOLEAN)
+    with_grant_option VARCHAR2)
 AUTHID CURRENT_USER
 IS
     primary_keys str_list := str_list();
@@ -591,7 +590,7 @@ IS
     view_name VARCHAR(100);
 BEGIN
     view_name := UPPER('v__' || user_or_role || '_' || table_name);
-    IF with_grant_option
+    IF with_grant_option = '1'
     THEN
         EXECUTE IMMEDIATE '
             GRANT DELETE ON qlbv_dba.' || view_name || ' TO ' || user_or_role ||
