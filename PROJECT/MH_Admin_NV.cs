@@ -32,12 +32,12 @@ namespace PROJECT
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_Role(connect), this);
+            //Program.loadForm(new MH_Admin_Role(connect), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_CSYT(connect), this);
+            //Program.loadForm(new MH_Admin_CSYT(connect), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)

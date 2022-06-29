@@ -18,11 +18,9 @@ IS
 BEGIN 
     OPEN c_user_list FOR
     SELECT 
-        username, account_status, created, last_login
+        username, account_status, created, last_login, user_id,default_tablespace
     FROM 
         sys.v_pdb_dba_users
-    WHERE 
-        account_status = 'OPEN'
     ORDER BY
 	username asc;
 
@@ -87,7 +85,6 @@ BEGIN
     dbms_sql.return_result(c_privs);
 END;
 / 
-show error
 
 -- 4/ SHOW ROLE CỦA HỆ THỐNG
 CREATE OR REPLACE VIEW v_pdb_dba_roles
@@ -645,5 +642,14 @@ CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_role_to_user (
 IS
 BEGIN
     EXECUTE IMMEDIATE 'GRANT ' || role_name || ' TO ' || user_name;
+END;
+/
+-- 26/ REVOKE ROLE FROM USER
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_revoke_role_from_user (
+    role_name VARCHAR2,
+    user_name VARCHAR2)
+IS
+BEGIN
+    EXECUTE IMMEDIATE 'REVOKE ' || role_name || ' FROM ' || user_name;
 END;
 /

@@ -131,14 +131,14 @@ EXEC sp_show_user_sys_privs('tri123');
 -- TESTED
 
 
--- 17/ CẤP QUYỀN INSERT CHO USER/ROLE TRÊN TABLE_NAME
-EXECUTE sp_grant_insert_table('tri123', 'qlbv_dba', 'nhanvien', 'manv', TRUE);
-EXECUTE sp_grant_insert_table('hoa', 'qlbv_dba', 'nhanvien', 'manv', TRUE);
-EXECUTE sp_grant_insert_table('super_role2', 'qlbv_dba', 'nhanvien', 'manv', FALSE);
+-- 17/ CẤP QUYỀN SELECT CHO USER/ROLE TRÊN TABLE_NAME
+EXECUTE sp_grant_select_table('tri123', 'qlbv_dba', 'nhanvien', 'manv', '1');
+EXECUTE sp_grant_select_table('hoa', 'qlbv_dba', 'nhanvien', 'manv', TRUE);
+EXECUTE sp_grant_select_table('super_role2', 'qlbv_dba', 'nhanvien', 'manv', FALSE);
 
-EXECUTE sp_grant_insert_table('tri123', 'qlbv_dba', 'nhanvien', 'HOTEN', TRUE);
-EXECUTE sp_grant_insert_table('hoa', 'qlbv_dba', 'nhanvien', 'CMND', TRUE);
-EXECUTE sp_grant_insert_table('hoa', 'qlbv_dba', 'nhanvien', 'hoten', TRUE);
+EXECUTE sp_grant_select_table('tri123', 'qlbv_dba', 'nhanvien', 'HOTEN', TRUE);
+EXECUTE sp_grant_select_table('hoa', 'qlbv_dba', 'nhanvien', 'CMND', TRUE);
+EXECUTE sp_grant_select_table('hoa', 'qlbv_dba', 'nhanvien', 'hoten', TRUE);
 
 
 EXEC sp_show_user_obj_privs('hoa');

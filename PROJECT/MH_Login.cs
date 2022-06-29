@@ -30,7 +30,8 @@ namespace PROJECT
             {
                 try
                 {
-                    OracleCommand cmd = new OracleCommand("SELECT ROLE FROM SESSION_ROLES", con);
+                    OracleCommand cmd = new OracleCommand("qlbv_dba.sp_login", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     object obj = cmd.ExecuteScalar();
                     //OracleDataReader reader = cmd.ExecuteReader();reader.Read(); reader.Close();
