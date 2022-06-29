@@ -15,39 +15,29 @@ namespace PROJECT
 {
     public partial class MH_Admin_Role : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         public MH_Admin_Role()
         {
             InitializeComponent();
             dgv1_loaddata();
             dgv3_loaddata();
         }
-        public MH_Admin_Role(OracleConnection con)
+        public MH_Admin_Role(string user_name, string pass_word)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
             dgv1_loaddata();
             dgv3_loaddata();
         }
         public void dgv1_loaddata()
         {
-            OracleCommand cmd = new OracleCommand("sp_list_all_role", connect);
-            cmd.CommandType = CommandType.StoredProcedure;
+            List<string> varList = new List<string>();
             DataTable dt = new DataTable();
-            dt.Clear();
-            try
-            {
-                connect.Open();
-                OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                oda.Fill(dt);
-                dgv1.DataSource = dt;
-                dgv1.AutoResizeColumnHeadersHeight();
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
-            }
-            connect.Close();
+            dt = Program.loadDT("sp_show_roles", username, password, varList, varList);
+            dgv1.DataSource = dt;
+            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         public void dgv2_loaddata(string role_name)
         {
@@ -168,7 +158,7 @@ namespace PROJECT
 
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_User(connect), this);
+            //Program.loadForm(new MH_Admin_User(connect), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)

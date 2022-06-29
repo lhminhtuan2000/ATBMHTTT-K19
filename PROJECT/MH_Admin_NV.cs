@@ -27,7 +27,7 @@ namespace PROJECT
         }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_Admin_User(connect), this);
+            //Program.loadForm(new MH_Admin_User(connect), this);
         }
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)

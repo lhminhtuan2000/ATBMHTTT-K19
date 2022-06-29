@@ -30,15 +30,14 @@ namespace PROJECT
             {
                 try
                 {
-                    OracleCommand cmd = new OracleCommand("SELECT * FROM SESSION_ROLES", con);
+                    OracleCommand cmd = new OracleCommand("SELECT ROLE FROM SESSION_ROLES", con);
                     con.Open();
                     object obj = cmd.ExecuteScalar();
                     //OracleDataReader reader = cmd.ExecuteReader();reader.Read(); reader.Close();
                     string role = obj.ToString();
-                    //MessageBox.Show(role);
                     if (role == "PDB_DBA" || role == "DBA")
                     {
-                        Program.loadForm(new MH_Admin_User(con), this);
+                        Program.loadForm(new MH_Admin_User(username, password), this);
                     }
                     else if (role == "THANHTRA")
                     {

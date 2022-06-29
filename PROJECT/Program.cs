@@ -36,30 +36,35 @@ namespace PROJECT
             f.Show();
             formClose.Hide();
         }
-        public static DataTable loadDT(string procname, OracleConnection connect, List<string> var, List<string> input)
+        // connect truyen vao phai dang mo, ham nay return xong dispose connection
+        public static DataTable loadDT(string procname, string username, string password, List<string> var, List<string> input)
         {
-            OracleCommand cmd = new OracleCommand(procname, connect);
-            cmd.CommandType = CommandType.StoredProcedure;
-            int size = var.Count;
-            for (int i =0; i<var.Count(); i++)
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
             {
-                cmd.Parameters.Add(var[i].ToString(), OracleDbType.Varchar2).Value = input[i].ToString();
-                //MessageBox.Show(procname);
+                OracleCommand cmd = new OracleCommand(procname, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                int size = var.Count;
+                for (int i = 0; i < var.Count(); i++)
+                {
+                    cmd.Parameters.Add(var[i].ToString(), OracleDbType.Varchar2, input[i].ToString(), ParameterDirection.Input);
+                }
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                return dt;
             }
-            DataTable dt = new DataTable();
-            dt.Clear();
-            try
-            {
-                //connect.Open();
-                OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                oda.Fill(dt); //fix
-                MessageBox.Show(dt.ToString());
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
-            }
-            return dt;
+            
         }
     }
 }

@@ -273,9 +273,9 @@ namespace PROJECT
             this.cb_bang.Items.AddRange(new object[] {
             "HSBA",
             "HSBA_DV",
-            "BỆNHNHÂN",
+            "BENHNHAN",
             "CSYT",
-            "NHÂNVIÊN"});
+            "NHANVIEN"});
             this.cb_bang.Location = new System.Drawing.Point(27, 51);
             this.cb_bang.Name = "cb_bang";
             this.cb_bang.Size = new System.Drawing.Size(108, 26);

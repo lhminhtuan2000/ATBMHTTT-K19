@@ -22,7 +22,9 @@ BEGIN
     FROM 
         sys.v_pdb_dba_users
     WHERE 
-        account_status = 'OPEN';
+        account_status = 'OPEN'
+    ORDER BY
+	username asc;
 
     -- SOS
     DBMS_SQL.RETURN_RESULT(c_user_list);
