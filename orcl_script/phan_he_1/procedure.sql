@@ -641,7 +641,7 @@ BEGIN
 END;
 /
 -- 25/ GRANT ROLE TO USER
-CREATE OR REPLACE PROCEDURE sp_grant_role_to_user (
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_grant_role_to_user (
     role_name VARCHAR2,
     user_name VARCHAR2)
 IS
