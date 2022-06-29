@@ -1,32 +1,32 @@
-create or replace procedure sp_nc_xemHSBA (
+create or replace procedure sp_nc_xemhsba (
     p_mahsba number)
 is
-    c1 SYS_REFCURSOR;
+    c1 sys_refcursor;
 begin
-    OPEN c1 for
-    select * from qlbv_dba.HSBA where mahsba = p_mahsba;
+    open c1 for
+    select * from qlbv_dba.hsba where mahsba = p_mahsba;
            
     -- SOS
-    DBMS_SQL.RETURN_RESULT(c1);
+    dbms_sql.return_result(c1);
 end;
 /
-create or replace procedure sp_nc_xemHSBA_DV (
+create or replace procedure sp_nc_xemhsba_dv (
     p_mahsba number)
 is
-    c1 SYS_REFCURSOR;
+    c1 sys_refcursor;
 begin
-    OPEN c1 for
-    select * from qlbv_dba.HSBA_DV where mahsba = p_mahsba;
+    open c1 for
+    select * from qlbv_dba.hsba_dv where mahsba = p_mahsba;
            
     -- SOS
-    DBMS_SQL.RETURN_RESULT(c1);
+    dbms_sql.return_result(c1);
 end;
-
-grant select on HSBA to NGHIENCUU;
-grant select on HSBA_DV to NGHIENCUU;
-grant execute on sp_nc_xemHSBA to NGHIENCUU;
-grant execute on sp_nc_xemHSBA_DV to NGHIENCUU;
-grant NGHIENCUU to un56;
+/
+--grant select on HSBA to NGHIENCUU;
+--grant select on HSBA_DV to NGHIENCUU;
+grant execute on sp_nc_xemhsba to nghiencuu;
+grant execute on sp_nc_xemhsba_dv to nghiencuu;
+--grant NGHIENCUU to un56;
 
 --exec qlbv_dba.sp_nc_xemHSBA(1);
 --exec qlbv_dba.sp_nc_xemHSBA_DV(1);

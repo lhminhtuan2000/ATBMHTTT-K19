@@ -1,7 +1,7 @@
-conn qlbv_dba/1
-CREATE AUDIT POLICY AUD_HSBA_INSERT ACTIONS INSERT ON qlbv_dba.hsba, 
-CREATE AUDIT POLICY AUD_HSBA_DELETE ACTIONS DELETE ON qlbv_dba.hsba, 
-CREATE AUDIT POLICY AUD_HSBADV_INSERT ACTIONS INSERT ON qlbv_dba.hsba_dv, 
+--conn qlbv_dba
+CREATE AUDIT POLICY AUD_HSBA_INSERT ACTIONS INSERT ON qlbv_dba.hsba;
+CREATE AUDIT POLICY AUD_HSBA_DELETE ACTIONS DELETE ON qlbv_dba.hsba; 
+CREATE AUDIT POLICY AUD_HSBADV_INSERT ACTIONS INSERT ON qlbv_dba.hsba_dv;
 CREATE AUDIT POLICY AUD_HSBADV_DELETE ACTIONS DELETE ON qlbv_dba.hsba_dv;
 CREATE AUDIT POLICY AUD_HSBADV_UPDATE ACTIONS UPDATE ON qlbv_dba.hsba_dv;
 AUDIT POLICY AUD_HSBA_INSERT;
@@ -10,12 +10,7 @@ AUDIT POLICY AUD_HSBADV_INSERT;
 AUDIT POLICY AUD_HSBADV_DELETE;
 AUDIT POLICY AUD_HSBADV_UPDATE;
 
-select * from audit_unified_policies where policy_name = upper('aud_HSBADV_update');
-
-grant insert, delete on qlbv_dba.HSBA to CSYT;
-grant insert, delete on qlbv_dba.HSBA_DV to CSYT;
-
-AUDIT ROLE WHENEVER SUCCESSFUL;
+--select * from audit_unified_policies where policy_name = upper('aud_HSBADV_update');
 
 
 
@@ -32,9 +27,9 @@ AUDIT ROLE WHENEVER SUCCESSFUL;
 --conn qlbv_dba/1
 --select * from unified_audit_trail where unified_audit_policies = upper('aud_HSBA_HSBADV_I_D');
 
---noaudit policy aud_select_benhnhan;
---drop audit policy aud_select_benhnhan;
-
+--noaudit policy AUD_HSBADV_UPDATE;
+--drop audit policy AUD_HSBADV_UPDATE;
+/
 begin
     dbms_fga.add_policy (
         object_schema   => 'qlbv_dba',
@@ -44,8 +39,7 @@ begin
         statement_types => 'update'
     );
 end;
-
-
+/
 --select * from DBA_AUDIT_POLICIES where policy_name = upper('fga_update_HSBA');
 --
 --select * from HSBA where mahsba = 1;

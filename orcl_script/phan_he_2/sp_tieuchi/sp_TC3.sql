@@ -22,7 +22,7 @@ begin
         dbms_output.put_line('Ma HSBA ton tai');
     end if;
 end;
-
+/
 create or replace procedure sp_csyt_them_HSBA_DV (
     p_mahsba NUMBER,
     p_madv NUMBER,
@@ -44,7 +44,7 @@ begin
         dbms_output.put_line('Ma HSBA khong ton tai');
     end if;
 end;
-
+/
 create or replace procedure sp_csyt_xoa_HSBA (
     p_mahsba NUMBER)
 is
@@ -61,7 +61,7 @@ begin
         dbms_output.put_line('Ma HSBA khong ton tai');
     end if;
 end;
-
+/
 create or replace procedure sp_csyt_xoa_HSBA_DV (
     p_mahsba NUMBER,
     p_madv NUMBER,
@@ -83,15 +83,15 @@ begin
         dbms_output.put_line('Ma HSBA khong ton tai');
     end if;
 end;
-
-grant select, delete on HSBA to CSYT;
-grant select, delete on HSBA_DV to CSYT;
+/
+--grant select, delete on HSBA to CSYT;
+--grant select, delete on HSBA_DV to CSYT;
 grant execute on sp_csyt_them_HSBA to CSYT;
 grant execute on sp_csyt_them_HSBA_DV to CSYT;
 grant execute on sp_csyt_xoa_HSBA to CSYT;
 grant execute on sp_csyt_xoa_HSBA_DV to CSYT;
 
-grant CSYT to un6;
+--grant CSYT to un6;
 
 
 
