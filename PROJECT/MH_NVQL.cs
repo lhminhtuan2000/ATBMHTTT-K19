@@ -15,27 +15,27 @@ namespace PROJECT
 {
     public partial class MH_NVQL : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         string roleName;
         public MH_NVQL()
         {
             InitializeComponent();
         }
-        public MH_NVQL(OracleConnection con, string role)
+        public MH_NVQL(string user_name, string pass_word, string role)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
             roleName = role;
+        }
+        private void infoTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_NhanVien(username, password, roleName), this);
         }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
-            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
-        }
-
-        private void infoTSMI_Click(object sender, EventArgs e)
-        {
-            Program.loadForm(new MH_NhanVien(connect, roleName), this);
         }
     }
 }

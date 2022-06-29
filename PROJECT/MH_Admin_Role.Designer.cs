@@ -29,13 +29,6 @@ namespace PROJECT
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.bt_thuquyenrole = new System.Windows.Forms.Button();
-            this.bt_capquyenrole = new System.Windows.Forms.Button();
-            this.cb_quyen = new System.Windows.Forms.ComboBox();
-            this.cb_cot = new System.Windows.Forms.ComboBox();
-            this.cb_bang = new System.Windows.Forms.ComboBox();
-            this.checkBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,7 +52,24 @@ namespace PROJECT
             this.bt_capquyen = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgv3 = new System.Windows.Forms.DataGridView();
-            this.panel2.SuspendLayout();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tb5 = new System.Windows.Forms.TextBox();
+            this.bt_revoke_sys = new System.Windows.Forms.Button();
+            this.bt_grant_sys = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tb4 = new System.Windows.Forms.TextBox();
+            this.tb3 = new System.Windows.Forms.TextBox();
+            this.bt_revoke_obj = new System.Windows.Forms.Button();
+            this.bt_grant_obj = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.bt_revoke_table = new System.Windows.Forms.Button();
+            this.cb_cot = new System.Windows.Forms.ComboBox();
+            this.bt_grant_table = new System.Windows.Forms.Button();
+            this.checkBox = new System.Windows.Forms.CheckBox();
+            this.cb_quyen = new System.Windows.Forms.ComboBox();
+            this.cb_bang = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,95 +78,10 @@ namespace PROJECT
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv3)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.bt_thuquyenrole);
-            this.panel2.Controls.Add(this.bt_capquyenrole);
-            this.panel2.Controls.Add(this.cb_quyen);
-            this.panel2.Controls.Add(this.cb_cot);
-            this.panel2.Controls.Add(this.cb_bang);
-            this.panel2.Controls.Add(this.checkBox);
-            this.panel2.Location = new System.Drawing.Point(5, 296);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(289, 251);
-            this.panel2.TabIndex = 22;
-            // 
-            // bt_thuquyenrole
-            // 
-            this.bt_thuquyenrole.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_thuquyenrole.Location = new System.Drawing.Point(150, 185);
-            this.bt_thuquyenrole.Name = "bt_thuquyenrole";
-            this.bt_thuquyenrole.Size = new System.Drawing.Size(106, 46);
-            this.bt_thuquyenrole.TabIndex = 7;
-            this.bt_thuquyenrole.Text = "THU QUYỀN";
-            this.bt_thuquyenrole.UseVisualStyleBackColor = true;
-            // 
-            // bt_capquyenrole
-            // 
-            this.bt_capquyenrole.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_capquyenrole.Location = new System.Drawing.Point(31, 185);
-            this.bt_capquyenrole.Name = "bt_capquyenrole";
-            this.bt_capquyenrole.Size = new System.Drawing.Size(106, 46);
-            this.bt_capquyenrole.TabIndex = 7;
-            this.bt_capquyenrole.Text = "CẤP QUYỀN";
-            this.bt_capquyenrole.UseVisualStyleBackColor = true;
-            // 
-            // cb_quyen
-            // 
-            this.cb_quyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_quyen.FormattingEnabled = true;
-            this.cb_quyen.Items.AddRange(new object[] {
-            "SELECT",
-            "UPDATE",
-            "INSERT",
-            "DELETE"});
-            this.cb_quyen.Location = new System.Drawing.Point(44, 16);
-            this.cb_quyen.Name = "cb_quyen";
-            this.cb_quyen.Size = new System.Drawing.Size(191, 26);
-            this.cb_quyen.TabIndex = 8;
-            this.cb_quyen.Text = "Tên quyền";
-            // 
-            // cb_cot
-            // 
-            this.cb_cot.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_cot.FormattingEnabled = true;
-            this.cb_cot.Location = new System.Drawing.Point(44, 106);
-            this.cb_cot.Name = "cb_cot";
-            this.cb_cot.Size = new System.Drawing.Size(191, 26);
-            this.cb_cot.TabIndex = 12;
-            this.cb_cot.Text = "Tên cột";
-            this.cb_cot.SelectedIndexChanged += new System.EventHandler(this.cb_cot_SelectedIndexChanged);
-            // 
-            // cb_bang
-            // 
-            this.cb_bang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_bang.FormattingEnabled = true;
-            this.cb_bang.Items.AddRange(new object[] {
-            "HSBA",
-            "HSBA_DV",
-            "BỆNHNHÂN",
-            "CSYT",
-            "NHÂNVIÊN"});
-            this.cb_bang.Location = new System.Drawing.Point(44, 60);
-            this.cb_bang.Name = "cb_bang";
-            this.cb_bang.Size = new System.Drawing.Size(191, 26);
-            this.cb_bang.TabIndex = 9;
-            this.cb_bang.Text = "Tên bảng";
-            // 
-            // checkBox
-            // 
-            this.checkBox.AccessibleDescription = "";
-            this.checkBox.AutoSize = true;
-            this.checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox.Location = new System.Drawing.Point(44, 148);
-            this.checkBox.Name = "checkBox";
-            this.checkBox.Size = new System.Drawing.Size(182, 22);
-            this.checkBox.TabIndex = 10;
-            this.checkBox.Text = "WITH GRANT OPTION";
-            this.checkBox.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -164,10 +89,10 @@ namespace PROJECT
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(301, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(753, 259);
+            this.groupBox2.Size = new System.Drawing.Size(888, 292);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Danh sách các vai trò";
+            this.groupBox2.Text = "DANH SÁCH ROLE";
             // 
             // dgv1
             // 
@@ -175,20 +100,20 @@ namespace PROJECT
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Location = new System.Drawing.Point(6, 31);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(741, 221);
+            this.dgv1.Size = new System.Drawing.Size(876, 253);
             this.dgv1.TabIndex = 0;
-            this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgv2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(301, 289);
+            this.groupBox1.Location = new System.Drawing.Point(301, 321);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 260);
+            this.groupBox1.Size = new System.Drawing.Size(355, 198);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin về quyền của vai trò";
+            this.groupBox1.Text = "SYSTEM PRIVILEGES";
             // 
             // dgv2
             // 
@@ -196,7 +121,7 @@ namespace PROJECT
             this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv2.Location = new System.Drawing.Point(6, 23);
             this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(342, 235);
+            this.dgv2.Size = new System.Drawing.Size(342, 165);
             this.dgv2.TabIndex = 0;
             // 
             // label
@@ -205,22 +130,22 @@ namespace PROJECT
             this.label.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.Location = new System.Drawing.Point(27, 28);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(257, 31);
+            this.label.Size = new System.Drawing.Size(223, 31);
             this.label.TabIndex = 18;
-            this.label.Text = "QUẢN LÝ VAI TRÒ";
+            this.label.Text = "QUẢN LÝ ROLE";
             // 
             // vaiTròTSMI
             // 
             this.vaiTròTSMI.Checked = true;
             this.vaiTròTSMI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.vaiTròTSMI.Name = "vaiTròTSMI";
-            this.vaiTròTSMI.Size = new System.Drawing.Size(180, 24);
+            this.vaiTròTSMI.Size = new System.Drawing.Size(158, 24);
             this.vaiTròTSMI.Text = "Vai trò";
             // 
             // ngườiDùngTSMI
             // 
             this.ngườiDùngTSMI.Name = "ngườiDùngTSMI";
-            this.ngườiDùngTSMI.Size = new System.Drawing.Size(180, 24);
+            this.ngườiDùngTSMI.Size = new System.Drawing.Size(158, 24);
             this.ngườiDùngTSMI.Text = "Người dùng";
             this.ngườiDùngTSMI.Click += new System.EventHandler(this.ngườiDùngTSMI_Click);
             // 
@@ -239,14 +164,14 @@ namespace PROJECT
             // CSYTTSMI
             // 
             this.CSYTTSMI.Name = "CSYTTSMI";
-            this.CSYTTSMI.Size = new System.Drawing.Size(180, 24);
+            this.CSYTTSMI.Size = new System.Drawing.Size(158, 24);
             this.CSYTTSMI.Text = "Cơ sở y tế";
             this.CSYTTSMI.Click += new System.EventHandler(this.CSYTTSMI_Click);
             // 
             // nhânViênTSMI
             // 
             this.nhânViênTSMI.Name = "nhânViênTSMI";
-            this.nhânViênTSMI.Size = new System.Drawing.Size(180, 24);
+            this.nhânViênTSMI.Size = new System.Drawing.Size(158, 24);
             this.nhânViênTSMI.Text = "Nhân viên";
             this.nhânViênTSMI.Click += new System.EventHandler(this.nhânViênTSMI_Click);
             // 
@@ -257,7 +182,7 @@ namespace PROJECT
             this.ThoátTSMI});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1059, 28);
+            this.menu.Size = new System.Drawing.Size(1201, 28);
             this.menu.TabIndex = 17;
             this.menu.Text = "menu";
             // 
@@ -340,39 +265,41 @@ namespace PROJECT
             this.panel1.Controls.Add(this.bt_xoa);
             this.panel1.Location = new System.Drawing.Point(5, 62);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(290, 226);
+            this.panel1.Size = new System.Drawing.Size(290, 253);
             this.panel1.TabIndex = 21;
             // 
             // bt_thuquyen
             // 
             this.bt_thuquyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_thuquyen.Location = new System.Drawing.Point(150, 164);
+            this.bt_thuquyen.Location = new System.Drawing.Point(150, 173);
             this.bt_thuquyen.Name = "bt_thuquyen";
             this.bt_thuquyen.Size = new System.Drawing.Size(106, 54);
             this.bt_thuquyen.TabIndex = 7;
             this.bt_thuquyen.Text = "THU QUYỀN";
             this.bt_thuquyen.UseVisualStyleBackColor = true;
+            this.bt_thuquyen.Click += new System.EventHandler(this.bt_revoke_role_user_Click);
             // 
             // bt_capquyen
             // 
             this.bt_capquyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_capquyen.Location = new System.Drawing.Point(28, 164);
+            this.bt_capquyen.Location = new System.Drawing.Point(28, 173);
             this.bt_capquyen.Name = "bt_capquyen";
             this.bt_capquyen.Size = new System.Drawing.Size(106, 54);
             this.bt_capquyen.TabIndex = 7;
             this.bt_capquyen.Text = "GÁN QUYỀN";
             this.bt_capquyen.UseVisualStyleBackColor = true;
+            this.bt_capquyen.Click += new System.EventHandler(this.bt_grant_role_user_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgv3);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(661, 289);
+            this.groupBox3.Location = new System.Drawing.Point(661, 321);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(393, 260);
+            this.groupBox3.Size = new System.Drawing.Size(528, 198);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Danh sách người dùng";
+            this.groupBox3.Text = "OBJECT PRIVILEGES";
             // 
             // dgv3
             // 
@@ -380,17 +307,239 @@ namespace PROJECT
             this.dgv3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv3.Location = new System.Drawing.Point(7, 23);
             this.dgv3.Name = "dgv3";
-            this.dgv3.Size = new System.Drawing.Size(380, 235);
+            this.dgv3.Size = new System.Drawing.Size(515, 165);
             this.dgv3.TabIndex = 0;
-            this.dgv3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv3_CellContentClick);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.tb5);
+            this.groupBox6.Controls.Add(this.bt_revoke_sys);
+            this.groupBox6.Controls.Add(this.bt_grant_sys);
+            this.groupBox6.Controls.Add(this.checkBox2);
+            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(697, 525);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(494, 83);
+            this.groupBox6.TabIndex = 28;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "PHÂN QUYỀN SYSTEM";
+            // 
+            // tb5
+            // 
+            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb5.Location = new System.Drawing.Point(20, 30);
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(140, 24);
+            this.tb5.TabIndex = 11;
+            // 
+            // bt_revoke_sys
+            // 
+            this.bt_revoke_sys.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_revoke_sys.Location = new System.Drawing.Point(383, 22);
+            this.bt_revoke_sys.Name = "bt_revoke_sys";
+            this.bt_revoke_sys.Size = new System.Drawing.Size(105, 41);
+            this.bt_revoke_sys.TabIndex = 7;
+            this.bt_revoke_sys.Text = "THU QUYỀN";
+            this.bt_revoke_sys.UseVisualStyleBackColor = true;
+            this.bt_revoke_sys.Click += new System.EventHandler(this.bt_revoke_sys_Click);
+            // 
+            // bt_grant_sys
+            // 
+            this.bt_grant_sys.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_grant_sys.Location = new System.Drawing.Point(261, 22);
+            this.bt_grant_sys.Name = "bt_grant_sys";
+            this.bt_grant_sys.Size = new System.Drawing.Size(105, 40);
+            this.bt_grant_sys.TabIndex = 7;
+            this.bt_grant_sys.Text = "CẤP QUYỀN";
+            this.bt_grant_sys.UseVisualStyleBackColor = true;
+            this.bt_grant_sys.Click += new System.EventHandler(this.bt_grant_sys_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AccessibleDescription = "";
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(179, 32);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(66, 22);
+            this.checkBox2.TabIndex = 10;
+            this.checkBox2.Text = "WGO";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tb4);
+            this.groupBox5.Controls.Add(this.tb3);
+            this.groupBox5.Controls.Add(this.bt_revoke_obj);
+            this.groupBox5.Controls.Add(this.bt_grant_obj);
+            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(6, 525);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(685, 83);
+            this.groupBox5.TabIndex = 27;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "PHÂN QUYỀN OBJECT";
+            // 
+            // tb4
+            // 
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(180, 30);
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(140, 24);
+            this.tb4.TabIndex = 12;
+            // 
+            // tb3
+            // 
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(20, 30);
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(140, 24);
+            this.tb3.TabIndex = 11;
+            // 
+            // bt_revoke_obj
+            // 
+            this.bt_revoke_obj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_revoke_obj.Location = new System.Drawing.Point(571, 22);
+            this.bt_revoke_obj.Name = "bt_revoke_obj";
+            this.bt_revoke_obj.Size = new System.Drawing.Size(105, 41);
+            this.bt_revoke_obj.TabIndex = 7;
+            this.bt_revoke_obj.Text = "THU QUYỀN";
+            this.bt_revoke_obj.UseVisualStyleBackColor = true;
+            this.bt_revoke_obj.Click += new System.EventHandler(this.bt_revoke_obj_Click);
+            // 
+            // bt_grant_obj
+            // 
+            this.bt_grant_obj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_grant_obj.Location = new System.Drawing.Point(432, 22);
+            this.bt_grant_obj.Name = "bt_grant_obj";
+            this.bt_grant_obj.Size = new System.Drawing.Size(105, 40);
+            this.bt_grant_obj.TabIndex = 7;
+            this.bt_grant_obj.Text = "CẤP QUYỀN";
+            this.bt_grant_obj.UseVisualStyleBackColor = true;
+            this.bt_grant_obj.Click += new System.EventHandler(this.bt_grant_obj_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AccessibleDescription = "";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(350, 32);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(66, 22);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "WGO";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.bt_revoke_table);
+            this.groupBox4.Controls.Add(this.cb_cot);
+            this.groupBox4.Controls.Add(this.bt_grant_table);
+            this.groupBox4.Controls.Add(this.checkBox);
+            this.groupBox4.Controls.Add(this.cb_quyen);
+            this.groupBox4.Controls.Add(this.cb_bang);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(6, 321);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(289, 188);
+            this.groupBox4.TabIndex = 26;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "PHÂN QUYỀN TRÊN BẢNG";
+            // 
+            // bt_revoke_table
+            // 
+            this.bt_revoke_table.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_revoke_table.Location = new System.Drawing.Point(160, 86);
+            this.bt_revoke_table.Name = "bt_revoke_table";
+            this.bt_revoke_table.Size = new System.Drawing.Size(105, 41);
+            this.bt_revoke_table.TabIndex = 7;
+            this.bt_revoke_table.Text = "THU QUYỀN";
+            this.bt_revoke_table.UseVisualStyleBackColor = true;
+            this.bt_revoke_table.Click += new System.EventHandler(this.bt_revoke_table_Click);
+            // 
+            // cb_cot
+            // 
+            this.cb_cot.Enabled = false;
+            this.cb_cot.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_cot.FormattingEnabled = true;
+            this.cb_cot.Location = new System.Drawing.Point(28, 101);
+            this.cb_cot.Name = "cb_cot";
+            this.cb_cot.Size = new System.Drawing.Size(108, 26);
+            this.cb_cot.TabIndex = 12;
+            this.cb_cot.Text = "Tên cột";
+            // 
+            // bt_grant_table
+            // 
+            this.bt_grant_table.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_grant_table.Location = new System.Drawing.Point(160, 30);
+            this.bt_grant_table.Name = "bt_grant_table";
+            this.bt_grant_table.Size = new System.Drawing.Size(105, 40);
+            this.bt_grant_table.TabIndex = 7;
+            this.bt_grant_table.Text = "CẤP QUYỀN";
+            this.bt_grant_table.UseVisualStyleBackColor = true;
+            this.bt_grant_table.Click += new System.EventHandler(this.bt_grant_table_Click);
+            // 
+            // checkBox
+            // 
+            this.checkBox.AccessibleDescription = "";
+            this.checkBox.AutoSize = true;
+            this.checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox.Location = new System.Drawing.Point(28, 150);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(182, 22);
+            this.checkBox.TabIndex = 10;
+            this.checkBox.Text = "WITH GRANT OPTION";
+            this.checkBox.UseVisualStyleBackColor = true;
+            // 
+            // cb_quyen
+            // 
+            this.cb_quyen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cb_quyen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb_quyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_quyen.FormattingEnabled = true;
+            this.cb_quyen.Items.AddRange(new object[] {
+            "SELECT",
+            "UPDATE",
+            "INSERT",
+            "DELETE"});
+            this.cb_quyen.Location = new System.Drawing.Point(28, 30);
+            this.cb_quyen.Name = "cb_quyen";
+            this.cb_quyen.Size = new System.Drawing.Size(108, 26);
+            this.cb_quyen.TabIndex = 8;
+            this.cb_quyen.Text = "Tên quyền";
+            // 
+            // cb_bang
+            // 
+            this.cb_bang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cb_bang.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb_bang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_bang.FormattingEnabled = true;
+            this.cb_bang.Items.AddRange(new object[] {
+            "HSBA",
+            "HSBA_DV",
+            "BENHNHAN",
+            "CSYT",
+            "NHANVIEN"});
+            this.cb_bang.Location = new System.Drawing.Point(28, 62);
+            this.cb_bang.Name = "cb_bang";
+            this.cb_bang.Size = new System.Drawing.Size(108, 26);
+            this.cb_bang.TabIndex = 9;
+            this.cb_bang.Text = "Tên bảng";
+            this.cb_bang.SelectedIndexChanged += new System.EventHandler(this.cb_bang_SelectedValueChanged);
             // 
             // MH_Admin_Role
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 551);
+            this.ClientSize = new System.Drawing.Size(1201, 611);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label);
@@ -399,9 +548,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_Admin_Role";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Admin_Role";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Text = "ATBMCQ-03";
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -412,20 +559,18 @@ namespace PROJECT
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv3)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button bt_thuquyenrole;
-        private System.Windows.Forms.Button bt_capquyenrole;
-        private System.Windows.Forms.ComboBox cb_quyen;
-        private System.Windows.Forms.ComboBox cb_cot;
-        private System.Windows.Forms.ComboBox cb_bang;
-        private System.Windows.Forms.CheckBox checkBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgv1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -449,5 +594,23 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem CSYTTSMI;
         private System.Windows.Forms.ToolStripMenuItem nhânViênTSMI;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox tb5;
+        private System.Windows.Forms.Button bt_revoke_sys;
+        private System.Windows.Forms.Button bt_grant_sys;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox tb4;
+        private System.Windows.Forms.TextBox tb3;
+        private System.Windows.Forms.Button bt_revoke_obj;
+        private System.Windows.Forms.Button bt_grant_obj;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button bt_revoke_table;
+        private System.Windows.Forms.ComboBox cb_cot;
+        private System.Windows.Forms.Button bt_grant_table;
+        private System.Windows.Forms.CheckBox checkBox;
+        private System.Windows.Forms.ComboBox cb_quyen;
+        private System.Windows.Forms.ComboBox cb_bang;
     }
 }

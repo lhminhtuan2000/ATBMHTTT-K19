@@ -504,7 +504,7 @@ namespace PROJECT
             // 
             this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.ThoátTSMI.Name = "ThoátTSMI";
-            this.ThoátTSMI.Size = new System.Drawing.Size(122, 24);
+            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
             this.ThoátTSMI.Text = "Thoát";
             this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
@@ -522,7 +522,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_NVQL";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_NVQL";
+            this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();

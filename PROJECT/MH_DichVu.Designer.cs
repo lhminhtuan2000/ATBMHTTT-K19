@@ -132,7 +132,7 @@ namespace PROJECT
             this.Controls.Add(this.label);
             this.Name = "MH_DichVu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MH_DichVu";
+            this.Text = "ATBMCQ-03";
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

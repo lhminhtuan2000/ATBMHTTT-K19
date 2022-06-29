@@ -15,18 +15,23 @@ namespace PROJECT
 {
     public partial class MH_NhanVien : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         string roleName;
         public MH_NhanVien()
         {
             InitializeComponent();
         }
-
-        public MH_NhanVien(OracleConnection con, string role)
+        public MH_NhanVien(string user_name, string pass_word, string role)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
             roleName = role;
+            if (roleName == "THANHTRA")
+            {
+                đọcDữLiệuTSMI.Visible = true;
+            }
             if (roleName == "CSYT")
             {
                 quảnLýTSMI.Visible = true;
@@ -45,35 +50,37 @@ namespace PROJECT
             }
         }
 
-        private void ThoátTSMI_Click(object sender, EventArgs e)
-        {
-            connect.Dispose();
-            Program.loadForm(new MH_Login(), this);
-        }
-
         private void HSBATSMI_Click(object sender, EventArgs e)
         {
             if (roleName == "NGHIENCUU")
             {
-                Program.loadForm(new MH_NghienCuu_HSBA(connect, roleName), this);
+                Program.loadForm(new MH_NghienCuu_HSBA(username, password, roleName), this);
             }
             if (roleName == "YSBS")
             {
-                Program.loadForm(new MH_YSBS_HSBA(connect, roleName), this);
+                Program.loadForm(new MH_YSBS_HSBA(username, password, roleName), this);
             }
         }
 
         private void bệnhNhânTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_YSBS_BN(connect, roleName), this);
+            Program.loadForm(new MH_YSBS_BN(username, password, roleName), this);
         }
         private void thôngBáoTSMT_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_GiamDoc(connect, roleName), this);
+            Program.loadForm(new MH_GiamDoc(username, password, roleName), this);
         }
         private void quảnLýTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NVQL(connect, roleName), this);
+            Program.loadForm(new MH_NVQL(username, password, roleName), this);
+        }
+        private void đọcDữLiệuTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_ThanhTra(username, password, roleName), this);
+        }
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
         }
     }
 }

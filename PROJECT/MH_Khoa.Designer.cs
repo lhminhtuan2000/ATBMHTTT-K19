@@ -35,8 +35,8 @@ namespace PROJECT
             this.tb1 = new System.Windows.Forms.TextBox();
             this.bt_ok = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label = new System.Windows.Forms.Label();
             this.dgv2 = new System.Windows.Forms.DataGridView();
+            this.label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
@@ -102,6 +102,15 @@ namespace PROJECT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
+            // dgv2
+            // 
+            this.dgv2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv2.Location = new System.Drawing.Point(6, 22);
+            this.dgv2.Name = "dgv2";
+            this.dgv2.Size = new System.Drawing.Size(519, 246);
+            this.dgv2.TabIndex = 0;
+            // 
             // label
             // 
             this.label.AutoSize = true;
@@ -111,15 +120,6 @@ namespace PROJECT
             this.label.Size = new System.Drawing.Size(227, 31);
             this.label.TabIndex = 43;
             this.label.Text = "TRA CỨU KHOA";
-            // 
-            // dgv2
-            // 
-            this.dgv2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv2.Location = new System.Drawing.Point(6, 22);
-            this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(519, 246);
-            this.dgv2.TabIndex = 0;
             // 
             // MH_Khoa
             // 
@@ -132,7 +132,7 @@ namespace PROJECT
             this.Controls.Add(this.label);
             this.Name = "MH_Khoa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MH_Khoa";
+            this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

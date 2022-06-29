@@ -56,8 +56,9 @@ namespace PROJECT
             this.HSBATSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.bệnhNhânTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngBáoTSMT = new System.Windows.Forms.ToolStripMenuItem();
-            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.đọcDữLiệuTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -295,7 +296,8 @@ namespace PROJECT
             this.HSBATSMI,
             this.bệnhNhânTSMI,
             this.thôngBáoTSMT,
-            this.quảnLýTSMI});
+            this.quảnLýTSMI,
+            this.đọcDữLiệuTSMI});
             this.tùyChọnTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.tùyChọnTSMI.Name = "tùyChọnTSMI";
             this.tùyChọnTSMI.Size = new System.Drawing.Size(80, 24);
@@ -333,14 +335,6 @@ namespace PROJECT
             this.thôngBáoTSMT.Visible = false;
             this.thôngBáoTSMT.Click += new System.EventHandler(this.thôngBáoTSMT_Click);
             // 
-            // ThoátTSMI
-            // 
-            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.ThoátTSMI.Name = "ThoátTSMI";
-            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
-            this.ThoátTSMI.Text = "Thoát";
-            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
-            // 
             // quảnLýTSMI
             // 
             this.quảnLýTSMI.Name = "quảnLýTSMI";
@@ -348,6 +342,22 @@ namespace PROJECT
             this.quảnLýTSMI.Text = "Quản lý";
             this.quảnLýTSMI.Visible = false;
             this.quảnLýTSMI.Click += new System.EventHandler(this.quảnLýTSMI_Click);
+            // 
+            // đọcDữLiệuTSMI
+            // 
+            this.đọcDữLiệuTSMI.Name = "đọcDữLiệuTSMI";
+            this.đọcDữLiệuTSMI.Size = new System.Drawing.Size(196, 24);
+            this.đọcDữLiệuTSMI.Text = "Đọc dữ liệu";
+            this.đọcDữLiệuTSMI.Visible = false;
+            this.đọcDữLiệuTSMI.Click += new System.EventHandler(this.đọcDữLiệuTSMI_Click);
+            // 
+            // ThoátTSMI
+            // 
+            this.ThoátTSMI.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.ThoátTSMI.Name = "ThoátTSMI";
+            this.ThoátTSMI.Size = new System.Drawing.Size(59, 24);
+            this.ThoátTSMI.Text = "Thoát";
+            this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
             // MH_NhanVien
             // 
@@ -360,7 +370,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_NhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_NhanVien";
+            this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menu.ResumeLayout(false);
@@ -401,5 +411,6 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem thôngBáoTSMT;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
         private System.Windows.Forms.ToolStripMenuItem quảnLýTSMI;
+        private System.Windows.Forms.ToolStripMenuItem đọcDữLiệuTSMI;
     }
 }

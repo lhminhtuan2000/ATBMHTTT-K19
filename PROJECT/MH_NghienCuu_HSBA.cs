@@ -15,26 +15,27 @@ namespace PROJECT
 {
     public partial class MH_NghienCuu_HSBA : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         string roleName;
         public MH_NghienCuu_HSBA()
         {
             InitializeComponent();
         }
-        public MH_NghienCuu_HSBA(OracleConnection con, string role)
+        public MH_NghienCuu_HSBA(string user_name, string pass_word, string role)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
             roleName = role;
-        }
-        private void ThoátTSMI_Click(object sender, EventArgs e)
-        {
-            connect.Dispose();
-            Program.loadForm(new MH_Login(), this);
         }
         private void infoTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NhanVien(connect, roleName), this);
+            Program.loadForm(new MH_NhanVien(username, password, roleName), this);
+        }
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
         }
     }
 }

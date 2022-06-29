@@ -1,12 +1,6 @@
 SET SERVEROUTPUT ON;
---turn on DBMS_SQL.RETURN_RESULT
---login = SYSDBA
-ALTER PLUGGABLE DATABASE qlbv_pdb OPEN;
-
---login = USER ADMIN of PDB
-ALTER SESSION SET container = qlbv_pdb;
---ALTER USER qlbv_dba QUOTA UNLIMITED ON SYSTEM;
-ALTER SESSION SET current_schema = qlbv_dba;
+-- chay = user admin
+ALTER SESSION SET CONTAINER = qlbv_pdb;
 
 --tạo user
 exec SP_CREATE_USER('tt','1');
@@ -36,7 +30,7 @@ IS
     cs SYS_REFCURSOR;
 BEGIN 
     OPEN cs FOR
-    SELECT * FROM SESSION_ROLES;
+    SELECT ROLE FROM SESSION_ROLES;
 
     dbms_sql.return_result(cs);
 END;
