@@ -1,28 +1,10 @@
-SET SERVEROUTPUT ON;
--- chay = user admin
-ALTER SESSION SET CONTAINER = qlbv_pdb;
-
---tạo user
-exec SP_CREATE_USER('tt','1');
-exec SP_CREATE_USER('nv','1');
-exec SP_CREATE_USER('bs','1');
-exec SP_CREATE_USER('nc','1');
-exec SP_CREATE_USER('bn','1');
-exec SP_CREATE_USER('boss','1');
-
+-- conn qlbv_dba
 exec SP_CREATE_ROLE('THANHTRA');
 exec SP_CREATE_ROLE('CSYT');
 exec SP_CREATE_ROLE('YSBS');
 exec SP_CREATE_ROLE('NGHIENCUU');
 exec SP_CREATE_ROLE('BENHNHAN');
 --exec SP_CREATE_ROLE('GIAMDOC');
-
-exec SP_GRANT_ROLE_TO_USER('THANHTRA','tt');
-exec SP_GRANT_ROLE_TO_USER('CSYT','nv');
-exec SP_GRANT_ROLE_TO_USER('YSBS','bs');
-exec SP_GRANT_ROLE_TO_USER('NGHIENCUU','nc');
-exec SP_GRANT_ROLE_TO_USER('BENHNHAN','bn');
---exec SP_GRANT_ROLE_TO_USER('GIAMDOC','boss');
 
 CREATE OR REPLACE PROCEDURE sp_login
 AUTHID CURRENT_USER

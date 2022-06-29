@@ -1,93 +1,93 @@
-create or replace procedure sp_xemThongTinCaNhan
-authid current_user
+CREATE OR REPLACE PROCEDURE SP_XEMTHONGTINCANHAN
+AUTHID CURRENT_USER
 IS 
-    c1 SYS_REFCURSOR;
-    v_role varchar(20);
+    C1 SYS_REFCURSOR;
+    V_ROLE VARCHAR(20);
 BEGIN 
-    SELECT ROLE into v_role FROM SESSION_ROLES;
-    if v_role = 'BENHNHAN' then
-        OPEN c1 for
-        select * from qlbv_dba.BENHNHAN;
-    else 
-        OPEN c1 for
-        select * from qlbv_dba.NHANVIEN;
-    end if;
+    SELECT ROLE INTO V_ROLE FROM SESSION_ROLES;
+    IF V_ROLE = 'BENHNHAN' THEN
+        OPEN C1 FOR
+        SELECT * FROM QLBV_DBA.BENHNHAN;
+    ELSE 
+        OPEN C1 FOR
+        SELECT * FROM QLBV_DBA.NHANVIEN;
+    END IF;
     -- SOS
-    DBMS_SQL.RETURN_RESULT(c1);
+    DBMS_SQL.RETURN_RESULT(C1);
 END;
 /
 --exec sp_xemThongTinCaNhan;
 --exec qlbv_dba.sp_xemThongTinCaNhan;
 
 
-create or replace procedure sp_capNhatTTBenhNhan (
-    p_macsyt NUMBER,
-    p_tenbn NVARCHAR2,
-    p_cmnd VARCHAR,
-    p_ngaysinh DATE,
-    p_sonha VARCHAR,
-    p_tenduong NVARCHAR2,
-    p_quanhuyen NVARCHAR2,
-    p_tinhtp NVARCHAR2,
-    p_tiensubenh NVARCHAR2,
-    p_tiensubenhgd NVARCHAR2,
-    p_diungthuoc NVARCHAR2)
+CREATE OR REPLACE PROCEDURE SP_CAPNHATTTBENHNHAN (
+    P_MACSYT NUMBER,
+    P_TENBN NVARCHAR2,
+    P_CMND VARCHAR,
+    P_NGAYSINH DATE,
+    P_SONHA VARCHAR,
+    P_TENDUONG NVARCHAR2,
+    P_QUANHUYEN NVARCHAR2,
+    P_TINHTP NVARCHAR2,
+    P_TIENSUBENH NVARCHAR2,
+    P_TIENSUBENHGD NVARCHAR2,
+    P_DIUNGTHUOC NVARCHAR2)
 IS 
 BEGIN 
-    update qlbv_dba.BENHNHAN
-    set macsyt = p_macsyt,
-        tenbn = p_tenbn,
-        cmnd = p_cmnd,
-        ngaysinh = p_ngaysinh,
-        sonha = p_sonha,
-        tenduong = p_tenduong,
-        quanhuyen = p_quanhuyen,
-        tinhtp = p_tinhtp,
-        tiensubenh = p_tiensubenh,
-        tiensubenhgd = p_tiensubenhgd,
-        diungthuoc = p_diungthuoc;
+    UPDATE QLBV_DBA.BENHNHAN
+    SET MACSYT = P_MACSYT,
+        TENBN = P_TENBN,
+        CMND = P_CMND,
+        NGAYSINH = P_NGAYSINH,
+        SONHA = P_SONHA,
+        TENDUONG = P_TENDUONG,
+        QUANHUYEN = P_QUANHUYEN,
+        TINHTP = P_TINHTP,
+        TIENSUBENH = P_TIENSUBENH,
+        TIENSUBENHGD = P_TIENSUBENHGD,
+        DIUNGTHUOC = P_DIUNGTHUOC;
 END;
 /
 --exec qlbv_dba.sp_capNhatTTBenhNhan(23, 'Lê Lộc Lộc', '653892793230', TO_DATE('7/10/2018', 'DD/MM/YYYY'), 'Số 437', 'Đường số 286', 'Quận 7', 'Tỉnh/TP 6', 'A', 'B', 'C');
 --select * from qlbv_dba.benhnhan where mabn = 6945;
 
 
-create or replace procedure sp_capNhatTTNhanVien (
-    p_hoten NVARCHAR2,
-    p_phai NVARCHAR2,
-    p_ngaysinh DATE,
-    p_cmnd VARCHAR2,
-    p_quequan NVARCHAR2,
-    p_sodt CHAR,
-    p_csyt NUMBER,
-    p_vaitro NVARCHAR2,
-    p_chuyenkhoa NUMBER)
+CREATE OR REPLACE PROCEDURE SP_CAPNHATTTNHANVIEN (
+    P_HOTEN NVARCHAR2,
+    P_PHAI NVARCHAR2,
+    P_NGAYSINH DATE,
+    P_CMND VARCHAR2,
+    P_QUEQUAN NVARCHAR2,
+    P_SODT CHAR,
+    P_CSYT NUMBER,
+    P_VAITRO NVARCHAR2,
+    P_CHUYENKHOA NUMBER)
 IS 
 BEGIN 
-    update qlbv_dba.NHANVIEN
-    set hoten = p_hoten,
-        phai = p_phai,
-        ngaysinh = p_ngaysinh,
-        cmnd = p_cmnd,
-        quequan = p_quequan,
-        sodt = p_sodt,
-        csyt = p_csyt,
-        vaitro = p_vaitro,
-        chuyenkhoa = p_chuyenkhoa;
+    UPDATE QLBV_DBA.NHANVIEN
+    SET HOTEN = P_HOTEN,
+        PHAI = P_PHAI,
+        NGAYSINH = P_NGAYSINH,
+        CMND = P_CMND,
+        QUEQUAN = P_QUEQUAN,
+        SODT = P_SODT,
+        CSYT = P_CSYT,
+        VAITRO = P_VAITRO,
+        CHUYENKHOA = P_CHUYENKHOA;
 END;
 /
 --exec qlbv_dba.sp_capNhatTTNhanVien('Huỳnh Anh Anh', 'Nam', TO_DATE('28/7/2021', 'DD/MM/YYYY'), '374814512231', 'Tinh 3', '0936728597', null, 'Thanh tra', null);
 --select * from qlbv_dba.NHANVIEN where manv = 1;
 
-grant select, update on BENHNHAN to BENHNHAN;
-grant execute on sp_xemThongTinCaNhan to BENHNHAN;
-grant execute on sp_capNhatTTBenhNhan to BENHNHAN;
-grant BENHNHAN to un10000;
+--GRANT SELECT, UPDATE ON BENHNHAN TO BENHNHAN;
+GRANT EXECUTE ON SP_XEMTHONGTINCANHAN TO BENHNHAN;
+GRANT EXECUTE ON SP_CAPNHATTTBENHNHAN TO BENHNHAN;
+--GRANT BENHNHAN TO UN10000;
 
-grant select, update on NHANVIEN to THANHTRA;
-grant execute on sp_xemThongTinCaNhan to THANHTRA;
-grant execute on sp_capNhatTTNhanVien to THANHTRA;
-grant THANHTRA to un1;
+--GRANT SELECT, UPDATE ON NHANVIEN TO THANHTRA;
+GRANT EXECUTE ON SP_XEMTHONGTINCANHAN TO THANHTRA;
+GRANT EXECUTE ON SP_CAPNHATTTNHANVIEN TO THANHTRA;
+--GRANT THANHTRA TO UN1;
 
 
 --SELECT * FROM USER_SYS_PRIVS;
@@ -95,7 +95,7 @@ grant THANHTRA to un1;
 --SELECT * FROM SESSION_ROLES;
 --SELECT * FROM USER_ROLE_PRIVS;
 
-select * from qlbv_dba.BenhNhan;
+--SELECT * FROM QLBV_DBA.BENHNHAN;
 
 
 

@@ -1,8 +1,8 @@
-grant select on NHANVIEN to THANHTRA;
-grant select on BENHNHAN to THANHTRA;
-grant select on HSBA to THANHTRA;
-grant select on HSBA_DV to THANHTRA;
-grant select on CSYT to THANHTRA;
+--grant select on NHANVIEN to THANHTRA;
+--grant select on BENHNHAN to THANHTRA;
+--grant select on HSBA to THANHTRA;
+--grant select on HSBA_DV to THANHTRA;
+--grant select on CSYT to THANHTRA;
 
 --select * from qlbv_dba.NHANVIEN;
 --select * from qlbv_dba.BENHNHAN;
