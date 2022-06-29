@@ -31,14 +31,60 @@ namespace PROJECT
         }
         public void dgv1_loaddata()
         {
-            /*
-            List<string> varList = new List<string>();
+            string query = "select * from NHANVIEN";
             DataTable dt = new DataTable();
 
-            dt = Program.loadDT("sp_list_all_user", username, password, varList, varList);
+            dt = Program.loadDTFromQuery(query, username, password);
             dgv1.DataSource = dt;
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            */
+        }
+        private void bt_them_Click(object sender, EventArgs e)
+        {
+            string manv = tb1.Text.ToString();
+            string hoten = tb2.Text.ToString();
+            string phai = cb1.SelectedItem.ToString();
+            string ngaysinh = tb3.Text.ToString();
+            string cmnd = tb4.Text.ToString();
+            string quequan = tb5.Text.ToString();
+            string sodt = tb6.Text.ToString();
+            string csyt = tb7.Text.ToString();
+            string vaitro = cb1.SelectedItem.ToString();
+            string chuyenkhoa = tb8.Text.ToString();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand("sp_themNhanVien", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("p_manv", OracleDbType.Int64, manv, ParameterDirection.Input);
+                cmd.Parameters.Add("p_hoten", OracleDbType.NVarchar2, hoten, ParameterDirection.Input);
+                cmd.Parameters.Add("p_phai", OracleDbType.NVarchar2, phai, ParameterDirection.Input);
+                cmd.Parameters.Add("p_ngaysinh", OracleDbType.Date, ngaysinh, ParameterDirection.Input);
+                cmd.Parameters.Add("p_cmnd", OracleDbType.Varchar2, cmnd, ParameterDirection.Input);
+                cmd.Parameters.Add("p_quequan", OracleDbType.NVarchar2, quequan, ParameterDirection.Input);
+                cmd.Parameters.Add("p_sodt", OracleDbType.Char, sodt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_csyt", OracleDbType.Int64, csyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_vaitro", OracleDbType.NVarchar2, vaitro, ParameterDirection.Input);
+                cmd.Parameters.Add("p_chuyenkhoa", OracleDbType.Int64, chuyenkhoa, ParameterDirection.Input);
+                cmd.Parameters.Add("p_tenDangNhap", OracleDbType.Varchar2, "UN"+ manv.ToString(), ParameterDirection.Input);
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                dgv1.DataSource = dt;
+                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            dgv1_loaddata();
         }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
@@ -59,5 +105,6 @@ namespace PROJECT
         {
             Program.loadForm(new MH_Login(), this);
         }
+
     }
 }

@@ -307,10 +307,10 @@ namespace PROJECT
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(7, 28);
+            this.label.Font = new System.Drawing.Font("Times New Roman", 19F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(50, 24);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(190, 26);
+            this.label.Size = new System.Drawing.Size(208, 30);
             this.label.TabIndex = 11;
             this.label.Text = "QUẢN LÝ USER";
             // 

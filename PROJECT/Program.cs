@@ -36,7 +36,7 @@ namespace PROJECT
             f.Show();
             formClose.Hide();
         }
-        // connect truyen vao phai dang mo, ham nay return xong dispose connection
+        // connection truyen vao phai dang mo, ham ben duoi return xong dispose connection
         public static DataTable loadDT(string procname, string username, string password, List<string> var, List<string> input)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
@@ -64,7 +64,32 @@ namespace PROJECT
                 }
                 return dt;
             }
-            
+        }
+        public static DataTable loadDTFromQuery(string query, string username, string password)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand(query, con);
+                cmd.CommandType = CommandType.Text;
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    reader.Read(); 
+                    dt.Load(reader);
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                return dt;
+            }
         }
     }
 }

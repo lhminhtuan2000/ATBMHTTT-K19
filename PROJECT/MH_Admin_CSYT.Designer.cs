@@ -40,7 +40,6 @@ namespace PROJECT
             this.tb2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bt_them = new System.Windows.Forms.Button();
-            this.bt_xem = new System.Windows.Forms.Button();
             this.bt_sua = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgv1 = new System.Windows.Forms.DataGridView();
@@ -76,7 +75,6 @@ namespace PROJECT
             this.panel1.Controls.Add(this.tb2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.bt_them);
-            this.panel1.Controls.Add(this.bt_xem);
             this.panel1.Controls.Add(this.bt_sua);
             this.panel1.Location = new System.Drawing.Point(6, 66);
             this.panel1.Name = "panel1";
@@ -161,32 +159,24 @@ namespace PROJECT
             // bt_them
             // 
             this.bt_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_them.Location = new System.Drawing.Point(30, 133);
+            this.bt_them.Location = new System.Drawing.Point(57, 133);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(85, 38);
             this.bt_them.TabIndex = 6;
             this.bt_them.Text = "THÊM";
             this.bt_them.UseVisualStyleBackColor = true;
-            // 
-            // bt_xem
-            // 
-            this.bt_xem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_xem.Image = global::PROJECT.Properties.Resources.Search_button;
-            this.bt_xem.Location = new System.Drawing.Point(231, 139);
-            this.bt_xem.Name = "bt_xem";
-            this.bt_xem.Size = new System.Drawing.Size(31, 26);
-            this.bt_xem.TabIndex = 6;
-            this.bt_xem.UseVisualStyleBackColor = true;
+            this.bt_them.Click += new System.EventHandler(this.bt_them_Click);
             // 
             // bt_sua
             // 
             this.bt_sua.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_sua.Location = new System.Drawing.Point(131, 133);
+            this.bt_sua.Location = new System.Drawing.Point(158, 133);
             this.bt_sua.Name = "bt_sua";
             this.bt_sua.Size = new System.Drawing.Size(85, 38);
             this.bt_sua.TabIndex = 6;
             this.bt_sua.Text = "SỬA";
             this.bt_sua.UseVisualStyleBackColor = true;
+            this.bt_sua.Click += new System.EventHandler(this.bt_sua_Click);
             // 
             // groupBox2
             // 
@@ -194,7 +184,7 @@ namespace PROJECT
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(302, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(494, 216);
+            this.groupBox2.Size = new System.Drawing.Size(474, 216);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các cơ sở y tế";
@@ -205,7 +195,7 @@ namespace PROJECT
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Location = new System.Drawing.Point(8, 35);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(480, 181);
+            this.dgv1.Size = new System.Drawing.Size(462, 181);
             this.dgv1.TabIndex = 0;
             // 
             // label
@@ -259,7 +249,7 @@ namespace PROJECT
             this.ThoátTSMI});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(800, 28);
+            this.menu.Size = new System.Drawing.Size(783, 28);
             this.menu.TabIndex = 17;
             this.menu.Text = "menu";
             // 
@@ -275,7 +265,7 @@ namespace PROJECT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 255);
+            this.ClientSize = new System.Drawing.Size(783, 255);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label);
@@ -318,6 +308,5 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb1;
-        private System.Windows.Forms.Button bt_xem;
     }
 }

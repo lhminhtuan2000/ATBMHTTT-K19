@@ -59,6 +59,8 @@ namespace PROJECT
             this.menu = new System.Windows.Forms.MenuStrip();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tb8 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -69,7 +71,7 @@ namespace PROJECT
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 78);
+            this.label4.Location = new System.Drawing.Point(23, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 18);
             this.label4.TabIndex = 2;
@@ -122,14 +124,14 @@ namespace PROJECT
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Location = new System.Drawing.Point(8, 31);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(530, 347);
+            this.dgv1.Size = new System.Drawing.Size(729, 386);
             this.dgv1.TabIndex = 0;
             // 
             // tb2
             // 
             this.tb2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb2.Location = new System.Drawing.Point(125, 75);
+            this.tb2.Location = new System.Drawing.Point(132, 44);
             this.tb2.Name = "tb2";
             this.tb2.Size = new System.Drawing.Size(185, 24);
             this.tb2.TabIndex = 3;
@@ -139,10 +141,12 @@ namespace PROJECT
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cb2);
             this.panel1.Controls.Add(this.cb1);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tb4);
+            this.panel1.Controls.Add(this.tb8);
             this.panel1.Controls.Add(this.tb7);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.tb5);
@@ -158,7 +162,7 @@ namespace PROJECT
             this.panel1.Controls.Add(this.bt_them);
             this.panel1.Location = new System.Drawing.Point(5, 62);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(334, 347);
+            this.panel1.Size = new System.Drawing.Size(334, 386);
             this.panel1.TabIndex = 25;
             // 
             // cb2
@@ -172,7 +176,7 @@ namespace PROJECT
             "Cơ sở y tế",
             "Y sĩ/ bác sĩ",
             "Nghiên cứu"});
-            this.cb2.Location = new System.Drawing.Point(125, 225);
+            this.cb2.Location = new System.Drawing.Point(132, 256);
             this.cb2.Name = "cb2";
             this.cb2.Size = new System.Drawing.Size(185, 26);
             this.cb2.TabIndex = 7;
@@ -186,7 +190,7 @@ namespace PROJECT
             this.cb1.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cb1.Location = new System.Drawing.Point(125, 43);
+            this.cb1.Location = new System.Drawing.Point(132, 74);
             this.cb1.Name = "cb1";
             this.cb1.Size = new System.Drawing.Size(185, 26);
             this.cb1.TabIndex = 7;
@@ -195,7 +199,7 @@ namespace PROJECT
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 260);
+            this.label9.Location = new System.Drawing.Point(23, 288);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 18);
             this.label9.TabIndex = 2;
@@ -205,7 +209,7 @@ namespace PROJECT
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(20, 168);
+            this.label6.Location = new System.Drawing.Point(23, 196);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 18);
             this.label6.TabIndex = 2;
@@ -214,7 +218,7 @@ namespace PROJECT
             // tb4
             // 
             this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb4.Location = new System.Drawing.Point(125, 135);
+            this.tb4.Location = new System.Drawing.Point(132, 136);
             this.tb4.Name = "tb4";
             this.tb4.Size = new System.Drawing.Size(185, 24);
             this.tb4.TabIndex = 5;
@@ -223,7 +227,7 @@ namespace PROJECT
             // 
             this.tb7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb7.Location = new System.Drawing.Point(125, 257);
+            this.tb7.Location = new System.Drawing.Point(132, 226);
             this.tb7.Name = "tb7";
             this.tb7.Size = new System.Drawing.Size(185, 24);
             this.tb7.TabIndex = 3;
@@ -232,7 +236,7 @@ namespace PROJECT
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 198);
+            this.label8.Location = new System.Drawing.Point(23, 226);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 18);
             this.label8.TabIndex = 2;
@@ -242,7 +246,7 @@ namespace PROJECT
             // 
             this.tb5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb5.Location = new System.Drawing.Point(125, 165);
+            this.tb5.Location = new System.Drawing.Point(132, 166);
             this.tb5.Name = "tb5";
             this.tb5.Size = new System.Drawing.Size(185, 24);
             this.tb5.TabIndex = 3;
@@ -251,7 +255,7 @@ namespace PROJECT
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 108);
+            this.label5.Location = new System.Drawing.Point(23, 136);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 18);
             this.label5.TabIndex = 2;
@@ -261,7 +265,7 @@ namespace PROJECT
             // 
             this.tb6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb6.Location = new System.Drawing.Point(125, 195);
+            this.tb6.Location = new System.Drawing.Point(132, 196);
             this.tb6.Name = "tb6";
             this.tb6.Size = new System.Drawing.Size(185, 24);
             this.tb6.TabIndex = 3;
@@ -270,7 +274,7 @@ namespace PROJECT
             // 
             this.tb3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb3.Location = new System.Drawing.Point(125, 105);
+            this.tb3.Location = new System.Drawing.Point(132, 106);
             this.tb3.Name = "tb3";
             this.tb3.Size = new System.Drawing.Size(185, 24);
             this.tb3.TabIndex = 3;
@@ -279,7 +283,7 @@ namespace PROJECT
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(20, 228);
+            this.label7.Location = new System.Drawing.Point(23, 256);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 18);
             this.label7.TabIndex = 4;
@@ -289,7 +293,7 @@ namespace PROJECT
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 16);
+            this.label1.Location = new System.Drawing.Point(23, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 18);
             this.label1.TabIndex = 2;
@@ -299,7 +303,7 @@ namespace PROJECT
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 138);
+            this.label3.Location = new System.Drawing.Point(23, 166);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 18);
             this.label3.TabIndex = 4;
@@ -309,7 +313,7 @@ namespace PROJECT
             // 
             this.tb1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb1.Location = new System.Drawing.Point(125, 13);
+            this.tb1.Location = new System.Drawing.Point(132, 14);
             this.tb1.Name = "tb1";
             this.tb1.Size = new System.Drawing.Size(185, 24);
             this.tb1.TabIndex = 3;
@@ -318,7 +322,7 @@ namespace PROJECT
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 47);
+            this.label2.Location = new System.Drawing.Point(23, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 18);
             this.label2.TabIndex = 4;
@@ -327,12 +331,13 @@ namespace PROJECT
             // bt_them
             // 
             this.bt_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_them.Location = new System.Drawing.Point(107, 296);
+            this.bt_them.Location = new System.Drawing.Point(112, 330);
             this.bt_them.Name = "bt_them";
             this.bt_them.Size = new System.Drawing.Size(99, 38);
             this.bt_them.TabIndex = 6;
             this.bt_them.Text = "THÊM";
             this.bt_them.UseVisualStyleBackColor = true;
+            this.bt_them.Click += new System.EventHandler(this.bt_them_Click);
             // 
             // label
             // 
@@ -351,7 +356,7 @@ namespace PROJECT
             this.ThoátTSMI});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(887, 28);
+            this.menu.Size = new System.Drawing.Size(1100, 28);
             this.menu.TabIndex = 22;
             this.menu.Text = "menu";
             // 
@@ -369,16 +374,35 @@ namespace PROJECT
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(345, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(538, 386);
+            this.groupBox2.Size = new System.Drawing.Size(743, 426);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các nhân viên";
+            // 
+            // tb8
+            // 
+            this.tb8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb8.Location = new System.Drawing.Point(132, 288);
+            this.tb8.Name = "tb8";
+            this.tb8.Size = new System.Drawing.Size(185, 24);
+            this.tb8.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(23, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(95, 18);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Mã nhân viên";
             // 
             // MH_Admin_NV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 416);
+            this.ClientSize = new System.Drawing.Size(1100, 460);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label);
             this.Controls.Add(this.menu);
@@ -430,5 +454,7 @@ namespace PROJECT
         private System.Windows.Forms.ComboBox cb2;
         private System.Windows.Forms.ComboBox cb1;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tb8;
     }
 }

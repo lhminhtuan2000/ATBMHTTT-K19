@@ -33,7 +33,7 @@ namespace PROJECT
             this.bt_xem = new System.Windows.Forms.Button();
             this.cb_bang = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgv2 = new System.Windows.Forms.DataGridView();
+            this.dgv1 = new System.Windows.Forms.DataGridView();
             this.label = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.tùyChọnTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +42,7 @@ namespace PROJECT
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,7 @@ namespace PROJECT
             this.bt_xem.TabIndex = 7;
             this.bt_xem.Text = "XEM";
             this.bt_xem.UseVisualStyleBackColor = true;
+            this.bt_xem.Click += new System.EventHandler(this.bt_xem_Click);
             // 
             // cb_bang
             // 
@@ -75,9 +76,9 @@ namespace PROJECT
             this.cb_bang.Items.AddRange(new object[] {
             "HSBA",
             "HSBA_DV",
-            "BỆNHNHÂN",
+            "BENHNHAN",
             "CSYT",
-            "NHÂNVIÊN"});
+            "NHANVIEN"});
             this.cb_bang.Location = new System.Drawing.Point(33, 44);
             this.cb_bang.Name = "cb_bang";
             this.cb_bang.Size = new System.Drawing.Size(133, 26);
@@ -86,7 +87,7 @@ namespace PROJECT
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dgv2);
+            this.groupBox1.Controls.Add(this.dgv1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(218, 31);
             this.groupBox1.Name = "groupBox1";
@@ -95,14 +96,14 @@ namespace PROJECT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
-            // dgv2
+            // dgv1
             // 
-            this.dgv2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv2.Location = new System.Drawing.Point(6, 22);
-            this.dgv2.Name = "dgv2";
-            this.dgv2.Size = new System.Drawing.Size(602, 246);
-            this.dgv2.TabIndex = 0;
+            this.dgv1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv1.Location = new System.Drawing.Point(6, 22);
+            this.dgv1.Name = "dgv1";
+            this.dgv1.Size = new System.Drawing.Size(602, 246);
+            this.dgv1.TabIndex = 0;
             // 
             // label
             // 
@@ -173,7 +174,7 @@ namespace PROJECT
             this.Text = "ATBMCQ-03";
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -186,7 +187,7 @@ namespace PROJECT
         private System.Windows.Forms.Button bt_xem;
         private System.Windows.Forms.ComboBox cb_bang;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgv2;
+        private System.Windows.Forms.DataGridView dgv1;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem tùyChọnTSMI;

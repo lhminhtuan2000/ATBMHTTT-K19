@@ -31,14 +31,12 @@ namespace PROJECT
         }
         public void dgv1_loaddata()
         {
-            /*
-            List<string> varList = new List<string>();
+            string query = "select * from CSYT";
             DataTable dt = new DataTable();
 
-            dt = Program.loadDT("sp_list_all_user", username, password, varList, varList);
+            dt = Program.loadDTFromQuery(query, username, password);
             dgv1.DataSource = dt;
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            */
         }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
@@ -58,6 +56,78 @@ namespace PROJECT
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
             Program.loadForm(new MH_Login(), this);
+        }
+
+        private void bt_them_Click(object sender, EventArgs e)
+        {
+            string macsyt = tb1.Text.ToString();
+            string tencsyt = tb2.Text.ToString();
+            string dccsyt = tb3.Text.ToString();
+            string sdtcsyt = tb4.Text.ToString();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand("sp_themCSYT", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("p_macsyt", OracleDbType.Int64, macsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_tencsyt", OracleDbType.NVarchar2, tencsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_dccsyt", OracleDbType.NVarchar2, dccsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_sdtcsyt", OracleDbType.Char, sdtcsyt, ParameterDirection.Input);
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                dgv1.DataSource = dt;
+                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            dgv1_loaddata();
+        }
+
+        private void bt_sua_Click(object sender, EventArgs e)
+        {
+            string macsyt = tb1.Text.ToString();
+            string tencsyt = tb2.Text.ToString();
+            string dccsyt = tb3.Text.ToString();
+            string sdtcsyt = tb4.Text.ToString();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand("sp_capNhatCSYT", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("p_macsyt", OracleDbType.Int64, macsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_tencsyt", OracleDbType.NVarchar2, tencsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_dccsyt", OracleDbType.NVarchar2, dccsyt, ParameterDirection.Input);
+                cmd.Parameters.Add("p_sdtcsyt", OracleDbType.Char, sdtcsyt, ParameterDirection.Input);
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                dgv1.DataSource = dt;
+                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            dgv1_loaddata();
         }
     }
 }

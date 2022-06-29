@@ -34,7 +34,6 @@ namespace PROJECT
                     cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     object obj = cmd.ExecuteScalar();
-                    //OracleDataReader reader = cmd.ExecuteReader();reader.Read(); reader.Close();
                     string role = obj.ToString();
                     if (role == "PDB_DBA" || role == "DBA")
                     {
