@@ -21,7 +21,6 @@ namespace PROJECT
         {
             InitializeComponent();
             dgv1_loaddata();
-            dgv3_loaddata();
         }
         public MH_Admin_Role(string user_name, string pass_word)
         {
@@ -29,7 +28,6 @@ namespace PROJECT
             username = user_name;
             password = pass_word;
             dgv1_loaddata();
-            dgv3_loaddata();
         }
         public void dgv1_loaddata()
         {
@@ -39,47 +37,25 @@ namespace PROJECT
             dgv1.DataSource = dt;
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-        public void dgv2_loaddata(string role_name)
+        public void dgv2_loaddata(string role)
         {
-            OracleCommand cmd = new OracleCommand("sp_show_role_privileges", connect);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("role_name", OracleDbType.Varchar2).Value = role_name;
-            try
-            {
-                OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                connect.Open();
-                DataTable dt = new DataTable();
-                dt.Clear();
-                oda.Fill(dt);
-                dgv2.DataSource = dt;
-                dgv2.AutoResizeColumnHeadersHeight();
-
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
-            }
-            connect.Close();
-        }
-        public void dgv3_loaddata()
-        {
-            OracleCommand cmd = new OracleCommand("sp_list_all_user", connect);
-            cmd.CommandType = CommandType.StoredProcedure;
+            List<string> varList = new List<string> { "role_name" };
+            List<string> inputList = new List<string> { role };
             DataTable dt = new DataTable();
-            dt.Clear();
-            try
-            {
-                connect.Open();
-                OracleDataAdapter oda = new OracleDataAdapter(cmd);
-                oda.Fill(dt);
-                dgv3.DataSource = dt;
-                dgv3.AutoResizeColumnHeadersHeight();
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
-            }
-            connect.Close();
+
+            dt = Program.loadDT("sp_role_sys_privs", username, password, varList, inputList);
+            dgv2.DataSource = dt;
+            dgv2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void dgv3_loaddata(string role)
+        {
+            List<string> varList = new List<string> { "role_name" };
+            List<string> inputList = new List<string> { role };
+            DataTable dt = new DataTable();
+
+            dt = Program.loadDT("sp_role_obj_privs", username, password, varList, inputList);
+            dgv3.DataSource = dt;
+            dgv3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -90,6 +66,7 @@ namespace PROJECT
                 string role_name = dgv1.Rows[rowIndex].Cells[0].Value.ToString();
                 tb1.Text = role_name;
                 dgv2_loaddata(role_name);
+                dgv3_loaddata(role_name);
             }
             catch (Exception ex)
             {
@@ -99,23 +76,21 @@ namespace PROJECT
 
         private void bt_them_Click(object sender, EventArgs e)
         {
-            string role_name = tb1.Text.ToString();
-
-            OracleCommand cmd = new OracleCommand("sp_create_role", connect);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("role_name", OracleDbType.Varchar2).Value = role_name;
             try
             {
-                connect.Open();
-                cmd.ExecuteNonQuery();
-                tb1.Clear();
+                string role = tb1.Text.ToString();
+                string pass = tb2.Text.ToString();
+                List<string> varList = new List<string> { "role_name" };
+                List<string> inputList = new List<string> { role };
+
+                DataTable dt = new DataTable();
+                dt = Program.loadDT("sp_create_role", username, password, varList, inputList);
+                dgv1_loaddata();
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("Exception: {0}", ex.ToString());
+                MessageBox.Show(ex.ToString(), "Exception: {0}");
             }
-            connect.Close();
-            dgv1_loaddata();
         }
         private void bt_xoa_Click(object sender, EventArgs e)
         {
