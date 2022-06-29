@@ -197,7 +197,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_NghienCuu_HSBA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_NghienCuu_HSBA";
+            this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

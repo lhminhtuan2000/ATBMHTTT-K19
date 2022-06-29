@@ -352,17 +352,16 @@ namespace PROJECT
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_CSYT(username, password), this);
+            Program.loadForm(new MH_Admin_CSYT(username, password), this);
         }
 
         private void nhânViênTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_NV(username, password), this);
+            Program.loadForm(new MH_Admin_NV(username, password), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
-            //connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
 

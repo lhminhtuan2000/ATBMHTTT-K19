@@ -548,7 +548,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_Admin_Role";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Admin_Role";
+            this.Text = "ATBMCQ-03";
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.groupBox1.ResumeLayout(false);

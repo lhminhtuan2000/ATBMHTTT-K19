@@ -60,11 +60,11 @@ namespace PROJECT
             this.dgv2 = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tb4 = new System.Windows.Forms.TextBox();
+            this.tb3 = new System.Windows.Forms.TextBox();
             this.bt_revoke_obj = new System.Windows.Forms.Button();
             this.bt_grant_obj = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.tb3 = new System.Windows.Forms.TextBox();
-            this.tb4 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tb5 = new System.Windows.Forms.TextBox();
             this.bt_revoke_sys = new System.Windows.Forms.Button();
@@ -425,6 +425,22 @@ namespace PROJECT
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "PHÂN QUYỀN OBJECT";
             // 
+            // tb4
+            // 
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(180, 30);
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(140, 24);
+            this.tb4.TabIndex = 12;
+            // 
+            // tb3
+            // 
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(20, 30);
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(140, 24);
+            this.tb3.TabIndex = 11;
+            // 
             // bt_revoke_obj
             // 
             this.bt_revoke_obj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -458,22 +474,6 @@ namespace PROJECT
             this.checkBox1.TabIndex = 10;
             this.checkBox1.Text = "WGO";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // tb3
-            // 
-            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb3.Location = new System.Drawing.Point(20, 30);
-            this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(140, 24);
-            this.tb3.TabIndex = 11;
-            // 
-            // tb4
-            // 
-            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb4.Location = new System.Drawing.Point(180, 30);
-            this.tb4.Name = "tb4";
-            this.tb4.Size = new System.Drawing.Size(140, 24);
-            this.tb4.TabIndex = 12;
             // 
             // groupBox6
             // 
@@ -550,7 +550,7 @@ namespace PROJECT
             this.MainMenuStrip = this.menu;
             this.Name = "MH_Admin_User";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Admin_User";
+            this.Text = "ATBMCQ-03";
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();

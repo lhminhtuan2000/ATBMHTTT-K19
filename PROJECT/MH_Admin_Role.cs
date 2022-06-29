@@ -335,24 +335,22 @@ namespace PROJECT
 
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_User(connect), this);
+            Program.loadForm(new MH_Admin_User(username, password), this);
         }
 
         private void CSYTTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_CSYT(connect), this);
-        }
-
-        private void ThoátTSMI_Click(object sender, EventArgs e)
-        {
-            //connect.Dispose();
-            Program.loadForm(new MH_Login(), this);
+            Program.loadForm(new MH_Admin_CSYT(username, password), this);
         }
 
         private void nhânViênTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_NV(connect), this);
+            Program.loadForm(new MH_Admin_NV(username, password), this);
         }
 
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
+        }
     }
 }

@@ -15,34 +15,48 @@ namespace PROJECT
 {
     public partial class MH_Admin_CSYT : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         public MH_Admin_CSYT()
         {
             InitializeComponent();
+            dgv1_loaddata();
         }
-        public MH_Admin_CSYT(OracleConnection con)
+        public MH_Admin_CSYT(string user_name, string pass_word)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
+            dgv1_loaddata();
+        }
+        public void dgv1_loaddata()
+        {
+            /*
+            List<string> varList = new List<string>();
+            DataTable dt = new DataTable();
+
+            dt = Program.loadDT("sp_list_all_user", username, password, varList, varList);
+            dgv1.DataSource = dt;
+            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            */
         }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_User(connect), this);
+            Program.loadForm(new MH_Admin_User(username, password), this);
         }
 
         private void vaiTròTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_Role(connect), this);
+            Program.loadForm(new MH_Admin_Role(username, password), this);
         }
 
         private void nhânViênTSMI_Click(object sender, EventArgs e)
         {
-            //Program.loadForm(new MH_Admin_NV(connect), this);
+            Program.loadForm(new MH_Admin_NV(username, password), this);
         }
 
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
-            connect.Dispose();
             Program.loadForm(new MH_Login(), this);
         }
     }

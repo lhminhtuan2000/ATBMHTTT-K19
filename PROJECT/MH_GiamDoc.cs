@@ -15,26 +15,27 @@ namespace PROJECT
 {
     public partial class MH_GiamDoc : Form
     {
-        OracleConnection connect;
+        string username;
+        string password;
         string roleName;
         public MH_GiamDoc()
         {
             InitializeComponent();
         }
-        public MH_GiamDoc(OracleConnection con, string role)
+        public MH_GiamDoc(string user_name, string pass_word, string role)
         {
             InitializeComponent();
-            connect = con;
+            username = user_name;
+            password = pass_word;
             roleName = role;
-        }
-        private void ThoátTSMI_Click(object sender, EventArgs e)
-        {
-            connect.Dispose();
-            Program.loadForm(new MH_Login(), this);
         }
         private void infoTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NhanVien(connect, roleName), this);
+            Program.loadForm(new MH_NhanVien(username, password, roleName), this);
+        }
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
         }
     }
 }

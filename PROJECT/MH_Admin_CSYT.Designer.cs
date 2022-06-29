@@ -283,7 +283,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_Admin_CSYT";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Admin_CSYT";
+            this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

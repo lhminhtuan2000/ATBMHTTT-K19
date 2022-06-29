@@ -182,7 +182,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(200, 150);
             this.Name = "MH_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Login";
+            this.Text = "ATBMCQ-03";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);

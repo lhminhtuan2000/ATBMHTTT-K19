@@ -386,7 +386,7 @@ namespace PROJECT
             this.Location = new System.Drawing.Point(80, 60);
             this.Name = "MH_Admin_NV";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MH_Admin_NV";
+            this.Text = "ATBMCQ-03";
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
