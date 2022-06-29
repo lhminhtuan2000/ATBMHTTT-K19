@@ -12,3 +12,4 @@ create table THONGBAO (
 --
 GRANT select, insert, update ON THONGBAO TO lbacsys;
 
+select label_TO_CHAR(OLS_COLUMN) from thongbao;
