@@ -38,18 +38,18 @@ EXEC sp_show_roles;
 
 
 -- 5/ XEM SYSTEM PRIVS CỦA ROLE
-GRANT CREATE SESSION TO test_role;
+GRANT CREATE SESSION TO super_role2;
 GRANT SELECT ANY TABLE TO test_role;
-EXEC sp_role_sys_privs('test_role');
+EXEC sp_role_sys_privs('super_role2');
 -- TESTED
 
 
 -- 6/ XEM OBJECT PRIVS CỦA ROLE
-GRANT SELECT ON BENHNHAN TO test_role;
+GRANT SELECT ON BENHNHAN TO super_role2;
 GRANT DELETE ON NHANVIEN TO TEST_ROLE;
 GRANT DELETE ON NHANVIEN TO TEST_ROLE2;
 GRANT DELETE ON NHANVIEN TO TEST_ROLE3;
-EXEC sp_role_obj_privs('test_role');
+EXEC sp_role_obj_privs('super_role2');
 -- TESTED
 
 
