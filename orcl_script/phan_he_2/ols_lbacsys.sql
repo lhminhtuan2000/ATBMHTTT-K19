@@ -6,6 +6,7 @@ BEGIN
 END;
 /
 
+
 BEGIN
     sa_components.create_level (
         policy_name => 'TRUY_CAP_THONG_BAO',
@@ -96,7 +97,7 @@ BEGIN
 END;
 /
 
---conn qlbv_dba/1
+--conn qlbv_dba
 --create user GDSO identified by 1;
 --grant select any table to GDSO;
 --
@@ -108,6 +109,7 @@ END;
 --grant select any table to GDCSYT214 identified by 1;
 --grant select any table to GDCSYT215 identified by 1;
 --grant select any table to GDCSYT226 identified by 1;
+--grant connect to GDSO, GDCSYT216,GDCSYT224,GDCSYT234,GDCSYT214,GDCSYT215,GDCSYT226;
 
 
 BEGIN
@@ -115,8 +117,9 @@ BEGIN
         policy_name     => 'TRUY_CAP_THONG_BAO',
         user_name       => 'GDSO',
         max_read_label  => 'SEN:NOTR,NGTR,CHSA,TRTA,CATRTA,NGTH',
-        min_write_label => 'PUB',
-        row_label       => 'SEN:NOTR,NGTR,CHSA,TRTA,CATRTA,NGTH'
+        min_write_label => 'PUB'
+--       def_label       => 'PUB'
+--        row_label       => 'SEN'
     );
 END;
 /
@@ -187,7 +190,59 @@ BEGIN
 END;
 /
 
+-- after create table QLBV_DBA.THONGBAO
+BEGIN
+    sa_policy_admin.apply_table_policy (
+        policy_name =>'TRUY_CAP_THONG_BAO',
+        schema_name => 'QLBV_DBA',
+        table_name => 'THONGBAO',
+        table_options => 'NO_CONTROL'
+    );
+END;
+/
 
+-- thực hiện update 
+UPDATE QLBV_DBA.THONGBAO SET OLS_COLUMN = CHAR_TO_LABEL 
+('TRUY_CAP_THONG_BAO', 'CONF:NOTR')
+WHERE mathongbao = 1;
+
+UPDATE QLBV_DBA.THONGBAO SET OLS_COLUMN = CHAR_TO_LABEL 
+('TRUY_CAP_THONG_BAO', 'SEN')
+WHERE mathongbao = 2;
+
+UPDATE QLBV_DBA.THONGBAO SET OLS_COLUMN = CHAR_TO_LABEL 
+('TRUY_CAP_THONG_BAO', 'CONF:NGTR,TRTA')
+WHERE mathongbao = 3;
+
+UPDATE QLBV_DBA.THONGBAO SET OLS_COLUMN = CHAR_TO_LABEL 
+('TRUY_CAP_THONG_BAO', 'PUB')
+WHERE mathongbao = 4;
+
+UPDATE QLBV_DBA.THONGBAO SET OLS_COLUMN = CHAR_TO_LABEL 
+('TRUY_CAP_THONG_BAO', 'PUB:CHSA,TRTA')
+WHERE mathongbao = 5;
+
+
+-- after update set ols_col on THONGBAO
+BEGIN
+    sa_policy_admin.remove_table_policy (
+        policy_name     => 'TRUY_CAP_THONG_BAO',
+        schema_name     => 'QLBV_DBA',
+        table_name      => 'THONGBAO'
+    );
+END;
+/
+BEGIN
+    sa_policy_admin.apply_table_policy (
+        policy_name     => 'TRUY_CAP_THONG_BAO',
+        schema_name     => 'QLBV_DBA',
+        table_name      => 'THONGBAO',
+        table_options   => 'READ_CONTROL'
+    );
+END;
+/
+
+ 
 
 
 
