@@ -638,3 +638,12 @@ BEGIN
         REVOKE DELETE ON qlbv_dba.' || view_name || ' FROM ' || user_or_role;
 END;
 /
+-- 25/ GRANT ROLE TO USER
+CREATE OR REPLACE PROCEDURE sp_grant_role_to_user (
+    role_name VARCHAR2,
+    user_name VARCHAR2)
+IS
+BEGIN
+    EXECUTE IMMEDIATE 'GRANT ' || role_name || ' TO ' || user_name;
+END;
+/
