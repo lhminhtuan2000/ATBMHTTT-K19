@@ -46,7 +46,7 @@ IS
 BEGIN 
     OPEN c_privileges FOR
     SELECT
-        privilege, grantee, admin_option
+        privilege, admin_option
     FROM
         sys.v_pdb_dba_sys_privs
     WHERE
@@ -76,17 +76,16 @@ IS
 BEGIN 
     OPEN c_privs FOR
     SELECT
-        *
+        (OWNER || '.' || TABLE_NAME) as "OBJECT NAME", PRIVILEGE, GRANTABLE
     FROM
         sys.v_pdb_dba_tab_privs
     WHERE
         grantee = upper(user);
 
-    -- SOS
     dbms_sql.return_result(c_privs);
 END;
 / 
-
+show error
 
 -- 4/ SHOW ROLE CỦA HỆ THỐNG
 CREATE OR REPLACE VIEW v_pdb_dba_roles
@@ -129,7 +128,7 @@ IS
 BEGIN
     OPEN c_roles FOR
     SELECT
-        *
+        privilege, admin_option
     FROM
         sys.v_pdb_role_sys_privs
     WHERE role = UPPER(role_name);
@@ -157,7 +156,7 @@ IS
 BEGIN
     OPEN c_roles FOR
     SELECT
-        *
+        (OWNER || '.' || TABLE_NAME) as "OBJECT NAME", PRIVILEGE, GRANTABLE
     FROM
         sys.v_pdb_role_tab_privs
     WHERE role = UPPER(role_name);
