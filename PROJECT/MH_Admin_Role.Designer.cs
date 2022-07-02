@@ -70,6 +70,9 @@ namespace PROJECT
             this.checkBox = new System.Windows.Forms.CheckBox();
             this.cb_quyen = new System.Windows.Forms.ComboBox();
             this.cb_bang = new System.Windows.Forms.ComboBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.dgv4 = new System.Windows.Forms.DataGridView();
+            this.bt_tim = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,15 +84,17 @@ namespace PROJECT
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv4)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgv1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(301, 31);
+            this.groupBox2.Location = new System.Drawing.Point(551, 31);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(888, 292);
+            this.groupBox2.Size = new System.Drawing.Size(638, 292);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DANH SÁCH ROLE";
@@ -249,12 +254,13 @@ namespace PROJECT
             this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb2.Location = new System.Drawing.Point(128, 119);
             this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(150, 24);
+            this.tb2.Size = new System.Drawing.Size(113, 24);
             this.tb2.TabIndex = 5;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.bt_tim);
             this.panel1.Controls.Add(this.bt_thuquyen);
             this.panel1.Controls.Add(this.bt_capquyen);
             this.panel1.Controls.Add(this.tb2);
@@ -511,6 +517,7 @@ namespace PROJECT
             this.cb_quyen.Size = new System.Drawing.Size(108, 26);
             this.cb_quyen.TabIndex = 8;
             this.cb_quyen.Text = "Tên quyền";
+            this.cb_quyen.SelectedValueChanged += new System.EventHandler(this.cb_quyen_SelectedValueChanged);
             // 
             // cb_bang
             // 
@@ -531,11 +538,44 @@ namespace PROJECT
             this.cb_bang.Text = "Tên bảng";
             this.cb_bang.SelectedIndexChanged += new System.EventHandler(this.cb_bang_SelectedValueChanged);
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.dgv4);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(301, 31);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(248, 292);
+            this.groupBox7.TabIndex = 29;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "ROLE NGƯỜI DÙNG";
+            // 
+            // dgv4
+            // 
+            this.dgv4.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv4.Location = new System.Drawing.Point(6, 31);
+            this.dgv4.Name = "dgv4";
+            this.dgv4.Size = new System.Drawing.Size(236, 253);
+            this.dgv4.TabIndex = 0;
+            this.dgv4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv4_CellClick);
+            // 
+            // bt_tim
+            // 
+            this.bt_tim.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tim.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tim.Location = new System.Drawing.Point(247, 118);
+            this.bt_tim.Name = "bt_tim";
+            this.bt_tim.Size = new System.Drawing.Size(31, 26);
+            this.bt_tim.TabIndex = 8;
+            this.bt_tim.UseVisualStyleBackColor = true;
+            this.bt_tim.Click += new System.EventHandler(this.bt_tim_Click);
+            // 
             // MH_Admin_Role
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 611);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -565,6 +605,8 @@ namespace PROJECT
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,5 +654,8 @@ namespace PROJECT
         private System.Windows.Forms.CheckBox checkBox;
         private System.Windows.Forms.ComboBox cb_quyen;
         private System.Windows.Forms.ComboBox cb_bang;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.DataGridView dgv4;
+        private System.Windows.Forms.Button bt_tim;
     }
 }

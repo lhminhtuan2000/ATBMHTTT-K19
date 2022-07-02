@@ -34,7 +34,7 @@ namespace PROJECT
             string query = "select * from NHANVIEN";
             DataTable dt = new DataTable();
 
-            dt = Program.loadDTFromQuery(query, username, password);
+            dt = Program.loadDTWithQuery(query, username, password);
             dgv1.DataSource = dt;
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
@@ -48,7 +48,7 @@ namespace PROJECT
             string quequan = tb5.Text.ToString();
             string sodt = tb6.Text.ToString();
             string csyt = tb7.Text.ToString();
-            string vaitro = cb1.SelectedItem.ToString();
+            string vaitro = cb2.SelectedItem.ToString();
             string chuyenkhoa = tb8.Text.ToString();
 
             string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
@@ -83,8 +83,32 @@ namespace PROJECT
                 }
                 dgv1.DataSource = dt;
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgv1_loaddata();
             }
-            dgv1_loaddata();
+        }
+        private void bt_tracuuCSYT_Click(object sender, EventArgs e)
+        {
+            using (var form = new MH_TraCuu(username, password, "CSYT"))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string val = form.ReturnValue1;
+                    tb7.Text = val;
+                }
+            }
+        }
+        private void bt_tracuuKhoa_Click(object sender, EventArgs e)
+        {
+            using (var form = new MH_TraCuu(username, password, "KHOA"))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string val = form.ReturnValue1;
+                    tb8.Text = val;
+                }
+            }
         }
         private void ngườiDùngTSMI_Click(object sender, EventArgs e)
         {

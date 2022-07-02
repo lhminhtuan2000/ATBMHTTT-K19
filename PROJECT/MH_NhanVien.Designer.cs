@@ -29,7 +29,6 @@ namespace PROJECT
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb8 = new System.Windows.Forms.TextBox();
             this.tb7 = new System.Windows.Forms.TextBox();
             this.tb6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,17 +58,10 @@ namespace PROJECT
             this.quảnLýTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.đọcDữLiệuTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.cb2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tb8
-            // 
-            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb8.Location = new System.Drawing.Point(475, 77);
-            this.tb8.Name = "tb8";
-            this.tb8.Size = new System.Drawing.Size(150, 24);
-            this.tb8.TabIndex = 5;
             // 
             // tb7
             // 
@@ -222,8 +214,8 @@ namespace PROJECT
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cb2);
             this.panel1.Controls.Add(this.cb1);
-            this.panel1.Controls.Add(this.tb8);
             this.panel1.Controls.Add(this.tb7);
             this.panel1.Controls.Add(this.tb6);
             this.panel1.Controls.Add(this.label8);
@@ -277,6 +269,7 @@ namespace PROJECT
             this.bt_capnhat.TabIndex = 6;
             this.bt_capnhat.Text = "CẬP NHẬT";
             this.bt_capnhat.UseVisualStyleBackColor = true;
+            this.bt_capnhat.Click += new System.EventHandler(this.bt_capnhat_Click);
             // 
             // menu
             // 
@@ -359,6 +352,22 @@ namespace PROJECT
             this.ThoátTSMI.Text = "Thoát";
             this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
+            // cb2
+            // 
+            this.cb2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cb2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb2.FormattingEnabled = true;
+            this.cb2.Items.AddRange(new object[] {
+            "Thanh tra",
+            "Cơ sở y tế",
+            "Y sĩ/ bác sĩ",
+            "Nghiên cứu"});
+            this.cb2.Location = new System.Drawing.Point(475, 75);
+            this.cb2.Name = "cb2";
+            this.cb2.Size = new System.Drawing.Size(150, 26);
+            this.cb2.TabIndex = 8;
+            // 
             // MH_NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,8 +390,6 @@ namespace PROJECT
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tb8;
         private System.Windows.Forms.TextBox tb7;
         private System.Windows.Forms.TextBox tb6;
         private System.Windows.Forms.Label label8;
@@ -412,5 +419,6 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
         private System.Windows.Forms.ToolStripMenuItem quảnLýTSMI;
         private System.Windows.Forms.ToolStripMenuItem đọcDữLiệuTSMI;
+        private System.Windows.Forms.ComboBox cb2;
     }
 }

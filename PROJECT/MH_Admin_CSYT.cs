@@ -34,30 +34,25 @@ namespace PROJECT
             string query = "select * from CSYT";
             DataTable dt = new DataTable();
 
-            dt = Program.loadDTFromQuery(query, username, password);
+            dt = Program.loadDTWithQuery(query, username, password);
             dgv1.DataSource = dt;
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-        private void ngườiDùngTSMI_Click(object sender, EventArgs e)
+        private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Program.loadForm(new MH_Admin_User(username, password), this);
+            try
+            {
+                int rowIndex = dgv1.CurrentCell.RowIndex;
+                tb1.Text = dgv1.Rows[rowIndex].Cells[0].Value.ToString();
+                tb2.Text = dgv1.Rows[rowIndex].Cells[1].Value.ToString();
+                tb3.Text = dgv1.Rows[rowIndex].Cells[2].Value.ToString();
+                tb4.Text = dgv1.Rows[rowIndex].Cells[3].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Exception: {0}", ex.ToString());
+            }
         }
-
-        private void vaiTròTSMI_Click(object sender, EventArgs e)
-        {
-            Program.loadForm(new MH_Admin_Role(username, password), this);
-        }
-
-        private void nhânViênTSMI_Click(object sender, EventArgs e)
-        {
-            Program.loadForm(new MH_Admin_NV(username, password), this);
-        }
-
-        private void ThoátTSMI_Click(object sender, EventArgs e)
-        {
-            Program.loadForm(new MH_Login(), this);
-        }
-
         private void bt_them_Click(object sender, EventArgs e)
         {
             string macsyt = tb1.Text.ToString();
@@ -90,8 +85,8 @@ namespace PROJECT
                 }
                 dgv1.DataSource = dt;
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgv1_loaddata();
             }
-            dgv1_loaddata();
         }
 
         private void bt_sua_Click(object sender, EventArgs e)
@@ -126,8 +121,29 @@ namespace PROJECT
                 }
                 dgv1.DataSource = dt;
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgv1_loaddata();
             }
-            dgv1_loaddata();
         }
+
+        private void ngườiDùngTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_User(username, password), this);
+        }
+
+        private void vaiTròTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_Role(username, password), this);
+        }
+
+        private void nhânViênTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Admin_NV(username, password), this);
+        }
+
+        private void ThoátTSMI_Click(object sender, EventArgs e)
+        {
+            Program.loadForm(new MH_Login(), this);
+        }
+
     }
 }

@@ -71,6 +71,7 @@ namespace PROJECT
             this.bt_timHSBA.Size = new System.Drawing.Size(31, 26);
             this.bt_timHSBA.TabIndex = 7;
             this.bt_timHSBA.UseVisualStyleBackColor = true;
+            this.bt_timHSBA.Click += new System.EventHandler(this.bt_timHSBA_Click);
             // 
             // label1
             // 
@@ -128,6 +129,7 @@ namespace PROJECT
             this.dgv1.Name = "dgv1";
             this.dgv1.Size = new System.Drawing.Size(719, 206);
             this.dgv1.TabIndex = 0;
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // menu
             // 

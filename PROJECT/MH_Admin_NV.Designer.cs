@@ -40,9 +40,11 @@ namespace PROJECT
             this.panel1 = new System.Windows.Forms.Panel();
             this.cb2 = new System.Windows.Forms.ComboBox();
             this.cb1 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tb4 = new System.Windows.Forms.TextBox();
+            this.tb8 = new System.Windows.Forms.TextBox();
             this.tb7 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tb5 = new System.Windows.Forms.TextBox();
@@ -59,8 +61,8 @@ namespace PROJECT
             this.menu = new System.Windows.Forms.MenuStrip();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tb8 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.bt_tracuuCSYT = new System.Windows.Forms.Button();
+            this.bt_tracuuKhoa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.panel1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -139,6 +141,8 @@ namespace PROJECT
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.bt_tracuuKhoa);
+            this.panel1.Controls.Add(this.bt_tracuuCSYT);
             this.panel1.Controls.Add(this.cb2);
             this.panel1.Controls.Add(this.cb1);
             this.panel1.Controls.Add(this.label10);
@@ -195,6 +199,16 @@ namespace PROJECT
             this.cb1.Size = new System.Drawing.Size(185, 26);
             this.cb1.TabIndex = 7;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(23, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(95, 18);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Mã nhân viên";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -223,13 +237,22 @@ namespace PROJECT
             this.tb4.Size = new System.Drawing.Size(185, 24);
             this.tb4.TabIndex = 5;
             // 
+            // tb8
+            // 
+            this.tb8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb8.Location = new System.Drawing.Point(132, 288);
+            this.tb8.Name = "tb8";
+            this.tb8.Size = new System.Drawing.Size(142, 24);
+            this.tb8.TabIndex = 3;
+            // 
             // tb7
             // 
             this.tb7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb7.Location = new System.Drawing.Point(132, 226);
             this.tb7.Name = "tb7";
-            this.tb7.Size = new System.Drawing.Size(185, 24);
+            this.tb7.Size = new System.Drawing.Size(142, 24);
             this.tb7.TabIndex = 3;
             // 
             // label8
@@ -379,24 +402,27 @@ namespace PROJECT
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách các nhân viên";
             // 
-            // tb8
+            // bt_tracuuCSYT
             // 
-            this.tb8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb8.Location = new System.Drawing.Point(132, 288);
-            this.tb8.Name = "tb8";
-            this.tb8.Size = new System.Drawing.Size(185, 24);
-            this.tb8.TabIndex = 3;
+            this.bt_tracuuCSYT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuCSYT.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuCSYT.Location = new System.Drawing.Point(286, 225);
+            this.bt_tracuuCSYT.Name = "bt_tracuuCSYT";
+            this.bt_tracuuCSYT.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuCSYT.TabIndex = 8;
+            this.bt_tracuuCSYT.UseVisualStyleBackColor = true;
+            this.bt_tracuuCSYT.Click += new System.EventHandler(this.bt_tracuuCSYT_Click);
             // 
-            // label10
+            // bt_tracuuKhoa
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(23, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 18);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Mã nhân viên";
+            this.bt_tracuuKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuKhoa.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuKhoa.Location = new System.Drawing.Point(286, 287);
+            this.bt_tracuuKhoa.Name = "bt_tracuuKhoa";
+            this.bt_tracuuKhoa.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuKhoa.TabIndex = 9;
+            this.bt_tracuuKhoa.UseVisualStyleBackColor = true;
+            this.bt_tracuuKhoa.Click += new System.EventHandler(this.bt_tracuuKhoa_Click);
             // 
             // MH_Admin_NV
             // 
@@ -456,5 +482,7 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tb8;
+        private System.Windows.Forms.Button bt_tracuuKhoa;
+        private System.Windows.Forms.Button bt_tracuuCSYT;
     }
 }

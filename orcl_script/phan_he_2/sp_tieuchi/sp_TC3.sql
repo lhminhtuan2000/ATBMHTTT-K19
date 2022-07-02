@@ -84,6 +84,32 @@ begin
     end if;
 end;
 /
+create or replace procedure sp_csyt_xemhsba (
+    p_mahsba number)
+is
+    c1 sys_refcursor;
+begin
+    open c1 for
+    select * from qlbv_dba.hsba where mahsba = p_mahsba;
+           
+    -- SOS
+    dbms_sql.return_result(c1);
+end;
+/
+create or replace procedure sp_csyt_xemhsba_dv (
+    p_mahsba number)
+is
+    c1 sys_refcursor;
+begin
+    open c1 for
+    select * from qlbv_dba.hsba_dv where mahsba = p_mahsba;
+           
+    -- SOS
+    dbms_sql.return_result(c1);
+end;
+/
+grant execute on sp_csyt_xemhsba to CSYT;
+grant execute on sp_csyt_xemhsba_dv to CSYT;
 --grant select, delete on HSBA to CSYT;
 --grant select, delete on HSBA_DV to CSYT;
 grant execute on sp_csyt_them_HSBA to CSYT;

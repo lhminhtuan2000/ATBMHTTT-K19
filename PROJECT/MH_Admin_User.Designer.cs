@@ -272,6 +272,7 @@ namespace PROJECT
             this.cb_quyen.Size = new System.Drawing.Size(108, 26);
             this.cb_quyen.TabIndex = 8;
             this.cb_quyen.Text = "Tên quyền";
+            this.cb_quyen.SelectedValueChanged += new System.EventHandler(this.cb_quyen_SelectedValueChanged);
             // 
             // cb_bang
             // 

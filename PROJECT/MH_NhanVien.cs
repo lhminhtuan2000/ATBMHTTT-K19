@@ -63,8 +63,41 @@ namespace PROJECT
             tb5.Text = dt.Rows[0]["quequan"].ToString();
             tb6.Text = dt.Rows[0]["sodt"].ToString();
             tb7.Text = dt.Rows[0]["csyt"].ToString();
-            tb8.Text = dt.Rows[0]["vaitro"].ToString();
+            cb2.Text = dt.Rows[0]["vaitro"].ToString();
             tb9.Text = dt.Rows[0]["chuyenkhoa"].ToString();
+        }
+        private void bt_capnhat_Click(object sender, EventArgs e)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand("qlbv_dba.SP_CAPNHATTTNHANVIEN", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("P_HOTEN", OracleDbType.Int64, tb1.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_PHAI", OracleDbType.NVarchar2, cb1.SelectedItem.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_NGAYSINH", OracleDbType.Varchar2, tb3.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_CMND", OracleDbType.Date, tb4.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_QUEQUAN", OracleDbType.Varchar2, tb5.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_SODT", OracleDbType.NVarchar2, tb6.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_CSYT", OracleDbType.NVarchar2, tb7.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_VAITRO", OracleDbType.NVarchar2, cb2.SelectedItem.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_CHUYENKHOA", OracleDbType.NVarchar2, tb9.Text.ToString(), ParameterDirection.Input);
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                dgv1_loaddata();
+            }
         }
         private void HSBATSMI_Click(object sender, EventArgs e)
         {
@@ -77,7 +110,6 @@ namespace PROJECT
                 Program.loadForm(new MH_YSBS_HSBA(username, password, roleName), this);
             }
         }
-
         private void bệnhNhânTSMI_Click(object sender, EventArgs e)
         {
             Program.loadForm(new MH_YSBS_BN(username, password, roleName), this);
@@ -88,7 +120,7 @@ namespace PROJECT
         }
         private void quảnLýTSMI_Click(object sender, EventArgs e)
         {
-            Program.loadForm(new MH_NVQL(username, password, roleName), this);
+            Program.loadForm(new MH_CSYT(username, password, roleName), this);
         }
         private void đọcDữLiệuTSMI_Click(object sender, EventArgs e)
         {
@@ -98,5 +130,6 @@ namespace PROJECT
         {
             Program.loadForm(new MH_Login(), this);
         }
+
     }
 }

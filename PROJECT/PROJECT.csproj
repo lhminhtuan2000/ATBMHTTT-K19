@@ -167,23 +167,17 @@
     <Compile Include="MH_BenhNhan.Designer.cs">
       <DependentUpon>MH_BenhNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="MH_DichVu.cs">
+    <Compile Include="MH_TraCuu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MH_DichVu.Designer.cs">
-      <DependentUpon>MH_DichVu.cs</DependentUpon>
+    <Compile Include="MH_TraCuu.Designer.cs">
+      <DependentUpon>MH_TraCuu.cs</DependentUpon>
     </Compile>
     <Compile Include="MH_GiamDoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MH_GiamDoc.Designer.cs">
       <DependentUpon>MH_GiamDoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MH_Khoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MH_Khoa.Designer.cs">
-      <DependentUpon>MH_Khoa.cs</DependentUpon>
     </Compile>
     <Compile Include="MH_Login.cs">
       <SubType>Form</SubType>
@@ -203,11 +197,11 @@
     <Compile Include="MH_NhanVien.Designer.cs">
       <DependentUpon>MH_NhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="MH_NVQL.cs">
+    <Compile Include="MH_CSYT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MH_NVQL.Designer.cs">
-      <DependentUpon>MH_NVQL.cs</DependentUpon>
+    <Compile Include="MH_CSYT.Designer.cs">
+      <DependentUpon>MH_CSYT.cs</DependentUpon>
     </Compile>
     <Compile Include="MH_ThanhTra.cs">
       <SubType>Form</SubType>
@@ -244,14 +238,11 @@
     <EmbeddedResource Include="MH_BenhNhan.resx">
       <DependentUpon>MH_BenhNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MH_DichVu.resx">
-      <DependentUpon>MH_DichVu.cs</DependentUpon>
+    <EmbeddedResource Include="MH_TraCuu.resx">
+      <DependentUpon>MH_TraCuu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MH_GiamDoc.resx">
       <DependentUpon>MH_GiamDoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MH_Khoa.resx">
-      <DependentUpon>MH_Khoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MH_Login.resx">
       <DependentUpon>MH_Login.cs</DependentUpon>
@@ -262,8 +253,8 @@
     <EmbeddedResource Include="MH_NhanVien.resx">
       <DependentUpon>MH_NhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MH_NVQL.resx">
-      <DependentUpon>MH_NVQL.cs</DependentUpon>
+    <EmbeddedResource Include="MH_CSYT.resx">
+      <DependentUpon>MH_CSYT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MH_ThanhTra.resx">
       <DependentUpon>MH_ThanhTra.cs</DependentUpon>

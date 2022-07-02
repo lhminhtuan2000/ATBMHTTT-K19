@@ -197,6 +197,7 @@ namespace PROJECT
             this.dgv1.Name = "dgv1";
             this.dgv1.Size = new System.Drawing.Size(462, 181);
             this.dgv1.TabIndex = 0;
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // label
             // 

@@ -653,3 +653,29 @@ BEGIN
     EXECUTE IMMEDIATE 'REVOKE ' || role_name || ' FROM ' || user_name;
 END;
 /
+-- 27/ SHOW ROLE OF USER
+CREATE OR REPLACE VIEW v_pdb_dba_role_privs 
+AS
+SELECT * 
+FROM DBA_ROLE_PRIVS
+WHERE common = 'NO';
+
+GRANT SELECT ON v_pdb_dba_role_privs TO qlbv_dba;
+
+CREATE OR REPLACE PROCEDURE qlbv_dba.sp_show_role_user (
+    user VARCHAR2)
+IS 
+    c_role_list SYS_REFCURSOR;
+BEGIN 
+    OPEN c_role_list FOR
+    SELECT 
+        GRANTED_ROLE,ADMIN_OPTION
+    FROM 
+        sys.v_pdb_dba_role_privs
+    WHERE
+        grantee = upper(user);
+
+    -- SOS
+    DBMS_SQL.RETURN_RESULT(c_role_list);
+END;
+/

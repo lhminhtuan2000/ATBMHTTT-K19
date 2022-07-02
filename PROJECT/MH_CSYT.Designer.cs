@@ -1,7 +1,7 @@
 ﻿
 namespace PROJECT
 {
-    partial class MH_NVQL
+    partial class MH_CSYT
     {
         /// <summary>
         /// Required designer variable.
@@ -72,6 +72,8 @@ namespace PROJECT
             this.infoTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ThoátTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.bt_tracuuKTV = new System.Windows.Forms.Button();
+            this.bt_tracuuBS = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -84,6 +86,7 @@ namespace PROJECT
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.bt_tracuuBS);
             this.panel1.Controls.Add(this.bt_tracuuKhoa);
             this.panel1.Controls.Add(this.bt_timHSBA);
             this.panel1.Controls.Add(this.tb8);
@@ -118,6 +121,7 @@ namespace PROJECT
             this.bt_tracuuKhoa.Size = new System.Drawing.Size(31, 26);
             this.bt_tracuuKhoa.TabIndex = 7;
             this.bt_tracuuKhoa.UseVisualStyleBackColor = true;
+            this.bt_tracuuKhoa.Click += new System.EventHandler(this.bt_tracuuKhoa_Click);
             // 
             // bt_timHSBA
             // 
@@ -128,6 +132,7 @@ namespace PROJECT
             this.bt_timHSBA.Size = new System.Drawing.Size(31, 26);
             this.bt_timHSBA.TabIndex = 7;
             this.bt_timHSBA.UseVisualStyleBackColor = true;
+            this.bt_timHSBA.Click += new System.EventHandler(this.bt_timHSBA_Click);
             // 
             // tb8
             // 
@@ -168,7 +173,7 @@ namespace PROJECT
             this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb5.Location = new System.Drawing.Point(128, 137);
             this.tb5.Name = "tb5";
-            this.tb5.Size = new System.Drawing.Size(150, 24);
+            this.tb5.Size = new System.Drawing.Size(112, 24);
             this.tb5.TabIndex = 5;
             // 
             // label7
@@ -282,6 +287,7 @@ namespace PROJECT
             this.bt_themHSBA.TabIndex = 6;
             this.bt_themHSBA.Text = "THÊM";
             this.bt_themHSBA.UseVisualStyleBackColor = true;
+            this.bt_themHSBA.Click += new System.EventHandler(this.bt_themHSBA_Click);
             // 
             // bt_xoaHSBA
             // 
@@ -292,6 +298,7 @@ namespace PROJECT
             this.bt_xoaHSBA.TabIndex = 6;
             this.bt_xoaHSBA.Text = "XÓA";
             this.bt_xoaHSBA.UseVisualStyleBackColor = true;
+            this.bt_xoaHSBA.Click += new System.EventHandler(this.bt_xoaHSBA_Click);
             // 
             // label
             // 
@@ -331,6 +338,7 @@ namespace PROJECT
             this.dgv1.Name = "dgv1";
             this.dgv1.Size = new System.Drawing.Size(719, 313);
             this.dgv1.TabIndex = 0;
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // groupBox2
             // 
@@ -346,6 +354,7 @@ namespace PROJECT
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.bt_tracuuKTV);
             this.panel2.Controls.Add(this.bt_tracuuDV);
             this.panel2.Controls.Add(this.tb12);
             this.panel2.Controls.Add(this.tb11);
@@ -371,6 +380,7 @@ namespace PROJECT
             this.bt_tracuuDV.Size = new System.Drawing.Size(31, 26);
             this.bt_tracuuDV.TabIndex = 8;
             this.bt_tracuuDV.UseVisualStyleBackColor = true;
+            this.bt_tracuuDV.Click += new System.EventHandler(this.bt_tracuuDV_Click);
             // 
             // tb12
             // 
@@ -385,7 +395,7 @@ namespace PROJECT
             this.tb11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb11.Location = new System.Drawing.Point(128, 77);
             this.tb11.Name = "tb11";
-            this.tb11.Size = new System.Drawing.Size(150, 24);
+            this.tb11.Size = new System.Drawing.Size(112, 24);
             this.tb11.TabIndex = 5;
             // 
             // tb10
@@ -453,6 +463,7 @@ namespace PROJECT
             this.bt_themHSBA_DV.TabIndex = 6;
             this.bt_themHSBA_DV.Text = "THÊM";
             this.bt_themHSBA_DV.UseVisualStyleBackColor = true;
+            this.bt_themHSBA_DV.Click += new System.EventHandler(this.bt_themHSBA_DV_Click);
             // 
             // bt_xoaHSBA_DV
             // 
@@ -463,6 +474,7 @@ namespace PROJECT
             this.bt_xoaHSBA_DV.TabIndex = 6;
             this.bt_xoaHSBA_DV.Text = "XÓA";
             this.bt_xoaHSBA_DV.UseVisualStyleBackColor = true;
+            this.bt_xoaHSBA_DV.Click += new System.EventHandler(this.bt_xoaHSBA_DV_Click);
             // 
             // menu
             // 
@@ -508,7 +520,29 @@ namespace PROJECT
             this.ThoátTSMI.Text = "Thoát";
             this.ThoátTSMI.Click += new System.EventHandler(this.ThoátTSMI_Click);
             // 
-            // MH_NVQL
+            // bt_tracuuKTV
+            // 
+            this.bt_tracuuKTV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuKTV.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuKTV.Location = new System.Drawing.Point(246, 76);
+            this.bt_tracuuKTV.Name = "bt_tracuuKTV";
+            this.bt_tracuuKTV.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuKTV.TabIndex = 8;
+            this.bt_tracuuKTV.UseVisualStyleBackColor = true;
+            this.bt_tracuuKTV.Click += new System.EventHandler(this.bt_tracuuKTV_Click);
+            // 
+            // bt_tracuuBS
+            // 
+            this.bt_tracuuBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_tracuuBS.Image = global::PROJECT.Properties.Resources.Search_button;
+            this.bt_tracuuBS.Location = new System.Drawing.Point(247, 136);
+            this.bt_tracuuBS.Name = "bt_tracuuBS";
+            this.bt_tracuuBS.Size = new System.Drawing.Size(31, 26);
+            this.bt_tracuuBS.TabIndex = 7;
+            this.bt_tracuuBS.UseVisualStyleBackColor = true;
+            this.bt_tracuuBS.Click += new System.EventHandler(this.bt_tracuuBS_Click);
+            // 
+            // MH_CSYT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -520,7 +554,7 @@ namespace PROJECT
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Location = new System.Drawing.Point(80, 60);
-            this.Name = "MH_NVQL";
+            this.Name = "MH_CSYT";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ATBMCQ-03";
             this.panel1.ResumeLayout(false);
@@ -582,5 +616,7 @@ namespace PROJECT
         private System.Windows.Forms.ToolStripMenuItem infoTSMI;
         private System.Windows.Forms.ToolStripMenuItem quảnLýTSMI;
         private System.Windows.Forms.ToolStripMenuItem ThoátTSMI;
+        private System.Windows.Forms.Button bt_tracuuKTV;
+        private System.Windows.Forms.Button bt_tracuuBS;
     }
 }

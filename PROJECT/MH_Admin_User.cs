@@ -41,7 +41,7 @@ namespace PROJECT
 
         public void dgv2_loaddata(string user)
         {
-            List<string> varList = new List<string>{ "user" };
+            List<string> varList = new List<string> { "user" };
             List<string> inputList = new List<string> { user };
             DataTable dt = new DataTable();
 
@@ -151,38 +151,41 @@ namespace PROJECT
                 {
                     dt = Program.loadDT("sp_unlock_user", username, password, varList, inputList);
                 }
+                dgv1_loaddata();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Exception: {0}");
             }
-            dgv1_loaddata();
         }
 
         public void cb_cot_loaddata(string table)
         {
             cb_cot.Items.Clear();
             cb_cot.ResetText();
-            cb_cot.Enabled = true; // default: initial false
-            if (table == "HSBA")
+            if (cb_quyen.SelectedItem.ToString() == "SELECT" || cb_quyen.SelectedItem.ToString() == "UPDATE")
             {
-                cb_cot.Items.AddRange(Program.tHSBA);
-            }
-            else if(table == "HSBA_DV")
-            {
-                cb_cot.Items.AddRange(Program.tHSBA_DV);
-            }
-            else if (table == "BENHNHAN")
-            {
-                cb_cot.Items.AddRange(Program.tBENHNHAN);
-            }
-            else if (table == "CSYT")
-            {
-                cb_cot.Items.AddRange(Program.tCSYT);
-            }
-            else if (table == "NHANVIEN")
-            {
-                cb_cot.Items.AddRange(Program.tNHANVIEN);
+                cb_cot.Enabled = true; // default: initial false
+                if (table == "HSBA")
+                {
+                    cb_cot.Items.AddRange(Program.tHSBA);
+                }
+                else if (table == "HSBA_DV")
+                {
+                    cb_cot.Items.AddRange(Program.tHSBA_DV);
+                }
+                else if (table == "BENHNHAN")
+                {
+                    cb_cot.Items.AddRange(Program.tBENHNHAN);
+                }
+                else if (table == "CSYT")
+                {
+                    cb_cot.Items.AddRange(Program.tCSYT);
+                }
+                else if (table == "NHANVIEN")
+                {
+                    cb_cot.Items.AddRange(Program.tNHANVIEN);
+                }
             }
         }
         private void cb_bang_SelectedValueChanged(object sender, EventArgs e)
@@ -192,7 +195,13 @@ namespace PROJECT
                 cb_cot_loaddata(cb_bang.SelectedItem.ToString());
             }
         }
-
+        private void cb_quyen_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cb_quyen.SelectedItem.ToString() == "INSERT" || cb_quyen.SelectedItem.ToString() == "DELETE")
+            {
+                cb_cot.Enabled = false;
+            }
+        }
         private void bt_grant_table_Click(object sender, EventArgs e)
         {
             string user = tb1.Text.ToString();
@@ -290,7 +299,7 @@ namespace PROJECT
             string obj = tb4.Text.ToString();
             string schema_name = "qlbv_dba";
             string wgo = "0";
-            if (checkBox.Checked) // default: initial false
+            if (checkBox1.Checked) // default: initial false
             {
                 wgo = "1";
             }
@@ -321,7 +330,7 @@ namespace PROJECT
             string user = tb1.Text.ToString();
             string privilege = tb5.Text.ToString();
             string wgo = "0";
-            if (checkBox.Checked) // default: initial false
+            if (checkBox2.Checked) // default: initial false
             {
                 wgo = "1";
             }

@@ -45,7 +45,7 @@ BEGIN
         dbms_output.put_line('Ma CSYT khong ton tai');
     end IF;
 end;
-
+/
 --exec sp_capNhatCSYT(1, 'CSYT Tỉnh 1', 'Địa chỉ 1', '0955030054');
 --SELECT * FROM CSYT;
 
@@ -76,7 +76,6 @@ BEGIN
         dbms_output.put_line('Ma Nhan vien, ten dang nhap cua nhan vien ton tai');
     end IF;
 end;
-
+/
 --exec sp_themNhanVien(3056, 'Huỳnh Anh Nga', 'Nam', TO_DATE('28/7/2021', 'DD/MM/YYYY'), '374814512231', 'Tinh 3', '0936728597', null, 'Thanh tra', null, 'UN13056');
 --SELECT * FROM NhanVien WHERE manv = 3056;
-

@@ -46,9 +46,45 @@ namespace PROJECT
             tb10.Text = dt.Rows[0]["tiensubenhgd"].ToString();
             tb11.Text = dt.Rows[0]["diungthuoc"].ToString();
         }
+        private void bt_capnhat_Click(object sender, EventArgs e)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            String conString = connectionString.Replace("@@@", username).Replace("###", password);
+            using (OracleConnection con = new OracleConnection(conString))
+            {
+                con.Open();
+                OracleCommand cmd = new OracleCommand("qlbv_dba.SP_CAPNHATTTBENHNHAN", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("P_MACSYT", OracleDbType.Int64, tb1.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_TENBN", OracleDbType.NVarchar2, tb2.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_CMND", OracleDbType.Varchar2, tb3.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_NGAYSINH", OracleDbType.Date, tb4.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_SONHA", OracleDbType.Varchar2, tb5.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_TENDUONG", OracleDbType.NVarchar2, tb6.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_QUANHUYEN", OracleDbType.NVarchar2, tb7.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_TINHTP", OracleDbType.NVarchar2, tb8.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_TIENSUBENH", OracleDbType.NVarchar2, tb9.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_TIENSUBENHGD", OracleDbType.NVarchar2, tb10.Text.ToString(), ParameterDirection.Input);
+                cmd.Parameters.Add("P_DIUNGTHUOC", OracleDbType.NVarchar2, tb11.Text.ToString(), ParameterDirection.Input);
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                try
+                {
+                    OracleDataAdapter oda = new OracleDataAdapter(cmd);
+                    oda.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Exception: {0}");
+                }
+                dgv1_loaddata();
+            }
+        }
         private void ThoátTSMI_Click(object sender, EventArgs e)
         {
             Program.loadForm(new MH_Login(), this);
         }
+
     }
 }

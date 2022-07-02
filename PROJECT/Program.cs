@@ -65,7 +65,7 @@ namespace PROJECT
                 return dt;
             }
         }
-        public static DataTable loadDTFromQuery(string query, string username, string password)
+        public static DataTable loadDTWithQuery(string query, string username, string password)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
             String conString = connectionString.Replace("@@@", username).Replace("###", password);

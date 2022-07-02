@@ -72,6 +72,7 @@ namespace PROJECT
             this.bt_tracuu.Size = new System.Drawing.Size(31, 26);
             this.bt_tracuu.TabIndex = 7;
             this.bt_tracuu.UseVisualStyleBackColor = true;
+            this.bt_tracuu.Click += new System.EventHandler(this.bt_tracuu_Click);
             // 
             // label2
             // 

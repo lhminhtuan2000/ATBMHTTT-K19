@@ -298,6 +298,7 @@ namespace PROJECT
             this.bt_capnhat.TabIndex = 6;
             this.bt_capnhat.Text = "CẬP NHẬT";
             this.bt_capnhat.UseVisualStyleBackColor = true;
+            this.bt_capnhat.Click += new System.EventHandler(this.bt_capnhat_Click);
             // 
             // ThoátTSMI
             // 
